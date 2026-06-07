@@ -7,68 +7,13 @@ use App\Http\Controllers\ChatbotController;
 // --- DATOS MOCK (Simulación de Base de Datos para el Frontend) ---
 
 $getSharedData = function () {
-    $productos = [
-        [
-            'id' => 1,
-            'nombre' => 'Sensor Ultrasónico de Flujo industrial U-1000',
-            'categoria' => 'Instrumentación',
-            'precio' => '$1,250.00',
-            'descripcion' => 'Sensor de flujo de alta precisión sin contacto para líquidos en tuberías de diversos materiales. Ideal para entornos industriales exigentes de monitoreo continuo de caudal.',
-            'imagen' => 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800',
-            'especificaciones' => ['Precisión: +/- 0.5%', 'Rango: 0.1 a 10 m/s', 'Salida de Señal: 4-20mA / Modbus RTU', 'Protección: IP68 sumergible', 'Material de Sensores: Acero Inoxidable 316L'],
-            'destacado' => true
-        ],
-        [
-            'id' => 2,
-            'nombre' => 'Módulo Controlador Programable PLC-V20',
-            'categoria' => 'Automatización',
-            'precio' => '$890.00',
-            'descripcion' => 'Controlador lógico programable avanzado para sistemas de control automatizado. Cuenta con alta velocidad de procesamiento y múltiples opciones de conectividad de red industrial.',
-            'imagen' => 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800',
-            'especificaciones' => ['Entradas: 16 Entradas Digitales / 4 Analógicas', 'Salidas: 12 Salidas a Relevador / 2 Analógicas', 'Puertos: Ethernet, RS-485, USB', 'Alimentación: 24V DC', 'Montaje: Riel DIN standard'],
-            'destacado' => true
-        ],
-        [
-            'id' => 3,
-            'nombre' => 'Analizador de Gases de Combustión G-450',
-            'categoria' => 'Instrumentación',
-            'precio' => '$2,400.00',
-            'descripcion' => 'Analizador portátil profesional para la medición de emisiones de gases en calderas, hornos y motores de combustión interna. Asegura el cumplimiento de regulaciones ambientales.',
-            'imagen' => 'https://images.unsplash.com/photo-1532187643603-ba119ca4109e?auto=format&fit=crop&q=80&w=800',
-            'especificaciones' => ['Gases Medidos: O2, CO, NO, NO2, SO2', 'Batería: Litio recargable (hasta 12h de uso)', 'Pantalla: Color TFT 3.5 pulgadas con retroiluminación', 'Memoria: Almacena hasta 50,000 pruebas', 'Conectividad: Bluetooth / USB'],
-            'destacado' => true
-        ],
-        [
-            'id' => 4,
-            'nombre' => 'Variador de Frecuencia Trifásico PowerDrive-X',
-            'categoria' => 'Equipos Eléctricos',
-            'precio' => '$650.00',
-            'descripcion' => 'Variador de frecuencia para el control preciso y eficiente de velocidad de motores de inducción trifásicos. Reduce el desgaste mecánico y el consumo eléctrico.',
-            'imagen' => 'https://images.unsplash.com/photo-1517420712361-2e6d99c4b7ec?auto=format&fit=crop&q=80&w=800',
-            'especificaciones' => ['Potencia: 7.5 HP (5.5 kW)', 'Voltaje de Entrada: 380-480V Trifásico', 'Frecuencia de Salida: 0 - 599 Hz', 'Control: V/F, Vectorial sin sensor', 'Filtro EMC: Integrado de fábrica'],
-            'destacado' => false
-        ],
-        [
-            'id' => 5,
-            'nombre' => 'Actuador Neumático Lineal Heavy Duty',
-            'categoria' => 'Automatización',
-            'precio' => '$420.00',
-            'descripcion' => 'Cilindro neumático robusto diseñado para automatización de compuertas, válvulas y posicionamiento de cargas en líneas de ensamblaje pesado.',
-            'imagen' => 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=800',
-            'especificaciones' => ['Diámetro de Pistón: 80 mm', 'Carrera: 250 mm', 'Fuerza Teórica a 6 bar: 3016 N (Empuje)', 'Conexiones de Aire: G3/8"', 'Temperatura de Trabajo: -20°C a +80°C'],
-            'destacado' => false
-        ],
-        [
-            'id' => 6,
-            'nombre' => 'Gabinete de Seguridad Ambiental e Higiene',
-            'categoria' => 'Seguridad',
-            'precio' => '$1,150.00',
-            'descripcion' => 'Gabinete diseñado para el almacenamiento seguro de productos químicos y combustibles inflamables en laboratorios e instalaciones industriales. Cumple con normas internacionales.',
-            'imagen' => 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=800',
-            'especificaciones' => ['Capacidad: 30 Galones (114 Litros)', 'Resistencia al Fuego: Certificación FM y UL 1275', 'Material: Acero de doble pared calibre 18', 'Cierre: Puertas manuales con cerradura de 3 puntos', 'Estantes: Ajustables con sistema antiderrame'],
-            'destacado' => false
-        ]
-    ];
+    $jsonPath = public_path('img/catalogo/productos_parsed.json');
+    if (file_exists($jsonPath)) {
+        $productos = json_decode(file_get_contents($jsonPath), true);
+    } else {
+        $productos = [];
+    }
+
 
     $articulos = [
         [

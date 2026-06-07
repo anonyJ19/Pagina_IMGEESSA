@@ -10,6 +10,7 @@ export default defineConfig({
                 "resources/css/app.css",
                 "resources/js/app.js",
                 "resources/js/theme.js",
+
                 // "resources/js/editor/main.jsx",
                 // "resources/js/html/main.jsx",
             ],
@@ -17,5 +18,4 @@ export default defineConfig({
         }),
         //react(),    
     ],
-    
 });

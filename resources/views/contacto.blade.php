@@ -94,8 +94,11 @@
                      email: '',
                      subject: '',
                      message: '',
+                     meeting_date: '',
+                     meeting_time: '',
                      loading: false,
                      success: false,
+                     errorMsg: '',
                      init() {
                          const urlParams = new URLSearchParams(window.location.search);
                          const equipo = urlParams.get('equipo');
@@ -104,17 +107,45 @@
                              this.message = 'Hola, me gustaría solicitar una cotización formal y recibir especificaciones técnicas adicionales para el equipo: ' + equipo + '.';
                          }
                      },
-                     submit() {
+                     async submit() {
                          this.loading = true;
-                         setTimeout(() => {
+                         this.errorMsg = '';
+                         
+                         try {
+                             const response = await fetch('{{ route('contacto.send') }}', {
+                                 method: 'POST',
+                                 headers: {
+                                     'Content-Type': 'application/json',
+                                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                 },
+                                 body: JSON.stringify({
+                                     name: this.name,
+                                     email: this.email,
+                                     subject: this.subject,
+                                     message: this.message,
+                                     meeting_date: this.meeting_date,
+                                     meeting_time: this.meeting_time
+                                 })
+                             });
+                             
+                             const data = await response.json();
+                             
+                             if (response.ok && data.success) {
+                                 this.success = true;
+                                 this.name = '';
+                                 this.email = '';
+                                 this.subject = '';
+                                 this.message = '';
+                                 this.meeting_date = '';
+                                 this.meeting_time = '';
+                             } else {
+                                 this.errorMsg = data.message || 'Ocurrió un error. Por favor intenta de nuevo.';
+                             }
+                         } catch (error) {
+                             this.errorMsg = 'Error de conexión. Intenta nuevamente.';
+                         } finally {
                              this.loading = false;
-                             this.success = true;
-                             // Reset fields
-                             this.name = '';
-                             this.email = '';
-                             this.subject = '';
-                             this.message = '';
-                         }, 1500);
+                         }
                      }
                  }">
                 
@@ -158,7 +189,21 @@
                     <form @submit.prevent="submit" class="space-y-6">
                         <div class="space-y-2">
                             <h3 class="text-xl font-bold text-brand-navy dark:text-white">Formulario de Contacto</h3>
-                            <p class="text-xs text-brand-slate dark:text-zinc-400">Por favor, rellena todos los campos con tus detalles de contacto.</p>
+                            <p class="text-xs text-brand-slate dark:text-zinc-400">Por favor, rellena todos los campos para agendar tu reunión.</p>
+                        </div>
+                        
+                        <!-- Error Message -->
+                        <div x-show="errorMsg" class="rounded-xl bg-red-50 p-4 border border-red-200" style="display: none;">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-red-800" x-text="errorMsg"></p>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -177,6 +222,25 @@
                                        type="email" 
                                        id="contact-email"
                                        placeholder="juan@empresa.com" 
+                                       class="w-full rounded-xl border border-zinc-300 bg-slate-50 px-4 py-2.5 text-sm text-brand-navy shadow-sm focus:border-brand-cyan focus:bg-white focus:ring-1 focus:ring-brand-cyan dark:border-brand-navy dark:bg-brand-navy/60 dark:text-white dark:focus:border-brand-cyan"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            <div class="space-y-1.5">
+                                <label for="meeting-date" class="text-xs font-bold text-brand-slate dark:text-zinc-450 uppercase tracking-wide">Fecha de Reunión</label>
+                                <input x-model="meeting_date" 
+                                       type="date" 
+                                       id="meeting-date"
+                                       class="w-full rounded-xl border border-zinc-300 bg-slate-50 px-4 py-2.5 text-sm text-brand-navy shadow-sm focus:border-brand-cyan focus:bg-white focus:ring-1 focus:ring-brand-cyan dark:border-brand-navy dark:bg-brand-navy/60 dark:text-white dark:focus:border-brand-cyan"
+                                       required>
+                            </div>
+                            <div class="space-y-1.5">
+                                <label for="meeting-time" class="text-xs font-bold text-brand-slate dark:text-zinc-450 uppercase tracking-wide">Hora</label>
+                                <input x-model="meeting_time" 
+                                       type="time" 
+                                       id="meeting-time"
                                        class="w-full rounded-xl border border-zinc-300 bg-slate-50 px-4 py-2.5 text-sm text-brand-navy shadow-sm focus:border-brand-cyan focus:bg-white focus:ring-1 focus:ring-brand-cyan dark:border-brand-navy dark:bg-brand-navy/60 dark:text-white dark:focus:border-brand-cyan"
                                        required>
                             </div>

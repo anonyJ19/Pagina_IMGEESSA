@@ -283,8 +283,7 @@
             <div class="mt-12 border-t border-zinc-200 pt-8 dark:border-brand-navy/60 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
                 <p>&copy; {{ date('Y') }} IMGEESSA S.A. Todos los derechos reservados.</p>
                 <div class="flex gap-4">
-                    <a href="#" class="hover:text-brand-cyan transition-colors duration-150">Políticas de Privacidad</a>
-                    <a href="#" class="hover:text-brand-cyan transition-colors duration-150">Términos de Servicio</a>
+                    <a href="{{ asset('documentos/tratamiento de datos.pdf') }}" target="_blank" class="hover:text-brand-cyan transition-colors duration-150">Tratamiento de datos Personales </a>
                 </div>
             </div>
         </div>

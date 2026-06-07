@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 
 // --- DATOS MOCK (Simulación de Base de Datos para el Frontend) ---
 
@@ -220,3 +221,5 @@ Route::get('/contacto', function () use ($getSharedData) {
     $data = $getSharedData();
     return view('contacto', ['faqs' => $data['faqs']]);
 })->name('contacto');
+
+Route::post('/contacto-enviar', [ContactController::class, 'send'])->name('contacto.send');

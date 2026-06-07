@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Inicio | IMGEESSA Soluciones Industriales')
+@section('title', IMGEESSA')
 
 @section('content')
 <!-- Hero Section -->

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ChatbotController;
 
 // --- DATOS MOCK (Simulación de Base de Datos para el Frontend) ---
 
@@ -224,3 +225,6 @@ Route::get('/contacto', function () use ($getSharedData) {
 })->name('contacto');
 
 Route::post('/contacto-enviar', [ContactController::class, 'send'])->name('contacto.send');
+
+// Ruta del Chatbot
+Route::post('/chat', [ChatbotController::class, 'chat'])->name('chat.send');

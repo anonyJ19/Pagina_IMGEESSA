@@ -137,20 +137,24 @@ $getSharedData = function () {
 
     $faqs = [
         [
-            'pregunta' => '¿Ofrecen servicios de instalación y calibración en sitio?',
-            'respuesta' => 'Sí, en IMGEESA contamos con un equipo técnico especializado disponible para realizar servicios de montaje, puesta en marcha y calibración de instrumentos de flujo, presión y temperatura directamente en sus instalaciones con certificación de fábrica.'
+            'pregunta' => '¿En qué áreas se especializa IMGEESSA?',
+            'respuesta' => 'Somos especialistas en consultoría, asesoría e implementación de soluciones integrales en Seguridad y Salud en el Trabajo (SST), Gestión Ambiental, Calidad y Sistemas Integrados de Gestión.'
         ],
         [
-            'pregunta' => '¿Hacen envíos de equipos a nivel nacional?',
-            'respuesta' => 'Sí, realizamos envíos seguros y asegurados a todo el país. Trabajamos con las principales empresas transportadoras para garantizar que los equipos de precisión lleguen en perfectas condiciones y a tiempo.'
+            'pregunta' => '¿Ofrecen asesoría legal laboral, como la elaboración del Reglamento Interno de Trabajo?',
+            'respuesta' => 'Sí, brindamos acompañamiento experto para ayudar a su empresa a diseñar, actualizar e implementar el Reglamento Interno de Trabajo, garantizando el estricto cumplimiento normativo aplicable a su sector y tipo de empresa.'
         ],
         [
-            'pregunta' => '¿Qué garantía tienen los productos del catálogo?',
-            'respuesta' => 'Todos nuestros equipos nuevos cuentan con una garantía mínima de 12 meses contra defectos de fabricación. Adicionalmente, ofrecemos planes de mantenimiento y extensión de garantía opcionales.'
+            'pregunta' => '¿Cómo apoyan a las empresas en casos de Estabilidad Laboral Reforzada por motivos de salud?',
+            'respuesta' => 'Contamos con especialistas en Recursos Humanos y SST que le asesorarán en la correcta gestión y acreditación de la Estabilidad Laboral Reforzada, asegurando que su organización proceda legal y éticamente frente a las incapacidades médicas.'
         ],
         [
-            'pregunta' => '¿Cómo puedo solicitar una cotización formal para un proyecto?',
-            'respuesta' => 'Puede enviarnos un mensaje con sus requerimientos técnicos detallados a través de nuestro formulario de contacto en esta web, escribirnos al correo cotizaciones@imgeesa.com o contactarnos telefónicamente para una atención inmediata.'
+            'pregunta' => '¿Realizan estudios de Higiene Industrial, como mediciones de ruido ambiental u ocupacional?',
+            'respuesta' => 'Así es. Nuestro equipo técnico realiza mediciones especializadas de Higiene Industrial, aplicando metodologías rigurosas certificadas para evitar errores comunes en la medición de ruido y proteger efectivamente la salud auditiva de sus trabajadores.'
+        ],
+        [
+            'pregunta' => '¿A qué tipo de organizaciones acompañan y qué valor agregado ofrecen?',
+            'respuesta' => 'Acompañamos a organizaciones de múltiples sectores productivos. Nuestro valor agregado radica en la experiencia técnica de nuestros profesionales, quienes optimizan sus procesos para construir entornos verdaderamente seguros y sostenibles.'
         ]
     ];
 

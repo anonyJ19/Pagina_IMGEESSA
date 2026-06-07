@@ -413,7 +413,7 @@
                 Blog Técnico e Informativo
             </h2>
             <p class="text-brand-slate dark:text-zinc-400">
-                Artículos escritos por expertos en ingeniería sobre innovaciones tecnológicas, regulaciones ambientales y eficiencia energética industrial.
+                Artículos escritos por nuestros profesionales sobre normatividad, Seguridad y Salud en el Trabajo, Gestión Ambiental, Calidad y Sistemas Integrados de Gestión.
             </p>
         </div>
 
@@ -430,7 +430,15 @@
                         {{ $articulo['resumen'] }}
                     </p>
                     <div class="mt-6 border-t border-zinc-100 dark:border-brand-navy/40 pt-4 flex items-center justify-between">
-                        <span class="text-xs text-brand-slate dark:text-zinc-450 font-medium">Por {{ $articulo['autor'] }}</span>
+                        <div class="flex items-start gap-2 pr-2">
+                            <div class="h-6 w-6 rounded-full bg-slate-100 dark:bg-brand-navy flex items-center justify-center shrink-0 mt-0.5">
+                                <img src="{{ asset('img/logo-l.png') }}" class="h-3 w-auto object-contain dark:hidden" alt="Logo">
+                                <img src="{{ asset('img/logo-d.png') }}" class="h-3 w-auto object-contain hidden dark:block" alt="Logo">
+                            </div>
+                            <span class="text-[10px] text-brand-slate dark:text-zinc-400 font-bold leading-tight">
+                                Por IMGEESSA SOLUCIONES INTEGRALES HSEQ S.A.S
+                            </span>
+                        </div>
                         <a href="{{ route('blog.detalle', $articulo['slug']) }}" class="text-xs font-bold text-brand-cyan hover:text-brand-cyan-dark hover:underline">
                             Leer artículo
                         </a>

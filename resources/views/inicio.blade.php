@@ -79,7 +79,7 @@
     </div>
 </section>
 
-<!-- Stats Grid Section -->
+<!-- Stats Grid Section
 <section class="py-8 border-y border-zinc-200/40 dark:border-brand-navy/30 bg-white dark:bg-brand-navy/30 transition-colors duration-300">
     <div class="mx-auto max-w-7xl px-4 md:px-8">
         <div class="grid grid-cols-2 gap-6 md:grid-cols-4 text-center">
@@ -101,7 +101,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- Core Services / Value Cards Section -->
 <section class="py-10 bg-slate-50 dark:bg-brand-navy-dark transition-colors duration-300">
@@ -405,6 +405,67 @@
     </div>
 </section>
 
+<!-- Catalog Collage Section -->
+<section class="py-10 md:py-16 bg-white dark:bg-brand-navy-dark transition-colors duration-300">
+    <div class="mx-auto max-w-7xl px-4 md:px-8 space-y-10">
+        <div class="text-center max-w-3xl mx-auto space-y-4">
+            <h2 class="text-3xl font-bold tracking-tight text-brand-navy dark:text-white sm:text-4xl">
+                Explora Nuestro Catálogo
+            </h2>
+            <p class="text-brand-slate dark:text-zinc-400">
+                Descubre nuestra amplia gama de productos, equipos de protección y servicios especializados.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+            <!-- Item 1 (Large) -->
+            <a href="{{ route('catalogo') }}" class="group relative overflow-hidden rounded-2xl col-span-2 md:col-span-2 row-span-2 md:row-span-2 shadow-sm hover:shadow-xl hover:shadow-brand-cyan/20 transition-all duration-300">
+                <img src="{{ asset('img/inicio/lineas_de_negocio/EPP-Y-FERRETERIA.jpg') }}" alt="EPP y Ferretería" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy-dark/90 via-brand-navy-dark/30 to-transparent transition-opacity"></div>
+                <div class="absolute bottom-6 left-6 right-6 flex flex-col justify-end items-start h-full pb-2">
+                    <span class="inline-flex items-center gap-1.5 rounded-full bg-brand-cyan/90 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-navy shadow-sm mb-3">Suministros Industriales</span>
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-white">EPP y Ferretería</h3>
+                    <p class="mt-2 text-zinc-300 text-sm max-w-sm hidden sm:block opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Equipos de protección personal, herramientas y materiales de alta calidad.</p>
+                </div>
+            </a>
+
+            <!-- Item 2 -->
+            <a href="{{ route('catalogo') }}" class="group relative overflow-hidden rounded-2xl col-span-2 md:col-span-1 row-span-1 md:row-span-1 shadow-sm hover:shadow-lg transition-all duration-300">
+                <img src="{{ asset('img/inicio/lineas_de_negocio/SEGURIDAD-Y-SALUD-EN-EL-TRABAJO.jpg') }}" alt="Seguridad y Salud" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy-dark/80 to-transparent transition-opacity"></div>
+                <div class="absolute bottom-4 left-4 right-4">
+                    <h3 class="text-lg font-bold text-white group-hover:text-brand-cyan transition-colors">Seguridad y Salud</h3>
+                </div>
+            </a>
+
+            <!-- Item 3 -->
+            <a href="{{ route('catalogo') }}" class="group relative overflow-hidden rounded-2xl col-span-2 md:col-span-1 row-span-1 md:row-span-2 shadow-sm hover:shadow-lg transition-all duration-300">
+                <img src="{{ asset('img/inicio/lineas_de_negocio/GESTION-AMBIENTAL.webp') }}" alt="Gestión Ambiental" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy-dark/90 via-brand-navy-dark/20 to-transparent transition-opacity"></div>
+                <div class="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6">
+                    <h3 class="text-xl font-bold text-white group-hover:text-brand-cyan transition-colors">Gestión Ambiental</h3>
+                </div>
+            </a>
+
+            <!-- Item 4 -->
+            <a href="{{ route('catalogo') }}" class="group relative overflow-hidden rounded-2xl col-span-2 md:col-span-1 row-span-1 md:row-span-1 shadow-sm hover:shadow-lg transition-all duration-300">
+                <img src="{{ asset('img/inicio/lineas_de_negocio/MEDICIONES-AMBIENTALES.jpg') }}" alt="Mediciones" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy-dark/80 to-transparent transition-opacity"></div>
+                <div class="absolute bottom-4 left-4 right-4">
+                    <h3 class="text-lg font-bold text-white group-hover:text-brand-cyan transition-colors">Mediciones</h3>
+                </div>
+            </a>
+        </div>
+        
+        <div class="flex justify-center pt-2">
+            <a href="{{ route('catalogo') }}" class="inline-flex items-center gap-2 text-sm font-bold text-brand-cyan hover:text-brand-cyan-dark transition-colors group">
+                Ver Todo el Catálogo
+                <svg class="h-4 w-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </a>
+        </div>
+    </div>
+</section>
+
 <!-- Our Clients Section (Auto-sliding Marquee) -->
 @php
     $clientesImages = [
@@ -468,21 +529,21 @@
 </section>
 
 <!-- Call to Action Section -->
-<section class="py-10 md:py-16 bg-white dark:bg-brand-navy-dark transition-colors duration-300">
+<section class="py-8 md:py-10 bg-white dark:bg-brand-navy-dark transition-colors duration-300">
     <div class="mx-auto max-w-7xl px-4 md:px-8">
-        <div class="relative rounded-3xl overflow-hidden bg-gradient-to-tr from-brand-navy to-indigo-950 px-8 py-12 md:p-16 shadow-2xl text-center md:text-left">
+        <div class="relative rounded-3xl overflow-hidden bg-gradient-to-tr from-brand-navy to-indigo-950 px-8 py-8 md:px-12 md:py-8 shadow-2xl text-center md:text-left">
             <div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-brand-cyan to-transparent"></div>
-            <div class="relative grid grid-cols-1 gap-8 md:grid-cols-12 items-center z-10">
-                <div class="md:col-span-8 space-y-4">
-                    <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <div class="relative grid grid-cols-1 gap-6 md:grid-cols-12 items-center z-10">
+                <div class="md:col-span-8 space-y-2.5">
+                    <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-white">
                         ¿Listo para potenciar la gestión y seguridad de su organización?
                     </h2>
-                    <p class="text-zinc-300 text-sm md:text-base max-w-2xl leading-relaxed">
+                    <p class="text-zinc-300 text-sm max-w-2xl leading-relaxed">
                         Póngase en contacto hoy mismo con nuestro equipo de profesionales para recibir asesoría especializada en sistemas de gestión integrados, normativas, prevención de riesgos e ingeniería de procesos.
                     </p>
                 </div>
                 <div class="md:col-span-4 flex justify-center md:justify-end">
-                    <a href="{{ route('contacto') }}" class="inline-flex items-center justify-center rounded-xl bg-brand-cyan hover:bg-brand-cyan-dark px-6 py-3.5 text-sm font-bold text-brand-navy shadow hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <a href="{{ route('contacto') }}" class="inline-flex items-center justify-center rounded-xl bg-brand-cyan hover:bg-brand-cyan-dark px-6 py-3 text-sm font-bold text-brand-navy shadow hover:shadow-lg transition-all duration-300 hover:scale-105">
                         Agendar Consultoría Gratuita
                     </a>
                 </div>

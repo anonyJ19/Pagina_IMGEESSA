@@ -4,13 +4,16 @@
 
 @section('content')
 <!-- Header Page Title -->
-<section class="relative overflow-hidden py-16 bg-slate-100/60 dark:bg-brand-navy border-b border-zinc-200/40 dark:border-brand-navy/30 transition-colors duration-300">
-    <div class="absolute inset-0 -z-10 bg-[radial-gradient(50rem_25rem_at_center,rgba(0,210,211,0.08),transparent)]"></div>
+<section class="relative overflow-hidden py-12 lg:py-16 bg-gradient-to-b from-brand-navy-dark to-brand-navy text-white border-b border-brand-navy/30">
+    <!-- Background glows -->
+    <div class="absolute inset-0 -z-10 bg-[radial-gradient(45rem_20rem_at_center,rgba(0,210,211,0.15),transparent)]"></div>
+    <div class="absolute -top-24 right-10 h-72 w-72 rounded-full bg-brand-cyan/10 blur-3xl"></div>
+    
     <div class="mx-auto max-w-7xl px-4 md:px-8 text-center space-y-4">
-        <h1 class="text-4xl font-extrabold tracking-tight text-brand-navy dark:text-white sm:text-5xl">
-            Blog Técnico e Informativo
+        <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl text-white">
+            Blog Técnico e <span class="text-brand-cyan">Informativo</span>
         </h1>
-        <p class="mx-auto max-w-2xl text-base text-brand-slate dark:text-zinc-300">
+        <p class="mx-auto max-w-2xl text-base text-zinc-300 leading-relaxed font-light">
             Nuestros ingenieros comparten análisis de tendencias, guías de eficiencia energética y novedades de seguridad industrial.
         </p>
     </div>

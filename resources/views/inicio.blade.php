@@ -510,7 +510,7 @@
             <!-- First Marquee Track -->
             <div class="flex animate-slide-left whitespace-nowrap items-center shrink-0 space-x-6 px-3">
                 @foreach($clientesImages as $img)
-                <div class="flex h-40 w-64 shrink-0 items-center justify-center rounded-2xl border border-zinc-200/60 bg-white p-6 dark:border-brand-navy/50 dark:bg-white grayscale group-hover:grayscale-0 transition-all duration-500 shadow-sm">
+                <div class="flex h-40 w-64 shrink-0 items-center justify-center rounded-2xl border border-zinc-200/60 bg-white p-6 dark:border-brand-navy/50 dark:bg-white grayscale-0 md:grayscale group-hover:grayscale-0 transition-all duration-500 shadow-sm">
                     <img src="{{ asset('img/inicio/nuestros_clientes/' . $img) }}" alt="Cliente" class="max-h-full max-w-full object-contain">
                 </div>
                 @endforeach
@@ -519,7 +519,7 @@
             <!-- Second Marquee Track (Duplicate for infinite loop) -->
             <div class="flex animate-slide-left whitespace-nowrap items-center shrink-0 space-x-6 px-3">
                 @foreach($clientesImages as $img)
-                <div class="flex h-40 w-64 shrink-0 items-center justify-center rounded-2xl border border-zinc-200/60 bg-white p-6 dark:border-brand-navy/50 dark:bg-white grayscale group-hover:grayscale-0 transition-all duration-500 shadow-sm">
+                <div class="flex h-40 w-64 shrink-0 items-center justify-center rounded-2xl border border-zinc-200/60 bg-white p-6 dark:border-brand-navy/50 dark:bg-white grayscale-0 md:grayscale group-hover:grayscale-0 transition-all duration-500 shadow-sm">
                     <img src="{{ asset('img/inicio/nuestros_clientes/' . $img) }}" alt="Cliente" class="max-h-full max-w-full object-contain">
                 </div>
                 @endforeach

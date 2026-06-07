@@ -162,52 +162,52 @@
 
     <!-- Footer Section -->
     <footer class="border-t border-zinc-200 bg-slate-100 text-brand-slate dark:border-brand-navy/55 dark:bg-brand-navy dark:text-zinc-350 transition-colors duration-300">
-        <div class="mx-auto max-w-7xl px-4 py-12 md:px-8">
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
+        <div class="mx-auto max-w-7xl px-4 py-6 md:px-8">
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-4">
                 <!-- Branding and bio -->
-                <div class="md:col-span-1 space-y-4">
+                <div class="md:col-span-1 space-y-2.5">
                     <a href="{{ route('inicio') }}" class="flex items-center gap-2">
-                        <img src="{{ asset('img/logo-light.png') }}" class="h-12 w-auto dark:hidden" alt="IMGEESSA Group">
-                        <img src="{{ asset('img/logo-dark.png') }}" class="h-12 w-auto hidden dark:block" alt="IMGEESSA Group">
+                        <img src="{{ asset('img/logo-light.png') }}" class="h-10 w-auto dark:hidden" alt="IMGEESSA Group">
+                        <img src="{{ asset('img/logo-dark.png') }}" class="h-10 w-auto hidden dark:block" alt="IMGEESSA Group">
                     </a>
-                    <p class="text-sm leading-relaxed">
+                    <p class="text-[13px] leading-relaxed">
                         Servicios especializados en Seguridad y Salud en el Trabajo, Gestión Ambiental, Sistemas de Calidad y consultoría HSEQ para organizaciones comprometidas con la excelencia y el desarrollo sostenible.
                     </p>
                 </div>
 
                 <!-- Quick Navigation Links -->
                 <div>
-                    <h3 class="text-sm font-semibold uppercase tracking-wider text-brand-navy dark:text-white">Navegación</h3>
-                    <ul class="mt-4 space-y-2">
-                        <li><a href="{{ route('inicio') }}" class="text-sm hover:text-brand-cyan transition-colors duration-150">Inicio</a></li>
-                        <li><a href="{{ route('quienes_somos') }}" class="text-sm hover:text-brand-cyan transition-colors duration-150">Quiénes Somos</a></li>
-                        <li><a href="{{ route('catalogo') }}" class="text-sm hover:text-brand-cyan transition-colors duration-150">Catálogo</a></li>
-                        <li><a href="{{ route('blog') }}" class="text-sm hover:text-brand-cyan transition-colors duration-150">Blog Informativo</a></li>
-                        <li><a href="{{ route('contacto') }}" class="text-sm hover:text-brand-cyan transition-colors duration-150">Contacto</a></li>
+                    <h3 class="text-[13px] font-bold uppercase tracking-wider text-brand-navy dark:text-white">Navegación</h3>
+                    <ul class="mt-2.5 space-y-1.5">
+                        <li><a href="{{ route('inicio') }}" class="text-[13px] hover:text-brand-cyan transition-colors duration-150">Inicio</a></li>
+                        <li><a href="{{ route('quienes_somos') }}" class="text-[13px] hover:text-brand-cyan transition-colors duration-150">Quiénes Somos</a></li>
+                        <li><a href="{{ route('catalogo') }}" class="text-[13px] hover:text-brand-cyan transition-colors duration-150">Catálogo</a></li>
+                        <li><a href="{{ route('blog') }}" class="text-[13px] hover:text-brand-cyan transition-colors duration-150">Blog Informativo</a></li>
+                        <li><a href="{{ route('contacto') }}" class="text-[13px] hover:text-brand-cyan transition-colors duration-150">Contacto</a></li>
                     </ul>
                 </div>
 
                 <!-- Contact Info -->
                 <div>
-                    <h3 class="text-sm font-semibold uppercase tracking-wider text-brand-navy dark:text-white">Contacto</h3>
-                    <ul class="mt-4 space-y-2 text-sm">
+                    <h3 class="text-[13px] font-bold uppercase tracking-wider text-brand-navy dark:text-white">Contacto</h3>
+                    <ul class="mt-2.5 space-y-1.5 text-[13px]">
                         <li class="flex items-center gap-2">
                             <svg class="h-4 w-4 shrink-0 text-brand-cyan" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                             </svg>
                             <span><b>Cel:</b> 3108448788 - 3107696821</span>
-                        </li><br>
-                        <li class="flex items-center gap-2">
-                            <svg class="h-4 w-4 shrink-0 text-brand-cyan" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                            </svg>
-                            <span>Direccioncomercial@imgeessa.com </span>
                         </li>
                         <li class="flex items-center gap-2">
                             <svg class="h-4 w-4 shrink-0 text-brand-cyan" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                             </svg>
-                            <span>Comercial@imgeessa.com </span>
+                            <span>Direccioncomercial@imgeessa.com</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="h-4 w-4 shrink-0 text-brand-cyan" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <span>Comercial@imgeessa.com</span>
                         </li>
                         <li class="flex items-center gap-2">
                             <svg class="h-4 w-4 shrink-0 text-brand-cyan" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -215,7 +215,6 @@
                             </svg>
                             <span>Gerencia@imgeessa.com</span>
                         </li>
-                        <br>
                         <li class="flex items-start gap-2">
                             <svg class="h-4 w-4 shrink-0 text-brand-cyan mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -228,8 +227,8 @@
 
                 <!-- Redes Sociales -->
                 <div class="space-y-4">
-                    <h3 class="text-sm font-semibold uppercase tracking-wider text-brand-navy dark:text-white">Síguenos</h3>
-                    <ul class="mt-4 space-y-3 text-sm">
+                    <h3 class="text-[13px] font-bold uppercase tracking-wider text-brand-navy dark:text-white">Síguenos</h3>
+                    <ul class="mt-2.5 space-y-1.5 text-[13px]">
                         <!-- WhatsApp -->
                         <li>
                             <a href="https://api.whatsapp.com/send?phone=573107696821&text=Me%20interesa%20solicitar%20informacion%20comercial%20con%20ustedes." target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-zinc-500 hover:text-brand-cyan dark:text-zinc-400 dark:hover:text-brand-cyan transition-colors duration-200">
@@ -280,7 +279,7 @@
             </div>
 
             <!-- Footer copyright and disclaimer -->
-            <div class="mt-12 border-t border-zinc-200 pt-8 dark:border-brand-navy/60 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+            <div class="mt-6 border-t border-zinc-200 pt-4 dark:border-brand-navy/60 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
                 <p>&copy; {{ date('Y') }} IMGEESSA SOLUCIONES INTEGRALES HSEQ S.A.S.</p>
                 <div class="flex gap-4">
                     <a href="{{ asset('documentos/tratamiento de datos.pdf') }}" target="_blank" class="hover:text-brand-cyan transition-colors duration-150">Tratamiento de datos Personales </a>

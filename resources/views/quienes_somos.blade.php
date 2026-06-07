@@ -23,9 +23,9 @@
 </section>
 
 <!-- Company Identity & Stats Section -->
-<section class="py-16 bg-white dark:bg-brand-navy-dark transition-colors duration-300">
+<section class="py-10 lg:py-12 bg-white dark:bg-brand-navy-dark transition-colors duration-300">
     <div class="mx-auto max-w-7xl px-4 md:px-8">
-        <div class="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:items-center">
+        <div class="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center">
             <!-- Left: Text Content -->
             <div class="lg:col-span-7 space-y-8">
                 <div class="space-y-4">
@@ -79,7 +79,7 @@
         </div>
         
         <!-- Stats Row -->
-        <div class="mt-20 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 border-t border-zinc-200/50 dark:border-brand-navy/40 pt-16">
+        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 border-t border-zinc-200/50 dark:border-brand-navy/40 pt-10">
             <!-- Stat 1 -->
             <div class="p-6 space-y-3">
                 <span class="text-4xl font-extrabold text-brand-cyan">200+</span>
@@ -109,7 +109,7 @@
 </section>
 
 <!-- Mission & Vision Section (With exact PDF images) -->
-<section class="py-16 bg-slate-50 dark:bg-brand-navy-dark/40 border-t border-zinc-200/40 dark:border-brand-navy/30 transition-colors duration-300">
+<section class="py-10 lg:py-12 bg-slate-50 dark:bg-brand-navy-dark/40 border-t border-zinc-200/40 dark:border-brand-navy/30 transition-colors duration-300">
     <div class="mx-auto max-w-7xl px-4 md:px-8">
         <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
             <!-- Misión -->
@@ -173,9 +173,9 @@
 </section>
 
 <!-- Interactive Values Section (C.R.E.C.E.) with Alpine.js -->
-<section class="py-16 bg-white dark:bg-brand-navy-dark transition-colors duration-300 overflow-hidden" 
+<section class="py-10 lg:py-12 bg-white dark:bg-brand-navy-dark transition-colors duration-300 overflow-hidden" 
          x-data="{ activeValue: 1 }">
-    <div class="mx-auto max-w-7xl px-4 md:px-8 space-y-16">
+    <div class="mx-auto max-w-7xl px-4 md:px-8 space-y-10">
         <div class="text-center max-w-3xl mx-auto space-y-4">
             <span class="text-xs font-bold uppercase tracking-wider text-brand-cyan bg-brand-cyan/10 px-3.5 py-1 rounded-md animate-pulse">
                 Pilares Fundamentales
@@ -347,8 +347,8 @@
 </section>
 
 <!-- History / Timeline Section -->
-<section class="py-16 bg-slate-50 dark:bg-brand-navy-dark/40 border-t border-zinc-200/40 dark:border-brand-navy/30 transition-colors duration-300">
-    <div class="mx-auto max-w-7xl px-4 md:px-8 space-y-16">
+<section class="py-10 lg:py-12 bg-slate-50 dark:bg-brand-navy-dark/40 border-t border-zinc-200/40 dark:border-brand-navy/30 transition-colors duration-300">
+    <div class="mx-auto max-w-7xl px-4 md:px-8 space-y-10">
         <div class="text-center max-w-3xl mx-auto space-y-4">
             <span class="text-xs font-bold uppercase tracking-wider text-brand-cyan bg-brand-cyan/10 px-3.5 py-1 rounded-md animate-pulse">
                 Nuestra Trayectoria

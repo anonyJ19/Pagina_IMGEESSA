@@ -271,5 +271,97 @@
             </div>
         </div>
     </footer>
+    <!-- Chatbot Flotante -->
+    <div x-data="{ chatOpen: false }" class="fixed bottom-6 right-6 z-50">
+        <!-- Ventana del Chat -->
+        <div x-show="chatOpen" 
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 translate-y-10 scale-90"
+             x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+             x-transition:leave="transition ease-in duration-200"
+             x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+             x-transition:leave-end="opacity-0 translate-y-10 scale-90"
+             class="absolute bottom-20 right-0 w-80 sm:w-96 rounded-2xl border border-zinc-200 bg-white shadow-2xl dark:border-brand-navy/60 dark:bg-brand-navy-dark overflow-hidden flex flex-col"
+             style="display: none; transform-origin: bottom right;">
+            
+            <!-- Header del Chat -->
+            <div class="relative bg-gradient-to-r from-brand-navy to-brand-navy-dark p-4 flex items-center gap-3">
+                <!-- Decoración -->
+                <div class="absolute right-0 top-0 w-32 h-32 bg-brand-cyan/10 rounded-full blur-2xl"></div>
+                
+                <!-- Avatar en el Header -->
+                <div class="relative h-14 w-14 rounded-full border-2 border-brand-cyan/50 bg-white/10 flex-shrink-0 overflow-hidden flex items-center justify-center">
+                    <img src="{{ asset('img/bot-avatar.png') }}" alt="Bot Avatar" class="h-full w-full object-contain scale-[2.2] translate-y-2 filter drop-shadow-[0_2px_5px_rgba(0,0,0,0.3)]">
+                </div>
+                
+                <div class="flex-grow z-10">
+                    <h4 class="text-white font-bold text-sm">Asistente IMGEESSA</h4>
+                    <p class="text-brand-cyan text-xs flex items-center gap-1">
+                        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span> En línea
+                    </p>
+                </div>
+                
+                <button @click="chatOpen = false" class="text-zinc-300 hover:text-white transition-colors z-10">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <!-- Cuerpo del Chat -->
+            <div class="h-64 p-4 overflow-y-auto bg-slate-50 dark:bg-brand-navy/30 flex flex-col gap-3">
+                <!-- Mensaje del Bot -->
+                <div class="flex gap-2">
+                    <div class="h-10 w-10 rounded-full bg-brand-cyan/20 flex-shrink-0 overflow-hidden flex items-center justify-center">
+                        <img src="{{ asset('img/bot-avatar.png') }}" alt="Bot Avatar" class="h-full w-full object-contain scale-[2.2] translate-y-1.5">
+                    </div>
+                    <div class="bg-white dark:bg-brand-navy rounded-2xl rounded-tl-sm p-3 shadow-sm border border-zinc-100 dark:border-brand-navy/50 max-w-[85%]">
+                        <p class="text-sm text-brand-slate dark:text-zinc-200 leading-relaxed">
+                            ¡Hola! Soy tu asistente virtual de <strong>IMGEESSA</strong>. Llevo mi equipo de seguridad y estoy listo para ayudarte. ¿Qué necesitas hoy?
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Input del Chat -->
+            <div class="p-3 bg-white dark:bg-brand-navy-dark border-t border-zinc-100 dark:border-brand-navy/60">
+                <div class="flex items-center gap-2 relative">
+                    <input type="text" placeholder="Escribe tu mensaje..." class="w-full rounded-full border border-zinc-300 bg-zinc-50 px-4 py-2 text-sm text-zinc-900 focus:border-brand-cyan focus:outline-none focus:ring-1 focus:ring-brand-cyan dark:border-brand-slate dark:bg-brand-navy dark:text-white dark:focus:border-brand-cyan pr-10">
+                    <button class="absolute right-1 p-1.5 rounded-full bg-brand-cyan text-brand-navy hover:bg-brand-cyan-dark transition-colors">
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón Flotante -->
+        <button @click="chatOpen = !chatOpen" 
+                class="relative flex h-16 w-16 items-center justify-center rounded-full bg-white dark:bg-brand-navy border-2 border-brand-cyan shadow-[0_0_15px_rgba(0,210,211,0.3)] hover:shadow-[0_0_25px_rgba(0,210,211,0.5)] transition-all duration-300 hover:scale-105 group overflow-hidden"
+                :class="chatOpen ? 'scale-90 bg-zinc-100 dark:bg-brand-navy-dark border-zinc-400 dark:border-zinc-500 shadow-none' : 'animate-bounce-slow'">
+            
+            <!-- Efecto Glow para modo oscuro (solo cuando está cerrado) -->
+            <div class="absolute inset-0 rounded-full bg-brand-cyan/10 blur-xl dark:bg-brand-cyan/30" x-show="!chatOpen"></div>
+            
+            <!-- Avatar -->
+            <img src="{{ asset('img/bot-avatar.png') }}" 
+                 alt="Abrir Chat" 
+                 class="relative z-10 h-full w-full object-contain translate-y-2 filter drop-shadow-[0_4px_6px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.1)] transition-transform duration-300"
+                 :class="chatOpen ? 'scale-0 opacity-0' : 'scale-[2.2] opacity-100'">
+            
+            <!-- Icono de Cerrar (se muestra cuando está abierto) -->
+            <svg class="absolute z-20 h-8 w-8 text-zinc-600 dark:text-white transition-transform duration-300" 
+                 :class="chatOpen ? 'scale-100 opacity-100 rotate-90' : 'scale-0 opacity-0 rotate-0'" 
+                 fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+    </div>
+    
+    <!-- Animación extra para el botón flotante -->
+    <style>
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .animate-bounce-slow {
+            animation: bounce-slow 4s ease-in-out infinite;
+        }
+    </style>
 </body>
 </html>

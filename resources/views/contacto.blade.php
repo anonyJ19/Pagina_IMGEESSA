@@ -31,59 +31,84 @@
                 </div>
 
                 <!-- Contact details card -->
-                <div class="rounded-2xl border border-zinc-200/40 bg-slate-50 p-6 dark:border-brand-navy/40 dark:bg-brand-navy/40 space-y-4">
+                <div class="rounded-2xl border border-zinc-200/40 bg-slate-50 p-6 dark:border-brand-navy/40 dark:bg-brand-navy/40 space-y-6">
                     <div class="flex items-start gap-4">
-                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-cyan/10 text-brand-cyan shrink-0">
-                            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-cyan/10 text-brand-cyan shrink-0 shadow-sm transition-transform hover:scale-105">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             </svg>
                         </div>
-                        <div>
-                            <h4 class="text-sm font-bold text-brand-navy dark:text-white">Dirección Física</h4>
-                            <p class="text-xs text-brand-slate dark:text-zinc-400 mt-1">Parque Industrial Zona Franca, Módulo C-12, San José, Costa Rica</p>
+                        <div class="pt-1">
+                            <h4 class="text-sm font-extrabold text-brand-navy dark:text-white uppercase tracking-wider">Dirección Física</h4>
+                            <p class="text-sm text-brand-slate dark:text-zinc-300 mt-1 leading-relaxed">
+                                Av carrera 30 # 75-61<br/>
+                                <span class="text-xs text-zinc-500 dark:text-zinc-400">Bogotá, Colombia</span>
+                            </p>
                         </div>
                     </div>
 
                     <div class="flex items-start gap-4">
-                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-cyan/10 text-brand-cyan shrink-0">
-                            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-cyan/10 text-brand-cyan shrink-0 shadow-sm transition-transform hover:scale-105">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                             </svg>
                         </div>
-                        <div>
-                            <h4 class="text-sm font-bold text-brand-navy dark:text-white">Teléfono de Soporte</h4>
-                            <p class="text-xs text-brand-slate dark:text-zinc-400 mt-1">+506 2200-1100 &bull; Horario: Lun-Vie 8:00am - 5:00pm</p>
+                        <div class="pt-1">
+                            <h4 class="text-sm font-extrabold text-brand-navy dark:text-white uppercase tracking-wider">Teléfono de Soporte</h4>
+                            <div class="text-sm text-brand-slate dark:text-zinc-300 mt-1 space-y-1.5">
+                                <div class="flex items-center gap-2">
+                                    <span class="font-semibold text-brand-navy dark:text-white">Líneas:</span>
+                                    <span>3108448788</span>
+                                    <span class="text-zinc-300 dark:text-zinc-600">|</span>
+                                    <span>3107696821</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                    <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    <span>Lun-Vie 8:00am - 12:00pm y 2:00pm - 4:00pm</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="flex items-start gap-4">
-                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-cyan/10 text-brand-cyan shrink-0">
-                            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-cyan/10 text-brand-cyan shrink-0 shadow-sm transition-transform hover:scale-105">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                             </svg>
                         </div>
-                        <div>
-                            <h4 class="text-sm font-bold text-brand-navy dark:text-white">Correo Electrónico</h4>
-                            <p class="text-xs text-brand-slate dark:text-zinc-400 mt-1">info@imgeessa.com &bull; cotizaciones@imgeessa.com</p>
+                        <div class="pt-1">
+                            <h4 class="text-sm font-extrabold text-brand-navy dark:text-white uppercase tracking-wider">Correo Electrónico</h4>
+                            <div class="text-sm text-brand-slate dark:text-zinc-300 mt-2 grid grid-cols-1 gap-2">
+                                <a href="mailto:Direccioncomercial@imgeessa.com" class="flex items-center gap-2 hover:text-brand-cyan transition-colors">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-brand-cyan"></span> Direccioncomercial@imgeessa.com
+                                </a>
+                                <a href="mailto:Comercial@imgeessa.com" class="flex items-center gap-2 hover:text-brand-cyan transition-colors">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-brand-cyan"></span> Comercial@imgeessa.com
+                                </a>
+                                <a href="mailto:Gerencia@imgeessa.com" class="flex items-center gap-2 hover:text-brand-cyan transition-colors">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-brand-cyan"></span> Gerencia@imgeessa.com
+                                </a>
+                                <a href="mailto:cotizaciones@imgeessa.com" class="flex items-center gap-2 hover:text-brand-cyan transition-colors">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-brand-cyan"></span> cotizaciones@imgeessa.com
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Stylized Mock Map -->
-                <div class="relative rounded-2xl overflow-hidden aspect-[4/3] border border-zinc-200/40 dark:border-brand-navy/30 shadow-inner bg-slate-100 dark:bg-brand-navy-dark">
-                    <div class="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_center,rgba(0,210,211,0.15),transparent)]"></div>
-                    <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center space-y-4">
-                        <svg class="h-10 w-10 text-brand-cyan animate-bounce" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-                        <div class="space-y-1">
-                            <h4 class="text-sm font-bold text-brand-navy dark:text-white">San José, Costa Rica</h4>
-                            <p class="text-xs text-brand-slate dark:text-zinc-400">Parque Industrial, Calle 14, Módulo C</p>
-                        </div>
-                        <span class="rounded-lg bg-zinc-200 dark:bg-brand-navy px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-navy dark:text-zinc-300">Mapa de Ubicación</span>
-                    </div>
+                <!-- Real Map Integration -->
+                <div class="relative rounded-2xl overflow-hidden aspect-[4/3] border border-zinc-200/40 dark:border-brand-navy/30 shadow-lg group bg-slate-100 dark:bg-brand-navy-dark">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=Av%20carrera%2030%20%23%2075-61%20Bogot%C3%A1&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        class="absolute inset-0 w-full h-full grayscale-[20%] group-hover:grayscale-0 transition-all duration-500">
+                    </iframe>
                 </div>
             </div>
 
@@ -94,8 +119,11 @@
                      email: '',
                      subject: '',
                      message: '',
+                     meeting_date: '',
+                     meeting_time: '',
                      loading: false,
                      success: false,
+                     errorMsg: '',
                      init() {
                          const urlParams = new URLSearchParams(window.location.search);
                          const equipo = urlParams.get('equipo');
@@ -104,17 +132,45 @@
                              this.message = 'Hola, me gustaría solicitar una cotización formal y recibir especificaciones técnicas adicionales para el equipo: ' + equipo + '.';
                          }
                      },
-                     submit() {
+                     async submit() {
                          this.loading = true;
-                         setTimeout(() => {
+                         this.errorMsg = '';
+                         
+                         try {
+                             const response = await fetch('{{ route('contacto.send') }}', {
+                                 method: 'POST',
+                                 headers: {
+                                     'Content-Type': 'application/json',
+                                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                 },
+                                 body: JSON.stringify({
+                                     name: this.name,
+                                     email: this.email,
+                                     subject: this.subject,
+                                     message: this.message,
+                                     meeting_date: this.meeting_date,
+                                     meeting_time: this.meeting_time
+                                 })
+                             });
+                             
+                             const data = await response.json();
+                             
+                             if (response.ok && data.success) {
+                                 this.success = true;
+                                 this.name = '';
+                                 this.email = '';
+                                 this.subject = '';
+                                 this.message = '';
+                                 this.meeting_date = '';
+                                 this.meeting_time = '';
+                             } else {
+                                 this.errorMsg = data.message || 'Ocurrió un error. Por favor intenta de nuevo.';
+                             }
+                         } catch (error) {
+                             this.errorMsg = 'Error de conexión. Intenta nuevamente.';
+                         } finally {
                              this.loading = false;
-                             this.success = true;
-                             // Reset fields
-                             this.name = '';
-                             this.email = '';
-                             this.subject = '';
-                             this.message = '';
-                         }, 1500);
+                         }
                      }
                  }">
                 
@@ -158,7 +214,21 @@
                     <form @submit.prevent="submit" class="space-y-6">
                         <div class="space-y-2">
                             <h3 class="text-xl font-bold text-brand-navy dark:text-white">Formulario de Contacto</h3>
-                            <p class="text-xs text-brand-slate dark:text-zinc-400">Por favor, rellena todos los campos con tus detalles de contacto.</p>
+                            <p class="text-xs text-brand-slate dark:text-zinc-400">Por favor, rellena todos los campos para agendar tu reunión.</p>
+                        </div>
+                        
+                        <!-- Error Message -->
+                        <div x-show="errorMsg" class="rounded-xl bg-red-50 p-4 border border-red-200" style="display: none;">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-red-800" x-text="errorMsg"></p>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -177,6 +247,25 @@
                                        type="email" 
                                        id="contact-email"
                                        placeholder="juan@empresa.com" 
+                                       class="w-full rounded-xl border border-zinc-300 bg-slate-50 px-4 py-2.5 text-sm text-brand-navy shadow-sm focus:border-brand-cyan focus:bg-white focus:ring-1 focus:ring-brand-cyan dark:border-brand-navy dark:bg-brand-navy/60 dark:text-white dark:focus:border-brand-cyan"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            <div class="space-y-1.5">
+                                <label for="meeting-date" class="text-xs font-bold text-brand-slate dark:text-zinc-450 uppercase tracking-wide">Fecha de Reunión</label>
+                                <input x-model="meeting_date" 
+                                       type="date" 
+                                       id="meeting-date"
+                                       class="w-full rounded-xl border border-zinc-300 bg-slate-50 px-4 py-2.5 text-sm text-brand-navy shadow-sm focus:border-brand-cyan focus:bg-white focus:ring-1 focus:ring-brand-cyan dark:border-brand-navy dark:bg-brand-navy/60 dark:text-white dark:focus:border-brand-cyan"
+                                       required>
+                            </div>
+                            <div class="space-y-1.5">
+                                <label for="meeting-time" class="text-xs font-bold text-brand-slate dark:text-zinc-450 uppercase tracking-wide">Hora</label>
+                                <input x-model="meeting_time" 
+                                       type="time" 
+                                       id="meeting-time"
                                        class="w-full rounded-xl border border-zinc-300 bg-slate-50 px-4 py-2.5 text-sm text-brand-navy shadow-sm focus:border-brand-cyan focus:bg-white focus:ring-1 focus:ring-brand-cyan dark:border-brand-navy dark:bg-brand-navy/60 dark:text-white dark:focus:border-brand-cyan"
                                        required>
                             </div>
@@ -220,7 +309,7 @@
     <div class="mx-auto max-w-4xl px-4 md:px-8 space-y-12">
         <div class="text-center space-y-4">
             <h2 class="text-3xl font-bold tracking-tight text-brand-navy dark:text-white">Preguntas Frecuentes (FAQs)</h2>
-            <p class="text-sm text-brand-slate dark:text-zinc-300">Resolvemos las dudas de ingeniería y logística más comunes de nuestros clientes.</p>
+            <p class="text-sm text-brand-slate dark:text-zinc-300">Resolvemos las dudas más comunes sobre consultoría y Sistemas Integrados de Gestión.</p>
         </div>
 
         <!-- Accordion component -->

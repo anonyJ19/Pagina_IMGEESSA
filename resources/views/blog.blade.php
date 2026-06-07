@@ -26,9 +26,12 @@
                     <!-- Article Image -->
                     <div class="relative aspect-video w-full overflow-hidden bg-zinc-100 dark:bg-brand-navy-dark">
                         <a href="{{ route('blog.detalle', $articulo['slug']) }}">
-                            <img src="{{ $articulo['imagen'] }}" 
-                                 alt="{{ $articulo['titulo'] }}" 
-                                 class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            @if(isset($articulo['imagen_light']) && isset($articulo['imagen_dark']))
+                                <img src="{{ $articulo['imagen_light'] }}" alt="{{ $articulo['titulo'] }}" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500 dark:hidden">
+                                <img src="{{ $articulo['imagen_dark'] }}" alt="{{ $articulo['titulo'] }}" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500 hidden dark:block">
+                            @else
+                                <img src="{{ $articulo['imagen'] }}" alt="{{ $articulo['titulo'] }}" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            @endif
                         </a>
                         <span class="absolute top-4 left-4 rounded-full bg-brand-cyan px-3 py-1 text-xs font-bold text-brand-navy shadow-sm">
                             {{ $articulo['categoria'] }}
@@ -49,13 +52,16 @@
 
                         <!-- Article Footer / Credits -->
                         <div class="flex items-center justify-between border-t border-zinc-100 dark:border-brand-navy/45 pt-4">
-                            <div class="flex items-center gap-2">
-                                <div class="h-6 w-6 rounded-full bg-slate-100 dark:bg-brand-navy flex items-center justify-center text-[10px] font-bold text-brand-navy dark:text-zinc-300">
-                                    {{ substr($articulo['autor'], 4, 1) }}
+                            <div class="flex items-start gap-2 pr-2">
+                                <div class="h-6 w-6 rounded-full bg-slate-100 dark:bg-brand-navy flex items-center justify-center shrink-0 mt-0.5">
+                                    <img src="{{ asset('img/logo-l.png') }}" class="h-3 w-auto object-contain dark:hidden" alt="Logo">
+                                    <img src="{{ asset('img/logo-d.png') }}" class="h-3 w-auto object-contain hidden dark:block" alt="Logo">
                                 </div>
-                                <span class="text-xs text-brand-slate dark:text-zinc-400 font-medium">Por {{ $articulo['autor'] }}</span>
+                                <span class="text-[10px] text-brand-slate dark:text-zinc-400 font-bold leading-tight">
+                                    Por IMGEESSA SOLUCIONES INTEGRALES HSEQ S.A.S
+                                </span>
                             </div>
-                            <a href="{{ route('blog.detalle', $articulo['slug']) }}" class="text-xs font-bold text-brand-cyan hover:text-brand-cyan-dark hover:underline">
+                            <a href="{{ route('blog.detalle', $articulo['slug']) }}" class="text-xs font-bold text-brand-cyan hover:text-brand-cyan-dark hover:underline shrink-0 whitespace-nowrap">
                                 Leer más
                             </a>
                         </div>

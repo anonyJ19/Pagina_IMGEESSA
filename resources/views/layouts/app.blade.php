@@ -285,7 +285,6 @@
                 <div class="flex gap-4">
                     <a href="#" class="hover:text-brand-cyan transition-colors duration-150">Políticas de Privacidad</a>
                     <a href="#" class="hover:text-brand-cyan transition-colors duration-150">Términos de Servicio</a>
-                    <a href="#" class="hover:text-brand-cyan transition-colors duration-150">Soporte Técnico</a>
                 </div>
             </div>
         </div>

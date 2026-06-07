@@ -80,7 +80,7 @@
                 @endforeach
             </nav>
 
-            <!-- Right Utilities (Theme Selector + Contact CTA) -->
+            <!-- Right Utilities -->
             <div class="flex items-center gap-3">
                 <!-- Theme Switcher Button -->
                 <button @click="toggleDarkMode" 
@@ -97,13 +97,6 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
                     </svg>
                 </button>
-
-                <!-- Cotizar CTA (Desktop Only) -->
-                <a href="{{ route('contacto') }}" 
-                   id="nav-cta"
-                   class="hidden md:inline-flex items-center justify-center rounded-xl bg-brand-cyan hover:bg-brand-cyan-dark px-4 py-2 text-sm font-bold text-brand-navy shadow-md transition-all duration-300 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-cyan focus:ring-offset-2 dark:focus:ring-offset-brand-navy-dark">
-                    Cotizar Proyecto
-                </a>
 
                 <!-- Mobile Menu Button -->
                 <button @click="mobileMenuOpen = !mobileMenuOpen" 

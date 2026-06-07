@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="relative overflow-hidden pt-10 pb-20 lg:pt-16 lg:pb-32 bg-slate-50 dark:bg-brand-navy-dark transition-colors duration-300">
+<section class="relative overflow-hidden pt-8 pb-12 lg:pt-12 lg:pb-16 bg-slate-50 dark:bg-brand-navy-dark transition-colors duration-300">
     <!-- Background Grid and Gradient Blob -->
     <div class="absolute inset-0 -z-10 bg-[radial-gradient(37.5rem_37.5rem_at_top,rgba(0,210,211,0.15),transparent)] dark:bg-[radial-gradient(37.5rem_37.5rem_at_top,rgba(0,210,211,0.08),transparent)]"></div>
     <div class="absolute top-0 right-0 -z-10 h-96 w-96 rounded-full bg-brand-cyan/10 blur-3xl dark:bg-brand-cyan/5"></div>
@@ -80,7 +80,7 @@
 </section>
 
 <!-- Stats Grid Section -->
-<section class="py-12 border-y border-zinc-200/40 dark:border-brand-navy/30 bg-white dark:bg-brand-navy/30 transition-colors duration-300">
+<section class="py-8 border-y border-zinc-200/40 dark:border-brand-navy/30 bg-white dark:bg-brand-navy/30 transition-colors duration-300">
     <div class="mx-auto max-w-7xl px-4 md:px-8">
         <div class="grid grid-cols-2 gap-6 md:grid-cols-4 text-center">
             <div class="space-y-1">
@@ -104,7 +104,7 @@
 </section>
 
 <!-- Core Services / Value Cards Section -->
-<section class="py-20 bg-slate-50 dark:bg-brand-navy-dark transition-colors duration-300">
+<section class="py-10 bg-slate-50 dark:bg-brand-navy-dark transition-colors duration-300">
     <div class="mx-auto max-w-7xl px-4 md:px-8 space-y-12">
         <div class="text-center max-w-3xl mx-auto space-y-4">
             <h2 class="text-3xl font-bold tracking-tight text-brand-navy dark:text-white sm:text-4xl">
@@ -159,7 +159,7 @@
 </section>
 
 <!-- Lineas de Negocio Section -->
-<section class="py-20 bg-white dark:bg-brand-navy-dark/40 border-t border-zinc-200/40 dark:border-brand-navy/30 transition-colors duration-300"
+<section class="py-10 bg-white dark:bg-brand-navy-dark/40 border-t border-zinc-200/40 dark:border-brand-navy/30 transition-colors duration-300"
          x-data="{
              modalOpen: false,
              activeService: null,
@@ -405,52 +405,70 @@
     </div>
 </section>
 
-<!-- Latest Blog Posts (Dynamic from $articulos) -->
-<section class="py-20 bg-slate-50 dark:bg-brand-navy-dark transition-colors duration-300">
+<!-- Our Clients Section (Auto-sliding Marquee) -->
+@php
+    $clientesImages = [
+        '3HTPC.png', 'Aviomar.png', 'JAG.png', 'aec.png', 'amarillo.png', 
+        'arl_sura.webp', 'celuvans.png', 'conbel.png', 'corona.jfif', 'desigual.jpg',
+        'dvo.jpg', 'gema.png', 'handel.png', 'induser.png', 'large.webp', 
+        'mascosas.jfif', 'multigecon.jfif', 'olam.jfif', 'prodesa.png', 'pronabell.jpg', 
+        'proquimort.jfif', 'real transportadora.png', 'ryg.png', 'seguros_Bolivar.jpg', 
+        'sercapetrol.jpeg', 'skalar.jfif', 'snider.png', 'taxisya.png', 'trocadero.png', 'zonamedica.jfif'
+    ];
+@endphp
+
+<style>
+@keyframes slide-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+.animate-slide-left {
+  animation: slide-left 120s linear infinite;
+}
+.pause-animation:hover .animate-slide-left {
+  animation-play-state: paused;
+}
+</style>
+<section class="py-10 bg-slate-50 dark:bg-brand-navy-dark transition-colors duration-300 overflow-hidden">
     <div class="mx-auto max-w-7xl px-4 md:px-8 space-y-12">
         <div class="text-center max-w-3xl mx-auto space-y-4">
             <h2 class="text-3xl font-bold tracking-tight text-brand-navy dark:text-white sm:text-4xl">
-                Blog Técnico e Informativo
+                Nuestros Clientes
             </h2>
             <p class="text-brand-slate dark:text-zinc-400">
-                Artículos escritos por nuestros profesionales sobre normatividad, Seguridad y Salud en el Trabajo, Gestión Ambiental, Calidad y Sistemas Integrados de Gestión.
+                Organizaciones de diversos sectores confían en nuestra experiencia y soluciones para el cumplimiento normativo y la gestión eficiente de sus procesos.
             </p>
         </div>
 
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-            @foreach($articulos as $articulo)
-                <article class="flex flex-col rounded-2xl border border-zinc-200/40 bg-white p-6 dark:border-brand-navy/40 dark:bg-brand-navy/40 shadow-sm hover:shadow-md transition-all duration-300">
-                    <div class="text-xs font-bold text-brand-cyan">
-                        {{ $articulo['categoria'] }} &bull; {{ $articulo['fecha'] }}
-                    </div>
-                    <h3 class="mt-3 text-lg font-bold text-brand-navy dark:text-white leading-tight hover:text-brand-cyan transition-colors">
-                        <a href="{{ route('blog.detalle', $articulo['slug']) }}">{{ $articulo['titulo'] }}</a>
-                    </h3>
-                    <p class="mt-3 text-sm text-brand-slate dark:text-zinc-400 flex-grow leading-relaxed line-clamp-3">
-                        {{ $articulo['resumen'] }}
-                    </p>
-                    <div class="mt-6 border-t border-zinc-100 dark:border-brand-navy/40 pt-4 flex items-center justify-between">
-                        <div class="flex items-start gap-2 pr-2">
-                            <div class="h-6 w-6 rounded-full bg-slate-100 dark:bg-brand-navy flex items-center justify-center shrink-0 mt-0.5">
-                                <img src="{{ asset('img/logo-l.png') }}" class="h-3 w-auto object-contain dark:hidden" alt="Logo">
-                                <img src="{{ asset('img/logo-d.png') }}" class="h-3 w-auto object-contain hidden dark:block" alt="Logo">
-                            </div>
-                            <span class="text-[10px] text-brand-slate dark:text-zinc-400 font-bold leading-tight">
-                                Por IMGEESSA SOLUCIONES INTEGRALES HSEQ S.A.S
-                            </span>
-                        </div>
-                        <a href="{{ route('blog.detalle', $articulo['slug']) }}" class="text-xs font-bold text-brand-cyan hover:text-brand-cyan-dark hover:underline">
-                            Leer artículo
-                        </a>
-                    </div>
-                </article>
-            @endforeach
+        <!-- Marquee Container -->
+        <div class="relative flex overflow-hidden pause-animation group">
+            <!-- Fade overlays for smooth entry/exit -->
+            <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-slate-50 dark:from-brand-navy-dark to-transparent"></div>
+            <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-slate-50 dark:from-brand-navy-dark to-transparent"></div>
+
+            <!-- First Marquee Track -->
+            <div class="flex animate-slide-left whitespace-nowrap items-center shrink-0 space-x-6 px-3">
+                @foreach($clientesImages as $img)
+                <div class="flex h-40 w-64 shrink-0 items-center justify-center rounded-2xl border border-zinc-200/60 bg-white p-6 dark:border-brand-navy/50 dark:bg-white grayscale group-hover:grayscale-0 transition-all duration-500 shadow-sm">
+                    <img src="{{ asset('img/inicio/nuestros_clientes/' . $img) }}" alt="Cliente" class="max-h-full max-w-full object-contain">
+                </div>
+                @endforeach
+            </div>
+
+            <!-- Second Marquee Track (Duplicate for infinite loop) -->
+            <div class="flex animate-slide-left whitespace-nowrap items-center shrink-0 space-x-6 px-3">
+                @foreach($clientesImages as $img)
+                <div class="flex h-40 w-64 shrink-0 items-center justify-center rounded-2xl border border-zinc-200/60 bg-white p-6 dark:border-brand-navy/50 dark:bg-white grayscale group-hover:grayscale-0 transition-all duration-500 shadow-sm">
+                    <img src="{{ asset('img/inicio/nuestros_clientes/' . $img) }}" alt="Cliente" class="max-h-full max-w-full object-contain">
+                </div>
+                @endforeach
+            </div>
         </div>
     </div>
 </section>
 
 <!-- Call to Action Section -->
-<section class="py-16 md:py-24 bg-white dark:bg-brand-navy-dark transition-colors duration-300">
+<section class="py-10 md:py-16 bg-white dark:bg-brand-navy-dark transition-colors duration-300">
     <div class="mx-auto max-w-7xl px-4 md:px-8">
         <div class="relative rounded-3xl overflow-hidden bg-gradient-to-tr from-brand-navy to-indigo-950 px-8 py-12 md:p-16 shadow-2xl text-center md:text-left">
             <div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-brand-cyan to-transparent"></div>

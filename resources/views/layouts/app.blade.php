@@ -289,7 +289,57 @@
         </div>
     </footer>
     <!-- Chatbot Flotante -->
-    <div x-data="{ chatOpen: false }" class="fixed bottom-6 right-6 z-50">
+    <div x-data="{ 
+            chatOpen: false, 
+            userInput: '', 
+            isLoading: false, 
+            messages: [
+                { role: 'assistant', content: '¡Hola! Soy tu asistente virtual de <strong>IMGEESSA</strong>. Llevo mi equipo de seguridad y estoy listo para ayudarte. ¿Qué necesitas hoy?' }
+            ],
+            async sendMessage() {
+                if (!this.userInput.trim() || this.isLoading) return;
+                
+                const msg = this.userInput.trim();
+                this.messages.push({ role: 'user', content: msg });
+                this.userInput = '';
+                this.isLoading = true;
+                this.scrollToBottom();
+
+                try {
+                    const response = await fetch('{{ route('chat.send') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({
+                            message: msg,
+                            history: this.messages.slice(0, -1)
+                        })
+                    });
+
+                    const data = await response.json();
+                    
+                    if (data.reply) {
+                        this.messages.push({ role: 'assistant', content: data.reply });
+                    } else {
+                        this.messages.push({ role: 'assistant', content: 'Lo siento, ha ocurrido un error.' });
+                    }
+                } catch (error) {
+                    this.messages.push({ role: 'assistant', content: 'Error de conexión. Intenta de nuevo más tarde.' });
+                } finally {
+                    this.isLoading = false;
+                    this.scrollToBottom();
+                }
+            },
+            scrollToBottom() {
+                setTimeout(() => {
+                    const chatBox = document.getElementById('chat-messages');
+                    if (chatBox) chatBox.scrollTop = chatBox.scrollHeight;
+                }, 50);
+            }
+        }" class="fixed bottom-6 right-6 z-50">
+        
         <!-- Ventana del Chat -->
         <div x-show="chatOpen" 
              x-transition:enter="transition ease-out duration-300"
@@ -324,26 +374,57 @@
             </div>
             
             <!-- Cuerpo del Chat -->
-            <div class="h-64 p-4 overflow-y-auto bg-slate-50 dark:bg-brand-navy/30 flex flex-col gap-3">
-                <!-- Mensaje del Bot -->
-                <div class="flex gap-2">
-                    <div class="h-10 w-10 rounded-full bg-brand-cyan/20 flex-shrink-0 overflow-hidden flex items-center justify-center">
-                        <img src="{{ asset('img/bot-avatar.png') }}" alt="Bot Avatar" class="h-full w-full object-contain scale-[2.2] translate-y-1.5">
+            <div id="chat-messages" class="h-80 p-4 overflow-y-auto bg-slate-50 dark:bg-brand-navy/30 flex flex-col gap-4 scroll-smooth">
+                
+                <template x-for="(msg, index) in messages" :key="index">
+                    <div class="w-full flex flex-col">
+                        <!-- Mensaje del Bot -->
+                        <div class="flex gap-2" x-show="msg.role === 'assistant'">
+                            <div class="h-10 w-10 rounded-full bg-brand-cyan/20 flex-shrink-0 overflow-hidden flex items-center justify-center">
+                                <img src="{{ asset('img/bot-avatar.png') }}" alt="Bot Avatar" class="h-full w-full object-contain scale-[2.2] translate-y-1.5">
+                            </div>
+                            <div class="bg-white dark:bg-brand-navy rounded-2xl rounded-tl-sm p-3 shadow-sm border border-zinc-100 dark:border-brand-navy/50 max-w-[85%]">
+                                <p class="text-sm text-brand-slate dark:text-zinc-200 leading-relaxed" x-html="msg.content.replace(/\n/g, '<br>')"></p>
+                            </div>
+                        </div>
+
+                        <!-- Mensaje del Usuario -->
+                        <div class="flex gap-2 justify-end" x-show="msg.role === 'user'">
+                            <div class="bg-brand-cyan dark:bg-brand-cyan-dark rounded-2xl rounded-tr-sm p-3 shadow-sm max-w-[85%]">
+                                <p class="text-sm text-brand-navy dark:text-white font-medium leading-relaxed" x-text="msg.content"></p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-white dark:bg-brand-navy rounded-2xl rounded-tl-sm p-3 shadow-sm border border-zinc-100 dark:border-brand-navy/50 max-w-[85%]">
-                        <p class="text-sm text-brand-slate dark:text-zinc-200 leading-relaxed">
-                            ¡Hola! Soy tu asistente virtual de <strong>IMGEESSA</strong>. Llevo mi equipo de seguridad y estoy listo para ayudarte. ¿Qué necesitas hoy?
-                        </p>
+                </template>
+
+                <!-- Animación de "Escribiendo..." -->
+                <div class="flex gap-2" x-show="isLoading" style="display: none;">
+                    <div class="h-10 w-10 rounded-full bg-brand-cyan/20 flex-shrink-0 overflow-hidden flex items-center justify-center">
+                        <img src="{{ asset('img/bot-avatar.png') }}" alt="Bot Avatar" class="h-full w-full object-contain scale-[2.2] translate-y-1.5 grayscale opacity-70">
+                    </div>
+                    <div class="bg-white dark:bg-brand-navy rounded-2xl rounded-tl-sm p-3 shadow-sm border border-zinc-100 dark:border-brand-navy/50 flex items-center gap-1.5">
+                        <span class="w-2 h-2 bg-brand-cyan rounded-full animate-pulse"></span>
+                        <span class="w-2 h-2 bg-brand-cyan rounded-full animate-pulse" style="animation-delay: 0.2s"></span>
+                        <span class="w-2 h-2 bg-brand-cyan rounded-full animate-pulse" style="animation-delay: 0.4s"></span>
                     </div>
                 </div>
+
             </div>
             
             <!-- Input del Chat -->
             <div class="p-3 bg-white dark:bg-brand-navy-dark border-t border-zinc-100 dark:border-brand-navy/60">
                 <div class="flex items-center gap-2 relative">
-                    <input type="text" placeholder="Escribe tu mensaje..." class="w-full rounded-full border border-zinc-300 bg-zinc-50 px-4 py-2 text-sm text-zinc-900 focus:border-brand-cyan focus:outline-none focus:ring-1 focus:ring-brand-cyan dark:border-brand-slate dark:bg-brand-navy dark:text-white dark:focus:border-brand-cyan pr-10">
-                    <button class="absolute right-1 p-1.5 rounded-full bg-brand-cyan text-brand-navy hover:bg-brand-cyan-dark transition-colors">
-                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                    <input type="text" 
+                           x-model="userInput" 
+                           @keydown.enter="sendMessage" 
+                           :disabled="isLoading"
+                           placeholder="Escribe tu mensaje..." 
+                           class="w-full rounded-full border border-zinc-300 bg-zinc-50 px-4 py-2.5 text-sm text-zinc-900 focus:border-brand-cyan focus:outline-none focus:ring-1 focus:ring-brand-cyan dark:border-brand-slate dark:bg-brand-navy dark:text-white dark:focus:border-brand-cyan pr-12 disabled:opacity-50">
+                    
+                    <button @click="sendMessage" 
+                            :disabled="isLoading || userInput.trim() === ''"
+                            class="absolute right-1 p-2 rounded-full bg-brand-cyan text-brand-navy hover:bg-brand-cyan-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
                     </button>
                 </div>
             </div>

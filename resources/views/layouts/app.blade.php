@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title', 'IMGEESSA')</title>
+    <title>IMGEESSA SOLUCIONES INTEGRALES HSEQ S.A.S</title>
     <link rel="icon" id="favicon" type="image/png" href="{{ asset('img/logo-l.png') }}?v=3">
     
     

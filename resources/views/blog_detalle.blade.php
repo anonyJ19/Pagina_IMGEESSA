@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $articulo['titulo'] . ' | Blog IMGEESSA')
+@section('title', 'IMGEESSA')
 @section('meta_description', $articulo['resumen'])
 
 @section('content')
@@ -46,28 +46,36 @@
                     </div>
                 </div>
 
-                <!-- Big Featured Image -->
-                <div class="aspect-video w-full rounded-3xl overflow-hidden bg-zinc-100 dark:bg-brand-navy shadow-md">
-                    <img src="{{ $articulo['imagen'] }}" 
-                         alt="{{ $articulo['titulo'] }}" 
-                         class="h-full w-full object-cover">
-                </div>
+                @if(isset($articulo['component']))
+                    <!-- Infographic Component -->
+                    <div class="w-full">
+                        @include('components.' . $articulo['component'])
+                    </div>
+                @else
+                    <!-- Big Featured Image -->
+                    <div class="aspect-video w-full rounded-3xl overflow-hidden bg-zinc-100 dark:bg-brand-navy shadow-md">
+                        <img src="{{ $articulo['imagen'] }}" 
+                             alt="{{ $articulo['titulo'] }}" 
+                             class="h-full w-full object-cover">
+                    </div>
 
-                <!-- Reading body -->
-                <div class="prose prose-zinc dark:prose-invert max-w-none text-base md:text-lg text-brand-slate dark:text-zinc-300 leading-relaxed space-y-6 whitespace-pre-line">
-                    {{ $articulo['contenido'] }}
-                </div>
+                    <!-- Reading body -->
+                    <div class="prose prose-zinc dark:prose-invert max-w-none text-base md:text-lg text-brand-slate dark:text-zinc-300 leading-relaxed space-y-6 whitespace-pre-line">
+                        {{ $articulo['contenido'] }}
+                    </div>
+                @endif
 
                 <!-- Author Bio Card -->
-                <div class="mt-12 rounded-2xl border border-zinc-200/40 bg-slate-50 p-6 dark:border-brand-navy/40 dark:bg-brand-navy/40 flex flex-col sm:flex-row gap-4 items-center">
-                    <div class="h-16 w-16 rounded-full bg-gradient-to-tr from-brand-cyan to-indigo-600 flex items-center justify-center font-bold text-brand-navy text-xl shadow-md shrink-0">
-                        {{ substr($articulo['autor'], 4, 1) }}
+                <div class="mt-12 rounded-2xl border border-zinc-200/40 bg-slate-50 p-6 dark:border-brand-navy/40 dark:bg-brand-navy/40 flex flex-col sm:flex-row gap-6 items-center">
+                    <div class="h-16 w-auto shrink-0 flex items-center justify-center">
+                        <img src="{{ asset('img/logo-l.png') }}" alt="IMGEESSA Logo" class="h-full object-contain dark:hidden">
+                        <img src="{{ asset('img/logo-d.png') }}" alt="IMGEESSA Logo" class="h-full object-contain hidden dark:block">
                     </div>
                     <div class="space-y-1 text-center sm:text-left">
                         <h4 class="text-sm font-bold text-brand-navy dark:text-white">Escrito por {{ $articulo['autor'] }}</h4>
-                        <p class="text-xs text-brand-slate dark:text-zinc-400">Departamento de Ingeniería de IMGEESSA S.A.</p>
-                        <p class="text-xs text-brand-slate dark:text-zinc-400 leading-normal pt-1.5">
-                            Especialista técnico enfocado en dar soporte especializado y redactar análisis de viabilidad, normativas y optimización energética para plantas industriales.
+                        <p class="text-xs font-semibold text-brand-slate dark:text-zinc-400">IMGEESSA Soluciones Integrales HSEQ SAS.</p>
+                        <p class="text-xs text-brand-slate dark:text-zinc-400 leading-relaxed pt-1.5">
+                            Expertos en consultoría, asesoría y mediciones de higiene industrial para garantizar entornos laborales seguros, promoviendo el bienestar integral y el cumplimiento de la normatividad legal vigente en Seguridad y Salud en el Trabajo.
                         </p>
                     </div>
                 </div>
@@ -75,7 +83,7 @@
 
             <!-- Right Side: Sidebar (4 Cols) - Related Posts -->
             <aside class="lg:col-span-4 space-y-8">
-                <div class="rounded-2xl border border-zinc-200/40 p-6 dark:border-brand-navy/40 dark:bg-brand-navy/30 space-y-6">
+                <div class="sticky top-28 rounded-2xl border border-zinc-200/40 p-6 dark:border-brand-navy/40 dark:bg-brand-navy/30 space-y-6">
                     <h3 class="text-lg font-bold text-brand-navy dark:text-white border-b border-zinc-100 dark:border-brand-navy-dark pb-3">
                         Artículos Relacionados
                     </h3>

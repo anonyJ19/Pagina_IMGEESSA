@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', IMGEESSA')
-
 @section('content')
 <!-- Hero Section -->
 <section class="relative overflow-hidden pt-10 pb-20 lg:pt-16 lg:pb-32 bg-slate-50 dark:bg-brand-navy-dark transition-colors duration-300">

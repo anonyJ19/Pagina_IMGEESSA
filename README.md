@@ -1,58 +1,111 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Página IMGEESSA
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este es el repositorio oficial de la página web y landing page de **IMGEESSA**, desarrollada para presentar los servicios, catálogo, información corporativa (Quiénes Somos) y facilitar el contacto con los clientes.
 
-## About Laravel
+## 🚀 Descripción del Proyecto
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+El proyecto es una aplicación web desarrollada para **IMGEESSA**, diseñada para ser dinámica, responsiva y administrable. Cuenta con una sección pública (landing page interactiva) y un panel administrativo que permite gestionar el contenido de manera autónoma.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Características Principales:
+- **Inicio:** Página principal con un diseño dinámico, información general y un carrusel de distribuidores autorizados.
+- **Catálogo:** Visualización de productos y servicios ofrecidos por la empresa.
+- **Quiénes Somos:** Información sobre la empresa, misión, visión y ubicación física con un mapa interactivo integrado.
+- **Blog:** Sección de artículos o noticias para mantener a los clientes informados.
+- **Contacto y Agendamiento:** Formulario de contacto integrado con envíos de correo mediante SMTP de Gmail y un sistema de calendario para agendamiento de reuniones.
+- **Panel Administrativo:** Base de datos estructurada y panel para actualizar textos, imágenes y contenidos de las distintas secciones (inicio, catálogo, quiénes somos, etc.) de forma dinámica sin necesidad de tocar el código fuente.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🛠️ Tecnologías Utilizadas
 
-## Learning Laravel
+- **Backend:** Laravel (PHP)
+- **Frontend:** Blade, TailwindCSS, JavaScript (Vite) para un diseño moderno y ágil.
+- **Base de Datos:** MySQL / MariaDB (gestionado a través de migraciones y Eloquent ORM de Laravel).
+- **Manejo de Correos:** SMTP de Gmail para notificaciones de contacto.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ⚙️ Requisitos Previos
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Antes de ejecutar el proyecto, asegúrate de tener instalado:
+- PHP (v8.2 o superior recomendado)
+- Composer
+- Node.js y npm
+- Servidor de Base de Datos (MySQL o MariaDB)
+- Git
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## 💻 Instalación y Configuración Local
 
-## Agentic Development
+Sigue estos pasos para desplegar el proyecto en tu entorno de desarrollo local:
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+1. **Clonar el repositorio:**
+   ```bash
+   git clone https://github.com/tu-usuario/Pagina_IMGEESA.git
+   cd Pagina_IMGEESSA
+   ```
 
-```bash
-composer require laravel/boost --dev
+2. **Instalar dependencias del Backend (PHP):**
+   ```bash
+   composer install
+   ```
 
-php artisan boost:install
-```
+3. **Instalar dependencias del Frontend (Node):**
+   ```bash
+   npm install
+   ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+4. **Configurar el entorno:**
+   Copia el archivo de ejemplo para crear tu entorno local:
+   ```bash
+   cp .env.example .env
+   ```
+   *Nota importante: Configura tus credenciales de base de datos (`DB_*`) y los datos de SMTP para el envío de correos (`MAIL_*`) en el archivo `.env`.*
 
-## Contributing
+5. **Generar la clave de la aplicación:**
+   ```bash
+   php artisan key:generate
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6. **Ejecutar las migraciones (Base de datos):**
+   Configura las tablas necesarias para la gestión dinámica del sitio web:
+   ```bash
+   php artisan migrate
+   ```
 
-## Code of Conduct
+7. **Compilar los assets del frontend:**
+   ```bash
+   npm run dev
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+8. **Iniciar el servidor de desarrollo:**
+   Abre una nueva terminal y ejecuta:
+   ```bash
+   php artisan serve
+   ```
+   La aplicación estará disponible localmente en `http://localhost:8000`.
 
-## Security Vulnerabilities
+## 📂 Estructura del Proyecto
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Las partes más importantes configuradas en este proyecto incluyen:
+- `resources/views/`: Vistas de Blade de la aplicación (ej. `inicio.blade.php`, `catalogo.blade.php`, `quienes_somos.blade.php`, `blog_detalle.blade.php`) y plantillas de correos (`emails/`).
+- `app/Http/Controllers/`: Controladores que manejan la lógica de navegación, envío de correos, calendario y el panel administrativo.
+- `database/migrations/`: Estructura de la base de datos que permite la edición dinámica de los módulos del sitio.
+- `routes/web.php`: Rutas de la web pública y del entorno administrativo.
 
-## License
+## 🚢 Despliegue en Producción
+Para desplegar esta aplicación en un servidor de producción:
+1. Asegúrate de que el *Document Root* de tu servidor web (Apache/Nginx) apunte a la carpeta `public/` del proyecto.
+2. Compila los assets de Vite para producción:
+   ```bash
+   npm run build
+   ```
+3. Configura correctamente tu archivo `.env` para producción:
+   ```env
+   APP_ENV=production
+   APP_DEBUG=false
+   ```
+4. Optimiza la carga de Laravel:
+   ```bash
+   php artisan config:cache
+   php artisan route:cache
+   php artisan view:cache
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+**Desarrollado para IMGEESSA.**

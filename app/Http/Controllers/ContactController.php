@@ -21,8 +21,9 @@ class ContactController extends Controller
         ]);
 
         try {
-            // Enviar a direccioncomercial@imgeessa.com
-            Mail::to('direccioncomercial@imgeessa.com')->send(new ContactMeetingMail($validated));
+            // Enviar al correo configurado en el archivo .env (MAIL_TO_ADDRESS)
+            $destinationEmail = env('MAIL_TO_ADDRESS', 'direccioncomercial@imgeessa.com');
+            Mail::to($destinationEmail)->send(new ContactMeetingMail($validated));
             
             return response()->json([
                 'success' => true,

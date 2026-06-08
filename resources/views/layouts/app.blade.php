@@ -17,8 +17,8 @@
     <!-- CSS / JS compilation (Vite) -->
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/theme.js'])
 
-    
-    
+    <!-- SweetAlert2 para notificaciones -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;

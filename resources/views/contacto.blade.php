@@ -181,7 +181,7 @@
                          x-transition:enter="transition ease-out duration-300"
                          x-transition:enter-start="opacity-0 translate-y-4"
                          x-transition:enter-end="opacity-100 translate-y-0"
-                         class="absolute inset-0 bg-white dark:bg-brand-navy flex flex-col items-center justify-center p-8 text-center space-y-4 z-10"
+                         class="absolute inset-0 bg-white dark:bg-brand-navy flex flex-col items-center justify-center p-8 text-center space-y-4 z-20"
                          style="display: none;">
                         <div class="flex h-16 w-16 items-center justify-center rounded-full bg-brand-cyan/20 text-brand-navy dark:text-brand-cyan shadow-md">
                             <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -190,12 +190,11 @@
                         </div>
                         <h3 class="text-2xl font-bold text-brand-navy dark:text-white">¡Mensaje Enviado con Éxito!</h3>
                         <p class="text-sm text-brand-slate dark:text-zinc-300 max-w-sm">
-                            Tu solicitud ha sido registrada correctamente. Un asesor técnico especializado de nuestro departamento de ingeniería se pondrá en contacto contigo en un plazo menor a 24 horas.
+                            Tu solicitud ha sido registrada correctamente. Un asesor técnico especializado se pondrá en contacto contigo muy pronto.
                         </p>
                         <button @click="success = false" 
                                 type="button" 
-                                id="success-reset-btn"
-                                class="rounded-xl bg-slate-100 hover:bg-zinc-200 dark:bg-brand-navy-dark dark:text-white dark:hover:bg-brand-navy px-5 py-2.5 text-xs font-bold transition-colors">
+                                class="rounded-xl bg-slate-100 hover:bg-zinc-200 dark:bg-brand-navy-dark dark:text-white dark:hover:bg-brand-navy px-5 py-2.5 text-xs font-bold transition-colors mt-4">
                             Enviar otro mensaje
                         </button>
                     </div>

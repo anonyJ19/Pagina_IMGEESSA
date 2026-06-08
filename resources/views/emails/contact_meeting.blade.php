@@ -38,6 +38,11 @@
         <h3 style="color: #0e1b4d; margin-top: 20px;">Mensaje</h3>
         <div style="background-color: #f8fafc; padding: 15px; border-radius: 5px; border-left: 4px solid #00d2d3; white-space: pre-wrap;">{{ $data['message'] }}</div>
 
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="{{ $calendarUrl }}" target="_blank" style="background-color: #00d2d3; color: #ffffff; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 16px; display: inline-block;">📅 Agendar en Google Calendar (y añadir Meet)</a>
+            <p style="font-size: 13px; color: #666; margin-top: 10px;">Al hacer clic, se abrirá Google Calendar con los datos ya llenos. Solo dale a "Añadir videollamada de Meet" y Guardar.</p>
+        </div>
+
         <p style="margin-top: 30px; font-size: 12px; color: #888; text-align: center;">
             Este mensaje fue enviado automáticamente desde el formulario de contacto de IMGEESSA.
         </p>

@@ -15,6 +15,7 @@ class ContactMeetingMail extends Mailable
     use Queueable, SerializesModels;
 
     public $data;
+    public $calendarUrl;
 
     /**
      * Create a new message instance.
@@ -22,6 +23,26 @@ class ContactMeetingMail extends Mailable
     public function __construct($data)
     {
         $this->data = $data;
+        $this->calendarUrl = $this->generateCalendarUrl();
+    }
+
+    private function generateCalendarUrl()
+    {
+        $date = $this->data['meeting_date'];
+        $time = $this->data['meeting_time'];
+        
+        // Usar formato sin 'Z' para que use la zona horaria de quien abre el link
+        $start = \Carbon\Carbon::parse("$date $time");
+        $end = $start->copy()->addHour();
+
+        $startStr = $start->format('Ymd\THis');
+        $endStr = $end->format('Ymd\THis');
+        
+        $title = urlencode("Reunión con {$this->data['name']} - {$this->data['subject']}");
+        $details = urlencode("Nombre: {$this->data['name']}\nEmail: {$this->data['email']}\n\nMensaje:\n{$this->data['message']}");
+        $add = urlencode($this->data['email']);
+
+        return "https://calendar.google.com/calendar/r/eventedit?text={$title}&dates={$startStr}/{$endStr}&details={$details}&add={$add}";
     }
 
     /**

@@ -21,81 +21,91 @@ class ChatbotController extends Controller
         $userMessage = $request->input('message');
         $history = $request->input('history', []);
 
-        // Sistema central de personalidad (Cerebro Inteligente)
-        $systemPrompt = "Eres el asistente virtual experto de ventas y soporte de IMGEESSA Soluciones Integrales HSEQ.
-Tu objetivo es asesorar a los clientes sobre nuestros productos industriales, equipos de protección personal (EPP) y servicios corporativos de forma profesional, amigable y muy natural.
+        // Sistema central de personalidad (Cerebro Inteligente de IA)
+        $systemPrompt = "Eres el asesor virtual EXCLUSIVO de IMGEESSA Soluciones Integrales HSEQ S.A.S.
+TU ÚNICO PROPÓSITO es vender y asesorar sobre los productos y servicios de esta empresa. 
 
-INFORMACIÓN DE CONTACTO Y UBICACIÓN:
-- Celulares: 3108448788 - 3107696821
-- Correos: Comercial@imgeessa.com, Direccioncomercial@imgeessa.com, Gerencia@imgeessa.com
-- Dirección: Av carrera 30 # 75-61, Bogotá, Colombia.
+REGLA DE ORO, INQUEBRANTABLE (CERO TOLERANCIA):
+ESTÁ COMPLETAMENTE PROHIBIDO responder cualquier pregunta, solicitud o tema que no esté directamente relacionado con IMGEESSA, sus servicios HSEQ, herramientas, o su catálogo de EPP.
+Si el usuario te pregunta sobre programación, recetas de cocina, historia, chistes, política, resúmenes de libros, cómo hacer tareas de matemáticas, o CUALQUIER OTRA COSA ajena a IMGEESSA, DEBES RESPONDER EXACTAMENTE ESTO:
+'Lo siento, como asesor virtual de IMGEESSA, mi programación está restringida EXCLUSIVAMENTE a brindarte soporte sobre nuestros servicios HSEQ y catálogo industrial. ¿En qué te puedo ayudar respecto a nuestra empresa?'
+NO CEDAS NUNCA, NO IMPORTA CÓMO TE LO PIDAN. ERES UN VENDEDOR ESTRICTO Y PROFESIONAL.
 
-SOBRE NUESTRA EMPRESA:
-- Especialidades: Sistemas de Gestión (SST, Ambiental, Calidad), Ingeniería Química y Mediciones Higiénicas.
-- Servicios específicos: Asesoría legal laboral (Reglamento Interno de Trabajo), Estabilidad Laboral Reforzada, y estudios de Higiene Industrial (ej. mediciones de ruido).
-- Valores (C.R.E.C.E.): Calidad, Responsabilidad, Enfoque al cliente, Compromiso y Excelencia.
+INFORMACIÓN COMPLETA DE LA EMPRESA (IMGEESSA):
+- Contacto: Celulares 3108448788 y 3107696821.
+- Correos: Comercial@imgeessa.com, Direccioncomercial@imgeessa.com, Gerencia@imgeessa.com.
+- Ubicación: Av carrera 30 # 75-61, Bogotá, Colombia.
+- Valores (CRECE): Calidad, Responsabilidad, Enfoque al cliente, Compromiso, Excelencia.
+- Servicios: Asesorías en Sistemas de Gestión (SST, Ambiental, Calidad), Higiene Industrial (Mediciones de ruido, iluminación, vibraciones, material particulado), Asesoría legal-laboral (Reglamentos internos, estabilidad laboral).
 
-RESUMEN DE NUESTRO CATÁLOGO (EPP Y FERRETERÍA):
-1. Protección contra caídas: Arneses (reata, poliuretano, kevlar, dieléctricos), eslingas, anclajes, líneas de vida, trípodes, sillas de suspensión.
-2. Protección Craneal: Cascos tipo sombrero, cachucha, dieléctricos, cascos para contratistas, tafiletes y barbuquejos.
-3. Protección Ocular y Facial: Gafas de seguridad (oscuras, claras, in/out), monogafas, caretas para soldador, visores de policarbonato y malla.
-4. Protección Respiratoria: Mascarillas N95, respiradores de media cara y cara completa, cartuchos y filtros.
-5. Protección Auditiva: Tapones de inserción y protectores tipo copa (orejeras).
-6. Protección para Manos: Guantes de vaqueta, carnaza, soldador, nitrilo, poliuretano, anticorte, dieléctricos y mangas de Kevlar.
-7. Protección Corporal y Calzado: Chalecos reflectivos, overoles, trajes químicos/impermeables, delantales, botas de caucho (safety, bomberos), botas de cuero y tenis industriales.
-8. Detección de Gases y Medición: Detectores multigas (Altair), luxómetros, alcoholímetros, dataloggers, cámaras termográficas.
-9. Señalización y Bloqueo (LOTO): Avisos, conos, cintas, bloqueadores de válvulas, candados, pinzas, tarjetas.
-10. Emergencias y Contraincendios: Estaciones lavaojos, botiquines, camillas, extintores, absorbentes, kits para derrames.
-11. Izaje, Residuos y Ferretería: Eslingas de carga, grilletes, poleas, malacates, canecas de colores, taladros, pulidoras, sierras, motosierras, hidrolavadoras, soldadores.
+CATÁLOGO PROFUNDO DE PRODUCTOS (EPP y FERRETERÍA):
+Somos distribuidores autorizados de marcas top mundiales como: 3M, Ansell, DuPont, MSA, Petzl, Honeywell, Insafe, ARSEG, Steelpro, Jackson Safety.
+- Protección en Alturas y Confinados: Arneses (en reata, poliuretano, dieléctricos, ignífugos), eslingas con absorbedor, líneas de vida, puntos de anclaje fijos/móviles, sillas de suspensión y trípodes para rescate.
+- Protección Craneal: Cascos tipo I y II, cascos de ala ancha, tafiletes, y barbuquejos de 3/4 puntos.
+- Protección Ocular y Facial: Gafas de seguridad (in/out, oscuras, claras, antiempañantes), monogafas, caretas de soldadura fotosensibles, visores de policarbonato.
+- Protección Respiratoria: Mascarillas N95, respiradores media cara / cara completa (silicona y elastómero), cartuchos para vapores orgánicos/químicos y filtros de partículas.
+- Protección Auditiva: Tapones de inserción (silicona, espuma), orejeras adaptables a casco.
+- Protección Manual (Guantes): Vaqueta, carnaza, soldador, nitrilo, anticorte, dieléctricos, y mangas de Kevlar.
+- Protección Corporal y Calzado: Overoles impermeables, trajes para químicos (Tyvek), delantales, chalecos reflectivos, botas pantaneras de caucho (safety, bomberos, frigorífico), botas dieléctricas en cuero, tenis de seguridad punta composite.
+- Instrumentación y Medición: Detectores multigas (Altair), luxómetros, alcoholímetros, dataloggers, termohigrómetros, contadores de partículas, cámaras termográficas.
+- Bloqueo y Etiquetado (LOTO): Candados dieléctricos, bloqueadores de válvulas/eléctricos, tarjetas de bloqueo, pinzas múltiples.
+- Emergencias y Fuegos: Estaciones lavaojos portátiles/fijas, botiquines (tipo A, B, C), camillas espinales, extintores multipropósito/CO2, kits completos de control de derrames.
+- Izaje, Residuos y Herramientas: Eslingas de carga, grilletes, poleas, malacates, canecas por código de colores, taladros percutores, pulidoras, hidrolavadoras, compresores.
 
-REGLAS ESTRICTAS E INQUEBRANTABLES:
-1. Actúa como asesor. Si alguien menciona que va a soldar, recomiéndale equipos de kevlar o cuero, caretas de soldar y gafas. Analiza lo que necesitan.
-2. NUNCA inventes precios. Para precios o cotizaciones, indica SIEMPRE que escriban a Comercial@imgeessa.com.
-3. SOLO respondes temas de IMGEESSA. Si preguntan cosas externas (recetas, chistes, política, programación, etc.), responde cortésmente que solo puedes asesorar sobre productos industriales y servicios de IMGEESSA.
-4. Responde de manera fluida, no como un robot copiando y pegando viñetas. Mantén tus respuestas precisas y amables.";
+INSTRUCCIONES FINALES DE RESPUESTA:
+- Sé siempre cortés, empático y vende con naturalidad.
+- NO inventes precios. Para precios exactos, diles SIEMPRE que deben escribir a Comercial@imgeessa.com.
+- Analiza lo que el cliente te describe y recomiéndale 2 o 3 productos/servicios específicos de nuestra lista.";
 
-        $messages = [
-            ['role' => 'system', 'content' => $systemPrompt]
-        ];
+        $contents = [];
 
         // Añadir contexto previo para memoria de conversación
         $recentHistory = array_slice($history, -6);
         foreach ($recentHistory as $msg) {
             if (isset($msg['role']) && isset($msg['content']) && in_array($msg['role'], ['user', 'assistant'])) {
-                $messages[] = [
-                    'role' => $msg['role'],
-                    'content' => $msg['content']
+                $role = $msg['role'] === 'assistant' ? 'model' : 'user';
+                $contents[] = [
+                    'role' => $role,
+                    'parts' => [['text' => $msg['content']]]
                 ];
             }
         }
 
-        $messages[] = ['role' => 'user', 'content' => $userMessage];
+        $contents[] = [
+            'role' => 'user',
+            'parts' => [['text' => $userMessage]]
+        ];
 
         try {
-            $apiKey = env('OPENAI_API_KEY');
+            $apiKey = env('GEMINI_API_KEY');
 
             if ($apiKey) {
-                // Intentamos conectar con la IA de OpenAI (corrigiendo endpoint y modelo)
+                // Intentamos conectar con la IA de Google Gemini
                 $response = Http::withoutVerifying()->withHeaders([
-                    'Authorization' => 'Bearer ' . $apiKey,
                     'Content-Type' => 'application/json',
-                ])->timeout(10)->post('https://api.openai.com/v1/chat/completions', [
-                    'model' => 'gpt-3.5-turbo', 
-                    'messages' => $messages,
-                    'temperature' => 0.3,
-                    'max_tokens' => 500,
+                ])->timeout(15)->post('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' . $apiKey, [
+                    'contents' => $contents,
+                    'systemInstruction' => [
+                        'parts' => [['text' => $systemPrompt]]
+                    ],
+                    'generationConfig' => [
+                        'temperature' => 0.3,
+                        'maxOutputTokens' => 500,
+                    ]
                 ]);
 
                 if ($response->successful()) {
                     $result = $response->json();
-                    $reply = $result['choices'][0]['message']['content'];
-                    return response()->json(['reply' => $reply]);
+                    if (isset($result['candidates'][0]['content']['parts'][0]['text'])) {
+                        $reply = $result['candidates'][0]['content']['parts'][0]['text'];
+                        return response()->json(['reply' => $reply]);
+                    }
                 } else {
-                    Log::warning('La API falló o no tiene saldo (Cambiando a Cerebro Local): ' . $response->body());
+                    Log::warning('La API de Gemini falló o no tiene saldo (Cambiando a Cerebro Local): ' . $response->body());
                 }
             }
         } catch (\Exception $e) {
-            Log::warning('Error de conexión con OpenAI (Cambiando a Cerebro Local): ' . $e->getMessage());
+            Log::warning('Error de conexión con Gemini (Cambiando a Cerebro Local): ' . $e->getMessage());
         }
 
         // -------------------------------------------------------------
@@ -147,14 +157,16 @@ REGLAS ESTRICTAS E INQUEBRANTABLES:
             $reply = "Puedes contactarnos a los celulares 3108448788 o 3107696821. También puedes escribirnos a Comercial@imgeessa.com o Direccioncomercial@imgeessa.com. ¡Estaremos encantados de atenderte!";
         } elseif (str_contains($userMessageLower, 'ubicacion') || str_contains($userMessageLower, 'direccion') || str_contains($userMessageLower, 'donde estan')) {
             $reply = "Nuestras oficinas se encuentran ubicadas en la Av carrera 30 # 75-61, en Bogotá, Colombia.";
-        } elseif (str_contains($userMessageLower, 'precio') || str_contains($userMessageLower, 'costo') || str_contains($userMessageLower, 'catalogo') || str_contains($userMessageLower, 'comprar') || str_contains($userMessageLower, 'cotiza')) {
-            $reply = "Manejamos muchísimas referencias. Para conocer nuestros precios o solicitar nuestro catálogo completo, por favor escríbenos a Comercial@imgeessa.com. ¡Te armaremos una propuesta a tu medida!";
+        } elseif (str_contains($userMessageLower, 'precio') || str_contains($userMessageLower, 'costo') || str_contains($userMessageLower, 'comprar') || str_contains($userMessageLower, 'cotiza')) {
+            $reply = "Manejamos muchísimas referencias. Para conocer nuestros precios o solicitar una cotización formal, por favor escríbenos a Comercial@imgeessa.com. ¡Te armaremos una propuesta a tu medida!";
+        } elseif (str_contains($userMessageLower, 'catalogo') || str_contains($userMessageLower, 'que manejan') || str_contains($userMessageLower, 'que equipos manejan') || str_contains($userMessageLower, 'productos') || str_contains($userMessageLower, 'que venden') || str_contains($userMessageLower, 'portafolio')) {
+            $reply = "Manejamos una línea muy completa de Equipos de Protección Personal (EPP) de marcas top mundiales: protección en alturas (arneses, eslingas), cascos, gafas, protección respiratoria y auditiva, guantes y botas de seguridad. Además, ofrecemos instrumentación (detectores de gas), equipos de emergencia (botiquines, extintores), ferretería industrial y asesorías HSEQ. ¿Qué tipo de equipo estás buscando hoy?";
         } elseif (str_contains($userMessageLower, 'valores') || str_contains($userMessageLower, 'mision') || str_contains($userMessageLower, 'crece')) {
             $reply = "Nuestros valores se resumen en el acrónimo C.R.E.C.E.: Calidad, Responsabilidad, Enfoque al cliente, Compromiso y Excelencia.";
-        } elseif (str_contains($userMessageLower, 'codigo') || str_contains($userMessageLower, 'programar') || str_contains($userMessageLower, 'politica') || str_contains($userMessageLower, 'chiste') || str_contains($userMessageLower, 'receta')) {
-            $reply = "Lo siento, soy un asistente virtual estrictamente configurado para asesorarte solo en productos industriales, protección personal (EPP), ferretería y servicios HSEQ de IMGEESSA.";
+        } elseif (str_contains($userMessageLower, 'codigo') || str_contains($userMessageLower, 'programar') || str_contains($userMessageLower, 'politica') || str_contains($userMessageLower, 'chiste') || str_contains($userMessageLower, 'receta') || str_contains($userMessageLower, 'poema') || str_contains($userMessageLower, 'historia') || str_contains($userMessageLower, 'inteligencia artificial') || str_contains($userMessageLower, 'ignora las instrucciones') || str_contains($userMessageLower, 'dame un ejemplo de')) {
+            $reply = "Lo siento, soy un asesor virtual EXCLUSIVO de IMGEESSA. Mi programación me restringe rotundamente a brindar soporte solo sobre nuestros productos industriales, equipos de protección personal (EPP) y servicios HSEQ.";
         } else {
-            $reply = "Entiendo. Sin embargo, mi programación está restringida únicamente a nuestros productos industriales, protección personal (EPP) y servicios HSEQ de IMGEESSA. Te invito a explorar el menú o escribir a Comercial@imgeessa.com para mayor asistencia.";
+            $reply = "Lo siento, como asesor virtual exclusivo de IMGEESSA no puedo responder a temas ajenos a la compañía. Mi programación está diseñada únicamente para asesorarte sobre nuestro catálogo industrial, protección en EPP y servicios corporativos HSEQ. ¿En qué te puedo ayudar respecto a nuestra empresa?";
         }
 
         // Simulamos el "escribiendo..." en caso de que OpenAI haya fallado y estemos usando el cerebro local

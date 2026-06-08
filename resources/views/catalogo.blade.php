@@ -227,15 +227,12 @@
     
 <!-- Empresas Distribuidoras Autorizadas Section (Auto-sliding Marquee) -->
 @php
-    // TODO: Reemplazar estas imágenes con las de las empresas distribuidoras. 
-    // Por ahora uso temporalmente las de inicio/nuestros_clientes para que puedas ver el efecto.
     $distribuidorasImages = [
-        '3HTPC.png', 'Aviomar.png', 'JAG.png', 'aec.png', 'amarillo.png', 
-        'arl_sura.webp', 'celuvans.png', 'conbel.png', 'corona.jfif', 'desigual.jpg',
-        'dvo.jpg', 'gema.png', 'handel.png', 'induser.png', 'large.webp', 
-        'mascosas.jfif', 'multigecon.jfif', 'olam.jfif', 'prodesa.png', 'pronabell.jpg', 
-        'proquimort.jfif', 'real transportadora.png', 'ryg.png', 'seguros_Bolivar.jpg', 
-        'sercapetrol.jpeg', 'skalar.jfif', 'snider.png', 'taxisya.png', 'trocadero.png', 'zonamedica.jfif'
+        '3025.png', '3M.png', 'ALLWED.jpg', 'ARSEG.png', 'Ansell.png', 
+        'Armadura.jpg', 'DUPONT.png', 'EPI.png', 'Honeywell.png', 'INSAFE.png',
+        'Kimberly-Clark Professional.png', 'MCR-Safety-logo.png', 'MSA.png', 
+        'PETZL.png', 'SWEEISS.png', 'allman.jpg', 'dbi-sala.png', 'jackson.png', 
+        'steelpro.png', 'uvex-vector.png', 'zubiola_s_coop_.jpg'
     ];
 @endphp
 
@@ -272,7 +269,7 @@
             <div class="flex animate-slide-left whitespace-nowrap items-center shrink-0 space-x-6 px-3">
                 @foreach($distribuidorasImages as $img)
                 <div class="flex h-32 w-48 md:h-40 md:w-64 shrink-0 items-center justify-center rounded-2xl border border-zinc-200/60 bg-white p-4 md:p-6 dark:border-brand-navy/50 dark:bg-white grayscale-0 md:grayscale group-hover:grayscale-0 transition-all duration-500 shadow-sm">
-                    <img src="{{ asset('img/inicio/nuestros_clientes/' . $img) }}" alt="Distribuidor Autorizado" class="max-h-full max-w-full object-contain">
+                    <img src="{{ asset('img/catalogo/logos/' . $img) }}" alt="Distribuidor Autorizado" class="max-h-full max-w-full object-contain">
                 </div>
                 @endforeach
             </div>
@@ -281,7 +278,7 @@
             <div class="flex animate-slide-left whitespace-nowrap items-center shrink-0 space-x-6 px-3">
                 @foreach($distribuidorasImages as $img)
                 <div class="flex h-32 w-48 md:h-40 md:w-64 shrink-0 items-center justify-center rounded-2xl border border-zinc-200/60 bg-white p-4 md:p-6 dark:border-brand-navy/50 dark:bg-white grayscale-0 md:grayscale group-hover:grayscale-0 transition-all duration-500 shadow-sm">
-                    <img src="{{ asset('img/inicio/nuestros_clientes/' . $img) }}" alt="Distribuidor Autorizado" class="max-h-full max-w-full object-contain">
+                    <img src="{{ asset('img/catalogo/logos/' . $img) }}" alt="Distribuidor Autorizado" class="max-h-full max-w-full object-contain">
                 </div>
                 @endforeach
             </div>

@@ -131,6 +131,20 @@
                              this.subject = 'Cotización: ' + equipo;
                              this.message = 'Hola, me gustaría solicitar una cotización formal y recibir especificaciones técnicas adicionales para el equipo: ' + equipo + '.';
                          }
+
+                         // Flatpickr initialization
+                         setTimeout(() => {
+                             if (typeof flatpickr !== 'undefined') {
+                                 flatpickr(document.getElementById('meeting-date'), {
+                                     locale: 'es',
+                                     minDate: 'today',
+                                     dateFormat: 'Y-m-d',
+                                     onChange: (selectedDates, dateStr) => {
+                                         this.meeting_date = dateStr;
+                                     }
+                                 });
+                             }
+                         }, 100);
                      },
                      async submit() {
                          this.loading = true;
@@ -255,18 +269,55 @@
                             <div class="space-y-1.5">
                                 <label for="meeting-date" class="text-xs font-bold text-brand-slate dark:text-zinc-450 uppercase tracking-wide">Fecha de Reunión</label>
                                 <input x-model="meeting_date" 
-                                       type="date" 
+                                       type="text" 
                                        id="meeting-date"
+                                       placeholder="Selecciona una fecha"
                                        class="w-full rounded-xl border border-zinc-300 bg-slate-50 px-4 py-2.5 text-sm text-brand-navy shadow-sm focus:border-brand-cyan focus:bg-white focus:ring-1 focus:ring-brand-cyan dark:border-brand-navy dark:bg-brand-navy/60 dark:text-white dark:focus:border-brand-cyan"
                                        required>
                             </div>
-                            <div class="space-y-1.5">
-                                <label for="meeting-time" class="text-xs font-bold text-brand-slate dark:text-zinc-450 uppercase tracking-wide">Hora</label>
-                                <input x-model="meeting_time" 
-                                       type="time" 
-                                       id="meeting-time"
-                                       class="w-full rounded-xl border border-zinc-300 bg-slate-50 px-4 py-2.5 text-sm text-brand-navy shadow-sm focus:border-brand-cyan focus:bg-white focus:ring-1 focus:ring-brand-cyan dark:border-brand-navy dark:bg-brand-navy/60 dark:text-white dark:focus:border-brand-cyan"
-                                       required>
+                            <div class="space-y-1.5" x-data="{ openTimeMenu: false }" @click.away="openTimeMenu = false">
+                                <label class="text-xs font-bold text-brand-slate dark:text-zinc-450 uppercase tracking-wide">Hora de la Reunión</label>
+                                <div class="relative mt-2">
+                                    <!-- Dropdown Button -->
+                                    <button type="button" 
+                                            @click="openTimeMenu = !openTimeMenu"
+                                            class="flex w-full items-center justify-between rounded-xl border border-zinc-300 bg-slate-50 px-4 py-2.5 text-sm text-brand-navy shadow-sm focus:border-brand-cyan focus:bg-white focus:ring-1 focus:ring-brand-cyan dark:border-brand-navy dark:bg-brand-navy/60 dark:text-white transition-all duration-200">
+                                        <span x-text="meeting_time ? meeting_time + ' - ' + (parseInt(meeting_time) + 1) + ':00' : 'Seleccione un horario...'" 
+                                              :class="!meeting_time ? 'text-zinc-400 dark:text-zinc-500' : 'font-semibold'"></span>
+                                        <svg class="h-4 w-4 text-zinc-400 transition-transform duration-200" :class="openTimeMenu ? 'rotate-180' : ''" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                                    </button>
+
+                                    <!-- Dropdown Submenu -->
+                                    <div x-show="openTimeMenu" 
+                                         x-transition:enter="transition ease-out duration-100"
+                                         x-transition:enter-start="opacity-0 scale-95"
+                                         x-transition:enter-end="opacity-100 scale-100"
+                                         x-transition:leave="transition ease-in duration-75"
+                                         x-transition:leave-start="opacity-100 scale-100"
+                                         x-transition:leave-end="opacity-0 scale-95"
+                                         class="absolute z-10 mt-1 w-full rounded-xl bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-brand-navy-dark dark:ring-white/10"
+                                         style="display: none;">
+                                        <ul class="py-1 max-h-60 overflow-auto">
+                                            <template x-for="time in ['08:00', '09:00', '10:00', '11:00', '14:00', '15:00']" :key="time">
+                                                <li>
+                                                    <button type="button"
+                                                            @click="meeting_time = time; openTimeMenu = false;"
+                                                            class="relative flex w-full cursor-pointer items-center py-2 pl-3 pr-9 hover:bg-brand-cyan/10 hover:text-brand-cyan dark:hover:bg-brand-cyan/20 transition-colors"
+                                                            :class="meeting_time === time ? 'bg-brand-cyan/5 text-brand-cyan font-bold' : 'text-brand-navy dark:text-zinc-200'">
+                                                        <span class="block truncate" x-text="time + ' - ' + (parseInt(time) + 1) + ':00'"></span>
+                                                        <span x-show="meeting_time === time" class="absolute inset-y-0 right-0 flex items-center pr-4 text-brand-cyan">
+                                                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                                                            </svg>
+                                                        </span>
+                                                    </button>
+                                                </li>
+                                            </template>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Campo oculto para enviar con el formulario -->
+                                <input type="hidden" x-model="meeting_time" required>
                             </div>
                         </div>
 

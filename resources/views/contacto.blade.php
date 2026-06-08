@@ -150,6 +150,20 @@
                          this.loading = true;
                          this.errorMsg = '';
                          
+                         if (typeof grecaptcha !== 'undefined' && '{{ env('RECAPTCHA_SITE_KEY') }}' !== '') {
+                             grecaptcha.ready(() => {
+                                 grecaptcha.execute('{{ env('RECAPTCHA_SITE_KEY') }}', {action: 'contacto'}).then((token) => {
+                                     this.sendRequest(token);
+                                 }).catch((err) => {
+                                     console.error('Error reCAPTCHA:', err);
+                                     this.sendRequest(null);
+                                 });
+                             });
+                         } else {
+                             this.sendRequest(null);
+                         }
+                     },
+                     async sendRequest(recaptchaToken) {
                          try {
                              const response = await fetch('{{ route('contacto.send') }}', {
                                  method: 'POST',
@@ -163,7 +177,8 @@
                                      subject: this.subject,
                                      message: this.message,
                                      meeting_date: this.meeting_date,
-                                     meeting_time: this.meeting_time
+                                     meeting_time: this.meeting_time,
+                                     recaptcha_token: recaptchaToken
                                  })
                              });
                              

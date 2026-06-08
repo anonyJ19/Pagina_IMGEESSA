@@ -32,6 +32,10 @@
             font-family: 'Outfit', sans-serif;
         }
     </style>
+    <!-- Google reCAPTCHA v3 -->
+    @if(env('RECAPTCHA_SITE_KEY'))
+        <script src="https://www.google.com/recaptcha/api.js?render={{ env('RECAPTCHA_SITE_KEY') }}"></script>
+    @endif
 </head>
 <body class="bg-slate-50 text-brand-navy dark:bg-brand-navy-dark dark:text-zinc-100 min-h-screen flex flex-col transition-colors duration-300 antialiased"
       x-data="{ 

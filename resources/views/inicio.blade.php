@@ -420,7 +420,7 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
             <!-- Item 1 (Large) -->
             <a href="{{ route('catalogo') }}" class="group relative overflow-hidden rounded-2xl col-span-2 md:col-span-2 row-span-2 md:row-span-2 shadow-sm hover:shadow-xl hover:shadow-brand-cyan/20 transition-all duration-300">
-                <img src="{{ asset('img/inicio/lineas_de_negocio/EPP-Y-FERRETERIA.jpg') }}" alt="EPP y Ferretería" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105">
+                <img src="{{ asset('img/catalogo/equipo-de-proteccion-industrial.webp') }}" alt="EPP y Ferretería" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105">
                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy-dark/90 via-brand-navy-dark/30 to-transparent transition-opacity"></div>
                 <div class="absolute bottom-6 left-6 right-6 flex flex-col justify-end items-start h-full pb-2">
                     <span class="inline-flex items-center gap-1.5 rounded-full bg-brand-cyan/90 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-navy shadow-sm mb-3">Suministros Industriales</span>
@@ -431,7 +431,7 @@
 
             <!-- Item 2 -->
             <a href="{{ route('catalogo') }}" class="group relative overflow-hidden rounded-2xl col-span-2 md:col-span-1 row-span-1 md:row-span-1 shadow-sm hover:shadow-lg transition-all duration-300">
-                <img src="{{ asset('img/inicio/lineas_de_negocio/SEGURIDAD-Y-SALUD-EN-EL-TRABAJO.jpg') }}" alt="Seguridad y Salud" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <img src="{{ asset('img/catalogo/seguridad_salud_salud_en_el_trabajo.webp') }}" alt="Seguridad y Salud" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy-dark/80 to-transparent transition-opacity"></div>
                 <div class="absolute bottom-4 left-4 right-4">
                     <h3 class="text-lg font-bold text-white group-hover:text-brand-cyan transition-colors">Seguridad y Salud</h3>
@@ -440,7 +440,7 @@
 
             <!-- Item 3 -->
             <a href="{{ route('catalogo') }}" class="group relative overflow-hidden rounded-2xl col-span-2 md:col-span-1 row-span-1 md:row-span-2 shadow-sm hover:shadow-lg transition-all duration-300">
-                <img src="{{ asset('img/inicio/lineas_de_negocio/GESTION-AMBIENTAL.webp') }}" alt="Gestión Ambiental" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <img src="{{ asset('img/catalogo/sistema-de-gestion-ambiental.jpg') }}" alt="Gestión Ambiental" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy-dark/90 via-brand-navy-dark/20 to-transparent transition-opacity"></div>
                 <div class="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6">
                     <h3 class="text-xl font-bold text-white group-hover:text-brand-cyan transition-colors">Gestión Ambiental</h3>
@@ -449,7 +449,7 @@
 
             <!-- Item 4 -->
             <a href="{{ route('catalogo') }}" class="group relative overflow-hidden rounded-2xl col-span-2 md:col-span-1 row-span-1 md:row-span-1 shadow-sm hover:shadow-lg transition-all duration-300">
-                <img src="{{ asset('img/inicio/lineas_de_negocio/MEDICIONES-AMBIENTALES.jpg') }}" alt="Mediciones" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <img src="{{ asset('img/catalogo/Mediciones-ambientales.png') }}" alt="Mediciones" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy-dark/80 to-transparent transition-opacity"></div>
                 <div class="absolute bottom-4 left-4 right-4">
                     <h3 class="text-lg font-bold text-white group-hover:text-brand-cyan transition-colors">Mediciones</h3>

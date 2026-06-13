@@ -42,6 +42,18 @@
                      const matchesCategory = p.categoria === this.selectedCategory;
                      return matchesSearch && matchesCategory;
                  });
+             },
+             selectCategory(cat) {
+                 this.selectedCategory = cat;
+                 if (window.innerWidth < 1024) {
+                     this.$nextTick(() => {
+                         const mainEl = document.querySelector('main');
+                         if (mainEl) {
+                             const offset = mainEl.getBoundingClientRect().top + window.scrollY - 20;
+                             window.scrollTo({ top: offset, behavior: 'smooth' });
+                         }
+                     });
+                 }
              }
          }">
     
@@ -57,7 +69,7 @@
                     </h3>
                     <div class="flex flex-col gap-2">
                         @foreach($categorias as $cat)
-                            <button @click="selectedCategory = '{{ $cat }}'" 
+                            <button @click="selectCategory('{{ $cat }}')" 
                                     id="filter-category-{{ Str::slug($cat) }}"
                                     class="text-left w-full rounded-xl px-4 py-3 text-sm font-bold tracking-wide transition-all duration-200"
                                     :class="selectedCategory === '{{ $cat }}' ? 'bg-brand-cyan text-brand-navy shadow-md' : 'bg-slate-50 text-brand-slate hover:bg-zinc-100 dark:bg-brand-navy-dark dark:text-zinc-300 dark:hover:bg-brand-navy'">

@@ -5,7 +5,7 @@
         <h2 class="relative text-3xl md:text-4xl font-extrabold text-white tracking-wide uppercase shadow-sm">
             Reglamento Interno de Trabajo
         </h2>
-        <div class="relative mt-6 inline-block bg-brand-cyan text-brand-navy font-bold text-lg px-6 py-2 rounded-full shadow-md transform -rotate-2">
+        <div class="relative mt-6 inline-block bg-brand-cyan text-brand-navy font-bold text-lg px-6 py-2 rounded-full shadow-md transform -rotate-2 dark:text-white">
             ¿A quiénes les aplica?
         </div>
     </div>
@@ -75,7 +75,7 @@
 
         <!-- Cierre Callout -->
         <div class="mt-8 flex justify-center">
-            <div class="bg-gradient-to-r from-brand-cyan to-blue-400 text-brand-navy font-black text-xl md:text-2xl px-8 py-4 rounded-2xl shadow-lg transform rotate-1 hover:rotate-0 transition-transform duration-300">
+            <div class="bg-gradient-to-r from-brand-cyan to-blue-400 text-brand-navy font-black text-xl md:text-2xl px-8 py-4 rounded-2xl shadow-lg transform rotate-1 hover:rotate-0 transition-transform duration-300 dark:text-white">
                 Trabajadores permanentes y no permanentes
             </div>
         </div>

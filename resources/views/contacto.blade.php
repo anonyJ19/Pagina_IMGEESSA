@@ -358,7 +358,7 @@
 
                         <button type="submit" 
                                 id="contact-submit-btn"
-                                class="w-full inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-brand-cyan to-indigo-600 px-5 py-3 text-sm font-bold text-brand-navy shadow-md hover:shadow-lg transition-all duration-200">
+                                class="w-full inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-brand-cyan to-indigo-600 px-5 py-3 text-sm font-bold text-brand-navy shadow-md hover:shadow-lg transition-all duration-200 dark:text-white">
                             Enviar Mensaje
                         </button>
                     </form>
@@ -387,7 +387,7 @@
                             class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
                         <span class="text-base font-bold text-brand-navy dark:text-white">{{ $faq['pregunta'] }}</span>
                         <span class="ml-4 shrink-0 rounded-full bg-slate-100 p-1.5 text-zinc-500 dark:bg-brand-navy-dark dark:text-zinc-400 transition-transform duration-200"
-                              :class="activeFaq === {{ $index }} ? 'rotate-180 bg-brand-cyan text-brand-navy' : ''">
+                              :class="activeFaq === {{ $index }} ? 'rotate-180 bg-brand-cyan text-brand-navy' : '' dark:text-white">
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
                             </svg>

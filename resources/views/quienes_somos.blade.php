@@ -63,9 +63,9 @@
                 <div class="absolute inset-0 bg-brand-cyan/5 rounded-full blur-3xl -z-10"></div>
                 <div class="rounded-3xl border border-zinc-200/50 bg-slate-50/50 p-8 dark:border-brand-navy/40 dark:bg-brand-navy/45 shadow-xl relative overflow-hidden group">
                     <div class="aspect-square w-48 mx-auto overflow-hidden rounded-full border-4 border-brand-cyan/20 bg-brand-navy/5 dark:bg-brand-navy/20 shadow-inner mb-6 relative">
-                        <img src="{{ asset('img/pdf_extracted/page_7_img_10.png') }}" 
+                        <img src="{{ asset('img/hseq-partner-sitting.png') }}" 
                              alt="Personaje HSEQ IMGEESSA" 
-                             class="h-full w-full object-contain p-2 transform group-hover:scale-105 transition-transform duration-500">
+                             class="h-full w-full object-cover rounded-full transform group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="text-center space-y-2">
                         <span class="text-brand-cyan text-xs font-bold uppercase tracking-wider">HSEQ Partner</span>

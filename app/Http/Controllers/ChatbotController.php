@@ -8,169 +8,249 @@ use Illuminate\Support\Facades\Log;
 
 class ChatbotController extends Controller
 {
-    /**
-     * Procesa los mensajes del usuario usando la API de OpenAI.
-     */
     public function chat(Request $request)
     {
         $request->validate([
             'message' => 'required|string|max:1000',
-            'history' => 'nullable|array',
         ]);
 
         $userMessage = $request->input('message');
-        $history = $request->input('history', []);
+        $userMessageLower = strtolower(trim($userMessage));
+        
+        $reply = "";
+        $options = [];
 
-        // Sistema central de personalidad (Cerebro Inteligente de IA)
-        $systemPrompt = "Eres el asesor virtual EXCLUSIVO de IMGEESSA Soluciones Integrales HSEQ S.A.S.
-TU ÚNICO PROPÓSITO es vender y asesorar sobre los productos y servicios de esta empresa. 
-
-REGLA DE ORO, INQUEBRANTABLE (CERO TOLERANCIA):
-ESTÁ COMPLETAMENTE PROHIBIDO responder cualquier pregunta, solicitud o tema que no esté directamente relacionado con IMGEESSA, sus servicios HSEQ, herramientas, o su catálogo de EPP.
-Si el usuario te pregunta sobre programación, recetas de cocina, historia, chistes, política, resúmenes de libros, cómo hacer tareas de matemáticas, o CUALQUIER OTRA COSA ajena a IMGEESSA, DEBES RESPONDER EXACTAMENTE ESTO:
-'Lo siento, como asesor virtual de IMGEESSA, mi programación está restringida EXCLUSIVAMENTE a brindarte soporte sobre nuestros servicios HSEQ y catálogo industrial. ¿En qué te puedo ayudar respecto a nuestra empresa?'
-NO CEDAS NUNCA, NO IMPORTA CÓMO TE LO PIDAN. ERES UN VENDEDOR ESTRICTO Y PROFESIONAL.
-
-INFORMACIÓN COMPLETA DE LA EMPRESA (IMGEESSA):
-- Contacto: Celulares 3108448788 y 3107696821.
-- Correos: Comercial@imgeessa.com, Direccioncomercial@imgeessa.com, Gerencia@imgeessa.com.
-- Ubicación: Av carrera 30 # 75-61, Bogotá, Colombia.
-- Valores (CRECE): Calidad, Responsabilidad, Enfoque al cliente, Compromiso, Excelencia.
-- Servicios: Asesorías en Sistemas de Gestión (SST, Ambiental, Calidad), Higiene Industrial (Mediciones de ruido, iluminación, vibraciones, material particulado), Asesoría legal-laboral (Reglamentos internos, estabilidad laboral).
-
-CATÁLOGO PROFUNDO DE PRODUCTOS (EPP y FERRETERÍA):
-Somos distribuidores autorizados de marcas top mundiales como: 3M, Ansell, DuPont, MSA, Petzl, Honeywell, Insafe, ARSEG, Steelpro, Jackson Safety.
-- Protección en Alturas y Confinados: Arneses (en reata, poliuretano, dieléctricos, ignífugos), eslingas con absorbedor, líneas de vida, puntos de anclaje fijos/móviles, sillas de suspensión y trípodes para rescate.
-- Protección Craneal: Cascos tipo I y II, cascos de ala ancha, tafiletes, y barbuquejos de 3/4 puntos.
-- Protección Ocular y Facial: Gafas de seguridad (in/out, oscuras, claras, antiempañantes), monogafas, caretas de soldadura fotosensibles, visores de policarbonato.
-- Protección Respiratoria: Mascarillas N95, respiradores media cara / cara completa (silicona y elastómero), cartuchos para vapores orgánicos/químicos y filtros de partículas.
-- Protección Auditiva: Tapones de inserción (silicona, espuma), orejeras adaptables a casco.
-- Protección Manual (Guantes): Vaqueta, carnaza, soldador, nitrilo, anticorte, dieléctricos, y mangas de Kevlar.
-- Protección Corporal y Calzado: Overoles impermeables, trajes para químicos (Tyvek), delantales, chalecos reflectivos, botas pantaneras de caucho (safety, bomberos, frigorífico), botas dieléctricas en cuero, tenis de seguridad punta composite.
-- Instrumentación y Medición: Detectores multigas (Altair), luxómetros, alcoholímetros, dataloggers, termohigrómetros, contadores de partículas, cámaras termográficas.
-- Bloqueo y Etiquetado (LOTO): Candados dieléctricos, bloqueadores de válvulas/eléctricos, tarjetas de bloqueo, pinzas múltiples.
-- Emergencias y Fuegos: Estaciones lavaojos portátiles/fijas, botiquines (tipo A, B, C), camillas espinales, extintores multipropósito/CO2, kits completos de control de derrames.
-- Izaje, Residuos y Herramientas: Eslingas de carga, grilletes, poleas, malacates, canecas por código de colores, taladros percutores, pulidoras, hidrolavadoras, compresores.
-
-INSTRUCCIONES FINALES DE RESPUESTA:
-- Sé siempre cortés, empático y vende con naturalidad.
-- NO inventes precios. Para precios exactos, diles SIEMPRE que deben escribir a Comercial@imgeessa.com.
-- Analiza lo que el cliente te describe y recomiéndale 2 o 3 productos/servicios específicos de nuestra lista.";
-
-        $contents = [];
-
-        // Añadir contexto previo para memoria de conversación
-        $recentHistory = array_slice($history, -6);
-        foreach ($recentHistory as $msg) {
-            if (isset($msg['role']) && isset($msg['content']) && in_array($msg['role'], ['user', 'assistant'])) {
-                $role = $msg['role'] === 'assistant' ? 'model' : 'user';
-                $contents[] = [
-                    'role' => $role,
-                    'parts' => [['text' => $msg['content']]]
-                ];
-            }
-        }
-
-        $contents[] = [
-            'role' => 'user',
-            'parts' => [['text' => $userMessage]]
+        // Definir cuáles son las opciones rápidas (botones exactos)
+        $knownButtonsLower = [
+            '🏠 inicio', '🏢 quiénes somos', '🧰 catálogo', '📝 blog', '📞 contacto',
+            '💼 líneas de negocio', '🤔 ¿por qué elegirnos?', '👥 nuestros clientes',
+            '🔙 volver al menú principal', '📖 historia y trayectoria', '🎯 misión y visión',
+            '🌟 valores c.r.e.c.e', '👷 cabeza, ojos y oídos', '🫁 protección respiratoria',
+            '🧤 corporal y manos', '🧗 alturas y confinados', '📰 artículos recientes',
+            '📍 ubicación sede central', '📞 teléfonos y whatsapp', '📧 correos electrónicos',
+            '🛡️ sistemas de gestión hseq', '📉 mediciones higiénicas', '⚙️ sst (salud y seguridad)',
+            '🌱 ambiental (iso 14001)', '✅ calidad (iso 9001)', '🚗 seguridad vial (pesv)', 'menu_principal'
         ];
 
-        try {
-            $apiKey = env('GEMINI_API_KEY');
+        $isQuickOption = in_array($userMessageLower, $knownButtonsLower);
 
-            if ($apiKey) {
-                // Intentamos conectar con la IA de Google Gemini
-                $response = Http::withoutVerifying()->withHeaders([
-                    'Content-Type' => 'application/json',
-                ])->timeout(15)->post('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' . $apiKey, [
-                    'contents' => $contents,
-                    'systemInstruction' => [
-                        'parts' => [['text' => $systemPrompt]]
+        // Añadir el enlace genérico de WhatsApp (se utiliza en Gemini y en el árbol)
+        $whatsappLink = '<div style="margin-top: 15px; border-top: 1px solid #e2e8f0; padding-top: 10px;"><a href="https://api.whatsapp.com/send?phone=573108448788&text=Hola,%20vengo%20del%20chatbot%20y%20necesito%20atenci%C3%B3n%20humana" target="_blank" style="color: #10b981; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 5px;"><svg style="width: 16px; height: 16px;" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg> Comunícate por el canal de WhatsApp</a></div>';
+
+        // 1. INTENTAR CON GROQ API (Llama 3) SI NO ES UNA OPCIÓN RÁPIDA EXACTA
+        if (!$isQuickOption) {
+            try {
+                $apiKey = env('GROQ_API_KEY');
+                $systemPrompt = "Eres el asesor virtual exclusivo de IMGEESSA. Somos expertos en consultoría HSEQ y venta de Elementos de Protección Personal (EPP). REGLAS OBLIGATORIAS: 1. Tus respuestas deben ser EXTREMADAMENTE CORTAS (máximo 2 a 3 renglones). 2. NUNCA uses listas largas con viñetas; si debes listar algo, usa comas en un solo párrafo. 3. Responde solo sobre la empresa.";
+                
+                $response = Http::timeout(10)->withoutVerifying()->withToken($apiKey)->withHeaders([
+                    'Content-Type' => 'application/json'
+                ])->post("https://api.groq.com/openai/v1/chat/completions", [
+                    'model' => 'llama-3.1-8b-instant',
+                    'messages' => [
+                        ['role' => 'system', 'content' => $systemPrompt],
+                        ['role' => 'user', 'content' => $userMessage],
                     ],
-                    'generationConfig' => [
-                        'temperature' => 0.3,
-                        'maxOutputTokens' => 500,
-                    ]
+                    'max_tokens' => 120,
+                    'temperature' => 0.4
                 ]);
 
                 if ($response->successful()) {
-                    $result = $response->json();
-                    if (isset($result['candidates'][0]['content']['parts'][0]['text'])) {
-                        $reply = $result['candidates'][0]['content']['parts'][0]['text'];
-                        return response()->json(['reply' => $reply]);
+                    $data = $response->json();
+                    if (isset($data['choices'][0]['message']['content'])) {
+                        $aiReply = $data['choices'][0]['message']['content'];
+                        $aiReply = nl2br(preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', $aiReply));
+                        
+                        $aiReply .= "<br><br><strong>Si necesitas más información, comunícate al canal de WhatsApp.</strong>";
+                        
+                        $options = [
+                            '🏠 Inicio',
+                            '🏢 Quiénes somos',
+                            '🧰 Catálogo',
+                            '📝 Blog',
+                            '📞 Contacto'
+                        ];
+                        
+                        return response()->json([
+                            'reply' => $aiReply . $whatsappLink,
+                            'options' => $options
+                        ]);
                     }
-                } else {
-                    Log::warning('La API de Gemini falló o no tiene saldo (Cambiando a Cerebro Local): ' . $response->body());
                 }
+            } catch (\Exception $e) {
+                Log::error("Groq API Error: " . $e->getMessage());
             }
-        } catch (\Exception $e) {
-            Log::warning('Error de conexión con Gemini (Cambiando a Cerebro Local): ' . $e->getMessage());
         }
 
-        // -------------------------------------------------------------
-        // INTENTO 2: CEREBRO LOCAL GRATUITO (FALLBACK / RESPALDO)
-        // Se ejecuta si la IA falla (por falta de saldo, error, etc.)
-        // -------------------------------------------------------------
-        $userMessageLower = strtolower(trim($userMessage));
-        $reply = "";
+        // Función auxiliar para verificar coincidencias de palabras clave en el árbol de fallback
+        $containsAny = function($haystack, $needles) {
+            foreach ($needles as $needle) {
+                if (str_contains($haystack, $needle)) return true;
+            }
+            return false;
+        };
 
-        if (str_contains($userMessageLower, 'hola') || str_contains($userMessageLower, 'buenos dias') || str_contains($userMessageLower, 'buenas tardes')) {
-            $reply = "¡Hola! Qué gusto saludarte. Soy el asistente de IMGEESSA. ¿En qué te puedo ayudar hoy? Puedes preguntarme sobre nuestros servicios, nuestro catálogo industrial o contacto.";
-        } elseif (str_contains($userMessageLower, 'servicio') || str_contains($userMessageLower, 'hacen') || str_contains($userMessageLower, 'dedican')) {
-            $reply = "En IMGEESSA somos especialistas en Sistemas de Gestión (SST, Ambiental, Calidad), Ingeniería Química y Mediciones Higiénicas. También distribuimos Equipos de Protección Personal (EPP) y herramientas industriales. ¿Qué buscas en específico?";
-        } elseif (str_contains($userMessageLower, 'caida') || str_contains($userMessageLower, 'altura') || str_contains($userMessageLower, 'arnes') || str_contains($userMessageLower, 'eslinga') || str_contains($userMessageLower, 'anclaje') || str_contains($userMessageLower, 'vida')) {
-            $reply = "Ofrecemos protección contra caídas y espacios confinados: arneses (en reata, poliuretano, kevlar, dieléctricos), eslingas con absorbedor, anclajes, líneas de vida, sillas de suspensión y trípodes para rescate.";
-        } elseif (str_contains($userMessageLower, 'cabeza') || str_contains($userMessageLower, 'casco') || str_contains($userMessageLower, 'craneal') || str_contains($userMessageLower, 'tafilete')) {
-            $reply = "En protección craneal (cascos) tenemos tipo sombrero, cachucha, dieléctricos (clase E y G), cascos para contratistas y protectores de barbilla o barbuquejos de múltiples puntos.";
-        } elseif (str_contains($userMessageLower, 'ojo') || str_contains($userMessageLower, 'gafa') || str_contains($userMessageLower, 'lente') || str_contains($userMessageLower, 'monogafa') || str_contains($userMessageLower, 'visual')) {
-            $reply = "Para protección ocular contamos con gafas de seguridad (claras, oscuras, in/out, anti-empañantes), monogafas, lentes para altas temperaturas y gafas para oxicorte o soldadura.";
-        } elseif (str_contains($userMessageLower, 'cara') || str_contains($userMessageLower, 'facial') || str_contains($userMessageLower, 'careta') || str_contains($userMessageLower, 'visor')) {
-            $reply = "Manejamos protección facial completa: caretas para soldador (fotosensibles, electrónicas), visores en policarbonato, mallas y soportes adaptables a cascos.";
-        } elseif (str_contains($userMessageLower, 'respirador') || str_contains($userMessageLower, 'tapaboca') || str_contains($userMessageLower, 'mascara') || str_contains($userMessageLower, 'filtro') || str_contains($userMessageLower, 'cartucho')) {
-            $reply = "En protección respiratoria distribuimos mascarillas N95, respiradores de media cara y cara completa (silicona y elastómeros), así como cartuchos y filtros para gases, vapores ácidos y material particulado.";
-        } elseif (str_contains($userMessageLower, 'oido') || str_contains($userMessageLower, 'auditiva') || str_contains($userMessageLower, 'tapon') || str_contains($userMessageLower, 'fono') || str_contains($userMessageLower, 'orejera')) {
-            $reply = "Para protección auditiva ofrecemos tapones de inserción (descartables y de silicona, con/sin cordón) y protectores tipo copa (orejeras) adaptables a casco o con diadema.";
-        } elseif (str_contains($userMessageLower, 'mano') || str_contains($userMessageLower, 'guante') || str_contains($userMessageLower, 'manga')) {
-            $reply = "Tenemos una amplia línea de protección para manos: guantes de vaqueta, carnaza, soldador, nitrilo, poliuretano, anticorte, dieléctricos y mangas protectoras de Kevlar.";
-        } elseif (str_contains($userMessageLower, 'cuerpo') || str_contains($userMessageLower, 'overol') || str_contains($userMessageLower, 'chaleco') || str_contains($userMessageLower, 'ropa') || str_contains($userMessageLower, 'pantalon') || str_contains($userMessageLower, 'delantal') || str_contains($userMessageLower, 'impermeable')) {
-            $reply = "Ofrecemos ropa de trabajo y protección corporal: chalecos reflectivos, overoles desechables, camisas/pantalones de dotación, trajes impermeables, delantales de carnaza y trajes químicos.";
-        } elseif (str_contains($userMessageLower, 'pie') || str_contains($userMessageLower, 'bota') || str_contains($userMessageLower, 'zapato') || str_contains($userMessageLower, 'calzado')) {
-            $reply = "En protección para pies tenemos botas de caucho (safety, impermeables, bomberos), botas de seguridad en cuero (dieléctricas, antideslizantes) y tenis de seguridad.";
-        } elseif (str_contains($userMessageLower, 'gas') || str_contains($userMessageLower, 'detector') || str_contains($userMessageLower, 'medicion') || str_contains($userMessageLower, 'luxometro') || str_contains($userMessageLower, 'alcoholimetro')) {
-            $reply = "Manejamos detectores multigas (Altair), detectores simples, luxómetros, alcoholímetros, termohigrómetros, dataloggers, contadores de partículas y cámaras termográficas.";
-        } elseif (str_contains($userMessageLower, 'señal') || str_contains($userMessageLower, 'aviso') || str_contains($userMessageLower, 'letrero') || str_contains($userMessageLower, 'cono') || str_contains($userMessageLower, 'cinta') || str_contains($userMessageLower, 'barrera')) {
-            $reply = "Vendemos señalización vial e industrial: avisos de seguridad/evacuación, conos plegables, cintas de peligro, resaltos, barreras plásticas y luces de emergencia.";
-        } elseif (str_contains($userMessageLower, 'bloqueo') || str_contains($userMessageLower, 'etiquetado') || str_contains($userMessageLower, 'candado') || str_contains($userMessageLower, 'loto') || str_contains($userMessageLower, 'tarjeta') || str_contains($userMessageLower, 'pinza')) {
-            $reply = "Para Bloqueo y Etiquetado (LOTO) ofrecemos: bloqueadores de válvulas, candados dieléctricos y de acero, pinzas múltiples, tarjetas de no operar y maletines.";
-        } elseif (str_contains($userMessageLower, 'emergencia') || str_contains($userMessageLower, 'botiquin') || str_contains($userMessageLower, 'camilla') || str_contains($userMessageLower, 'lavaojo') || str_contains($userMessageLower, 'alarma')) {
-            $reply = "Contamos con equipos de emergencia: estaciones lavaojos, botiquines portátiles y empotrables, camillas espinales, inmovilizadores cervicales y alarmas de humo.";
-        } elseif (str_contains($userMessageLower, 'fuego') || str_contains($userMessageLower, 'incendio') || str_contains($userMessageLower, 'extintor') || str_contains($userMessageLower, 'derrame') || str_contains($userMessageLower, 'absorbente')) {
-            $reply = "Ofrecemos extintores multipropósito, satélites, almohadas y barreras absorbentes, y kits completos para control de derrames químicos o de hidrocarburos.";
-        } elseif (str_contains($userMessageLower, 'carga') || str_contains($userMessageLower, 'izaje') || str_contains($userMessageLower, 'grillete') || str_contains($userMessageLower, 'polea') || str_contains($userMessageLower, 'malacate')) {
-            $reply = "Para izaje de cargas manejamos: eslingas de carga, ramales, tensores, grilletes, ganchos ojo, poleas, brazos de grúa y malacates.";
-        } elseif (str_contains($userMessageLower, 'residuo') || str_contains($userMessageLower, 'basura') || str_contains($userMessageLower, 'caneca') || str_contains($userMessageLower, 'reciclaje') || str_contains($userMessageLower, 'guardian')) {
-            $reply = "Distribuimos canecas de colores (rojas, verdes, grises, blancas), canecas de doble compartimiento y guardianes para elementos cortopunzantes.";
-        } elseif (str_contains($userMessageLower, 'herramienta') || str_contains($userMessageLower, 'ferreteria') || str_contains($userMessageLower, 'taladro') || str_contains($userMessageLower, 'pulidora') || str_contains($userMessageLower, 'sierra') || str_contains($userMessageLower, 'planta') || str_contains($userMessageLower, 'aspiradora')) {
-            $reply = "Distribuimos maquinaria y ferretería: taladros (inalámbricos, percutores, rotomartillos), pulidoras, sierras, motosierras, hidrolavadoras, compresores, andamios y soldadores.";
-        } elseif (str_contains($userMessageLower, 'contacto') || str_contains($userMessageLower, 'telefono') || str_contains($userMessageLower, 'correo') || str_contains($userMessageLower, 'llamar')) {
-            $reply = "Puedes contactarnos a los celulares 3108448788 o 3107696821. También puedes escribirnos a Comercial@imgeessa.com o Direccioncomercial@imgeessa.com. ¡Estaremos encantados de atenderte!";
-        } elseif (str_contains($userMessageLower, 'ubicacion') || str_contains($userMessageLower, 'direccion') || str_contains($userMessageLower, 'donde estan')) {
-            $reply = "Nuestras oficinas se encuentran ubicadas en la Av carrera 30 # 75-61, en Bogotá, Colombia.";
-        } elseif (str_contains($userMessageLower, 'precio') || str_contains($userMessageLower, 'costo') || str_contains($userMessageLower, 'comprar') || str_contains($userMessageLower, 'cotiza')) {
-            $reply = "Manejamos muchísimas referencias. Para conocer nuestros precios o solicitar una cotización formal, por favor escríbenos a Comercial@imgeessa.com. ¡Te armaremos una propuesta a tu medida!";
-        } elseif (str_contains($userMessageLower, 'catalogo') || str_contains($userMessageLower, 'que manejan') || str_contains($userMessageLower, 'que equipos manejan') || str_contains($userMessageLower, 'productos') || str_contains($userMessageLower, 'que venden') || str_contains($userMessageLower, 'portafolio')) {
-            $reply = "Manejamos una línea muy completa de Equipos de Protección Personal (EPP) de marcas top mundiales: protección en alturas (arneses, eslingas), cascos, gafas, protección respiratoria y auditiva, guantes y botas de seguridad. Además, ofrecemos instrumentación (detectores de gas), equipos de emergencia (botiquines, extintores), ferretería industrial y asesorías HSEQ. ¿Qué tipo de equipo estás buscando hoy?";
-        } elseif (str_contains($userMessageLower, 'valores') || str_contains($userMessageLower, 'mision') || str_contains($userMessageLower, 'crece')) {
-            $reply = "Nuestros valores se resumen en el acrónimo C.R.E.C.E.: Calidad, Responsabilidad, Enfoque al cliente, Compromiso y Excelencia.";
-        } elseif (str_contains($userMessageLower, 'codigo') || str_contains($userMessageLower, 'programar') || str_contains($userMessageLower, 'politica') || str_contains($userMessageLower, 'chiste') || str_contains($userMessageLower, 'receta') || str_contains($userMessageLower, 'poema') || str_contains($userMessageLower, 'historia') || str_contains($userMessageLower, 'inteligencia artificial') || str_contains($userMessageLower, 'ignora las instrucciones') || str_contains($userMessageLower, 'dame un ejemplo de')) {
-            $reply = "Lo siento, soy un asesor virtual EXCLUSIVO de IMGEESSA. Mi programación me restringe rotundamente a brindar soporte solo sobre nuestros productos industriales, equipos de protección personal (EPP) y servicios HSEQ.";
-        } else {
-            $reply = "Lo siento, como asesor virtual exclusivo de IMGEESSA no puedo responder a temas ajenos a la compañía. Mi programación está diseñada únicamente para asesorarte sobre nuestro catálogo industrial, protección en EPP y servicios corporativos HSEQ. ¿En qué te puedo ayudar respecto a nuestra empresa?";
+        // ====== 2. ÁRBOL DE DECISIONES DE FALLBACK / OPCIONES RÁPIDAS ======
+        
+        // 1. MENU PRINCIPAL
+        if ($userMessageLower === 'menu_principal' || $containsAny($userMessageLower, ['volver al menú', 'volver al menu', 'hola', 'menu principal', 'buenas'])) {
+            $reply = "¡Hola! Soy el asesor de IMGEESSA. Por favor selecciona una de las opciones de nuestro menú principal:";
+            $options = [
+                '🏠 Inicio',
+                '🏢 Quiénes somos',
+                '🧰 Catálogo',
+                '📝 Blog',
+                '📞 Contacto'
+            ];
+        }
+        
+        // 2. INICIO
+        elseif ($userMessageLower === 'inicio' || $containsAny($userMessageLower, ['🏠 inicio'])) {
+            $reply = "Bienvenido a la página de Inicio. Aquí encontrarás un resumen de toda nuestra organización. ¿Qué sección te gustaría explorar?";
+            $options = [
+                '💼 Líneas de Negocio',
+                '🤔 ¿Por qué elegirnos?',
+                '👥 Nuestros Clientes',
+                '🔙 Volver al Menú Principal'
+            ];
+        }
+        elseif ($containsAny($userMessageLower, ['líneas de negocio', 'lineas de negocio'])) {
+            $reply = "Contamos con múltiples líneas principales: SST, Gestión Ambiental, Calidad, Seguridad Vial (PESV), Mediciones Higiénicas, Baterías Psicosociales, Venta de EPP e Ingeniería Química.";
+            $options = ['🔙 Volver al Menú Principal'];
+        }
+        elseif ($containsAny($userMessageLower, ['por qué elegirnos', 'por que elegirnos'])) {
+            $reply = "Destacamos por nuestra experiencia integral en Seguridad y Salud en el Trabajo, Gestión Ambiental y Calidad, brindando profesionalismo técnico para asegurar entornos sostenibles.";
+            $options = ['🔙 Volver al Menú Principal'];
+        }
+        elseif ($containsAny($userMessageLower, ['nuestros clientes', 'clientes'])) {
+            $reply = "A lo largo de más de 7 años, hemos participado en más de 150 proyectos industriales, asesorando a grandes empresas a nivel nacional con un 99.8% de eficiencia operativa.";
+            $options = ['🔙 Volver al Menú Principal'];
         }
 
-        // Simulamos el "escribiendo..." en caso de que OpenAI haya fallado y estemos usando el cerebro local
-        usleep(800000);
-        return response()->json(['reply' => $reply]);
+        // 3. INTENCIONES NLP (Sin API) - SISTEMAS DE GESTIÓN Y MEDICIONES
+        elseif ($containsAny($userMessageLower, ['mediciones', 'higiénicas', 'higienicas', 'btx', 'ruido', 'dosimetría', 'dosimetria', 'luxometría', 'luxometria', 'gases', 'estrés térmico', 'estres termico'])) {
+            $reply = "Prestamos servicios precisos de mediciones ambientales e higiénicas:<br>- Sonometría y Dosimetría (Ruido)<br>- Luxometría (Iluminación)<br>- Material Particulado y Gases (incluyendo análisis de BTX)<br>- Estrés térmico.<br><br>También distribuimos detectores multigas portátiles y alcoholímetros.";
+            $options = ['🔙 Volver al Menú Principal'];
+        }
+        elseif ($containsAny($userMessageLower, ['sistemas de gestión', 'sistema de gestion', 'sst', 'iso 9001', 'iso 14001', 'calidad', 'ambiental', 'pesv', 'seguridad vial'])) {
+            $reply = "Diseñamos e implementamos sistemas de gestión estructurados para tu tranquilidad empresarial:<br>- SG-SST (Salud y Seguridad)<br>- Gestión Ambiental (ISO 14001)<br>- Calidad (ISO 9001)<br>- Plan Estratégico de Seguridad Vial (PESV)";
+            $options = ['🔙 Volver al Menú Principal'];
+        }
+
+        // 4. QUIÉNES SOMOS
+        elseif ($containsAny($userMessageLower, ['quiénes somos', 'quienes somos', 'filosofía', 'filosofia'])) {
+            $reply = "Conoce más sobre la esencia y la cultura de IMGEESSA. ¿Qué te interesa?";
+            $options = [
+                '📖 Historia y Trayectoria',
+                '🎯 Misión y Visión',
+                '🌟 Valores C.R.E.C.E',
+                '🔙 Volver al Menú Principal'
+            ];
+        }
+        elseif ($containsAny($userMessageLower, ['historia', 'trayectoria'])) {
+            $reply = "Nuestra organización fue concebida en 2017 por visionarios apasionados y nos consolidamos legalmente en 2021, evolucionando para ofrecer consultoría integral de alta calidad.";
+            $options = ['🔙 Volver al Menú Principal'];
+        }
+        elseif ($containsAny($userMessageLower, ['misión', 'mision', 'visión', 'vision'])) {
+            $reply = "<strong>Misión:</strong> Crear valor agregado con soluciones integrales enfocadas en cumplimiento legal y resultados sostenibles.<br><br><strong>Visión:</strong> Ser líderes a nivel nacional en HSEQ para el año 2030.";
+            $options = ['🔙 Volver al Menú Principal'];
+        }
+        elseif ($containsAny($userMessageLower, ['valores', 'crece'])) {
+            $reply = "Nuestros pilares son el modelo <strong>C.R.E.C.E</strong>:<br><br>- <strong>C</strong>alidad<br>- <strong>R</strong>esponsabilidad<br>- <strong>E</strong>nfoque al Cliente<br>- <strong>C</strong>ompromiso<br>- <strong>E</strong>xcelencia";
+            $options = ['🔙 Volver al Menú Principal'];
+        }
+
+        // 5. CATÁLOGO / EPP INTENCIONES
+        elseif ($containsAny($userMessageLower, ['catálogo', 'catalogo', 'productos', 'epp', 'dotación', 'dotacion', 'comprar'])) {
+            $reply = "Nuestro catálogo incluye las mejores marcas mundiales (3M, MSA, Ansell, Honeywell). ¿Qué línea de productos buscas?";
+            $options = [
+                '👷 Cabeza, Ojos y Oídos',
+                '🫁 Protección Respiratoria',
+                '🧤 Corporal y Manos',
+                '🧗 Alturas y Confinados',
+                '🔙 Volver al Menú Principal'
+            ];
+        }
+        elseif ($containsAny($userMessageLower, ['cabeza', 'ojos', 'oídos', 'oidos', 'casco', 'gafas', 'tapones', 'orejeras', 'visual', 'auditiva'])) {
+            $reply = "Tenemos para entrega:<br>- <strong>Cascos:</strong> Tipo I y II, dieléctricos.<br>- <strong>Visual:</strong> Gafas in/out, oscuras, antiempañantes, caretas de soldador.<br>- <strong>Auditiva:</strong> Tapones de inserción y orejeras de copa.";
+            $options = ['🧰 Catálogo', '🔙 Volver al Menú Principal'];
+        }
+        elseif ($containsAny($userMessageLower, ['respiratoria', 'respirador', 'mascarilla', 'n95', 'filtro', 'cartucho'])) {
+            $reply = "Contamos con mascarillas N95, respiradores de media cara y cara completa (Full Face) en silicona, además de cartuchos químicos y filtros particulados.";
+            $options = ['🧰 Catálogo', '🔙 Volver al Menú Principal'];
+        }
+        elseif ($containsAny($userMessageLower, ['corporal', 'manos', 'guantes', 'botas', 'overol', 'chaleco', 'calzado', 'nitrilo'])) {
+            $reply = "Ofrecemos:<br>- <strong>Guantes:</strong> Vaqueta, nitrilo, anticorte, dieléctricos, soldador.<br>- <strong>Corporal y Calzado:</strong> Overoles antifluido, Tyvek, chalecos y botas de seguridad.";
+            $options = ['🧰 Catálogo', '🔙 Volver al Menú Principal'];
+        }
+        elseif ($containsAny($userMessageLower, ['alturas', 'confinados', 'arnes', 'eslinga', 'linea de vida', 'rescate', 'posicionamiento'])) {
+            $reply = "Vendemos equipos certificados: Arneses en poliuretano/kevlar/dieléctricos, eslingas, líneas de vida, puntos de anclaje, sillas de suspensión y trípodes de rescate.";
+            $options = ['🧰 Catálogo', '🔙 Volver al Menú Principal'];
+        }
+
+        // 6. BLOG
+        elseif ($containsAny($userMessageLower, ['blog', 'noticias', 'artículos', 'articulos', 'novedades'])) {
+            $reply = "En la sección de Blog publicamos contenido de valor sobre prevención y normatividad. ¿Qué deseas explorar?";
+            $options = [
+                '📰 Artículos Recientes',
+                '🔙 Volver al Menú Principal'
+            ];
+        }
+        elseif ($containsAny($userMessageLower, ['recientes'])) {
+            $reply = "Puedes leer sobre últimas actualizaciones normativas, tendencias en SST, consejos ambientales y guías de calidad dando clic directamente en la pestaña <strong>Blog</strong> de nuestra barra superior.";
+            $options = ['🔙 Volver al Menú Principal'];
+        }
+
+        // 7. CONTACTO / COTIZAR INTENCIONES
+        elseif ($containsAny($userMessageLower, ['contacto', 'cotizar', 'precio', 'costo', 'valor', 'cuánto', 'cuanto', 'dónde', 'donde'])) {
+            $reply = "¡Estamos listos para atenderte y enviarte una cotización! ¿Qué información de contacto necesitas?";
+            $options = [
+                '📍 Ubicación Sede Central',
+                '📞 Teléfonos y WhatsApp',
+                '📧 Correos Electrónicos',
+                '🔙 Volver al Menú Principal'
+            ];
+        }
+        elseif ($containsAny($userMessageLower, ['ubicación', 'ubicacion', 'sede', 'central', 'dirección', 'direccion'])) {
+            $reply = "Nuestra sede principal está ubicada en la Av Carrera 30 # 75-61 en Bogotá y tenemos otra sede en la Av 12a #17-76 Barrio la Libertad en Cúcuta.";
+            $options = ['📞 Contacto', '🔙 Volver al Menú Principal'];
+        }
+        elseif ($containsAny($userMessageLower, ['teléfonos', 'telefonos', 'whatsapp', 'llamar', 'numero', 'celular'])) {
+            $reply = "Puedes llamarnos o escribirnos por WhatsApp a los números:<br>📲 310 8448788<br>📲 310 7696821";
+            $options = ['📞 Contacto', '🔙 Volver al Menú Principal'];
+        }
+        elseif ($containsAny($userMessageLower, ['correos', 'correo', 'email'])) {
+            $reply = "Escríbenos a cualquiera de nuestros correos:<br>✉️ direccioncomercial@imgeessa.com<br>✉️ comercial@imgeessa.com<br>✉️ gerencia@imgeessa.com";
+            $options = ['📞 Contacto', '🔙 Volver al Menú Principal'];
+        }
+
+        // DEFAULT (INICIO REQUERIDO O ENTRADA NO RECONOCIDA)
+        else {
+            $reply = "¡Hola! Entiendo tu solicitud, pero para brindarte la información más exacta, por favor selecciona una de las siguientes opciones:";
+            $options = [
+                '🏠 Inicio',
+                '🏢 Quiénes somos',
+                '🧰 Catálogo',
+                '📝 Blog',
+                '📞 Contacto'
+            ];
+        }
+
+        // Añadir mensaje sugerido si es una respuesta final
+        if (count($options) === 1 && str_contains($options[0], 'Volver al Menú Principal')) {
+            $reply .= "<br><br><strong>Si necesitas más información sobre esto, comunícate con nosotros.</strong>";
+        }
+
+        // Añadir el enlace genérico de WhatsApp al final de cada respuesta de forma sutil
+        $whatsappLink = '<div style="margin-top: 15px; border-top: 1px solid #e2e8f0; padding-top: 10px;"><a href="https://api.whatsapp.com/send?phone=573108448788&text=Hola,%20vengo%20del%20chatbot%20y%20necesito%20atenci%C3%B3n%20humana" target="_blank" style="color: #10b981; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 5px;"><svg style="width: 16px; height: 16px;" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg> Hablar con un asesor (WhatsApp)</a></div>';
+        $reply .= $whatsappLink;
+
+        // Breve retraso para simular tiempo de "escribiendo..."
+        usleep(400000);
+        
+        return response()->json([
+            'reply' => $reply,
+            'options' => $options
+        ]);
     }
 }

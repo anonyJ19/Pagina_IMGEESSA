@@ -197,7 +197,7 @@
                             <svg class="h-4 w-4 shrink-0 text-brand-cyan" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                             </svg>
-                            <span><b>Cel:</b> 3108448788 - 3107696821</span>
+                            <span>3108448788 - 3107696821</span>
                         </li>
                         <li class="flex items-center gap-2">
                             <svg class="h-4 w-4 shrink-0 text-brand-cyan" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -294,8 +294,15 @@
             chatOpen: false, 
             userInput: '', 
             isLoading: false, 
+            currentOptions: [
+                '🏠 Inicio',
+                '🏢 Quiénes somos',
+                '🧰 Catálogo',
+                '📝 Blog',
+                '📞 Contacto'
+            ],
             messages: [
-                { role: 'assistant', content: '¡Hola! Soy tu asistente virtual de <strong>IMGEESSA</strong>. Llevo mi equipo de seguridad y estoy listo para ayudarte. ¿Qué necesitas hoy?' }
+                { role: 'assistant', content: '¡Hola! Soy tu asistente virtual de <strong>IMGEESSA</strong>.<br><br>¿Sobre qué sección o servicio de nuestra empresa te gustaría hablar hoy?' }
             ],
             async sendMessage() {
                 if (!this.userInput.trim() || this.isLoading) return;
@@ -326,6 +333,12 @@
                     } else {
                         this.messages.push({ role: 'assistant', content: 'Lo siento, ha ocurrido un error.' });
                     }
+                    
+                    if (data.options && Array.isArray(data.options)) {
+                        this.currentOptions = data.options;
+                    } else {
+                        this.currentOptions = [];
+                    }
                 } catch (error) {
                     this.messages.push({ role: 'assistant', content: 'Error de conexión. Intenta de nuevo más tarde.' });
                 } finally {
@@ -341,25 +354,25 @@
             }
         }" class="fixed bottom-6 right-6 z-50">
         
-        <!-- Ventana del Chat -->
+        <!-- Contenedor Principal del Chat -->
         <div x-show="chatOpen" 
              x-transition:enter="transition ease-out duration-300"
-             x-transition:enter-start="opacity-0 translate-y-10 scale-90"
+             x-transition:enter-start="opacity-0 translate-y-10 scale-95"
              x-transition:enter-end="opacity-100 translate-y-0 scale-100"
              x-transition:leave="transition ease-in duration-200"
              x-transition:leave-start="opacity-100 translate-y-0 scale-100"
              x-transition:leave-end="opacity-0 translate-y-10 scale-90"
-             class="absolute bottom-20 right-0 w-80 sm:w-96 rounded-2xl border border-zinc-200 bg-white shadow-2xl dark:border-brand-navy/60 dark:bg-brand-navy-dark overflow-hidden flex flex-col"
-             style="display: none; transform-origin: bottom right;">
+             class="fixed bottom-20 right-4 z-[100] w-[calc(100vw-2rem)] sm:w-96 rounded-2xl border border-zinc-200 bg-white shadow-2xl dark:border-brand-navy/60 dark:bg-brand-navy-dark overflow-hidden flex flex-col"
+             style="height: 550px; max-height: calc(100vh - 100px); display: none; transform-origin: bottom right;">
             
             <!-- Header del Chat -->
-            <div class="relative bg-gradient-to-r from-brand-navy to-brand-navy-dark p-4 flex items-center gap-3">
+            <div class="relative bg-gradient-to-r from-brand-navy to-brand-navy-dark p-4 flex items-center gap-3 flex-shrink-0">
                 <!-- Decoración -->
                 <div class="absolute right-0 top-0 w-32 h-32 bg-brand-cyan/10 rounded-full blur-2xl"></div>
                 
                 <!-- Avatar en el Header -->
                 <div class="relative h-14 w-14 rounded-full border-2 border-brand-cyan/50 bg-white/10 flex-shrink-0 overflow-hidden flex items-center justify-center">
-                    <img src="{{ asset('img/bot-avatar.png') }}" alt="Bot Avatar" class="h-full w-full object-contain scale-[2.2] translate-y-2 filter drop-shadow-[0_2px_5px_rgba(0,0,0,0.3)]">
+                    <img src="{{ asset('img/new-bot-avatar.png') }}" alt="Bot Avatar" class="h-full w-full object-contain scale-[2.2] translate-y-2 filter drop-shadow-[0_2px_5px_rgba(0,0,0,0.3)]">
                 </div>
                 
                 <div class="flex-grow z-10">
@@ -375,14 +388,14 @@
             </div>
             
             <!-- Cuerpo del Chat -->
-            <div id="chat-messages" class="h-80 p-4 overflow-y-auto bg-slate-50 dark:bg-brand-navy/30 flex flex-col gap-4 scroll-smooth">
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto bg-slate-50 dark:bg-brand-navy/30 flex flex-col gap-4 scroll-smooth min-h-0">
                 
                 <template x-for="(msg, index) in messages" :key="index">
                     <div class="w-full flex flex-col">
                         <!-- Mensaje del Bot -->
                         <div class="flex gap-2" x-show="msg.role === 'assistant'">
                             <div class="h-10 w-10 rounded-full bg-brand-cyan/20 flex-shrink-0 overflow-hidden flex items-center justify-center">
-                                <img src="{{ asset('img/bot-avatar.png') }}" alt="Bot Avatar" class="h-full w-full object-contain scale-[2.2] translate-y-1.5">
+                                <img src="{{ asset('img/new-bot-avatar.png') }}" alt="Bot Avatar" class="h-full w-full object-contain scale-[2.2] translate-y-1.5">
                             </div>
                             <div class="bg-white dark:bg-brand-navy rounded-2xl rounded-tl-sm p-3 shadow-sm border border-zinc-100 dark:border-brand-navy/50 max-w-[85%]">
                                 <p class="text-sm text-brand-slate dark:text-zinc-200 leading-relaxed" x-html="msg.content.replace(/\n/g, '<br>')"></p>
@@ -401,7 +414,7 @@
                 <!-- Animación de "Escribiendo..." -->
                 <div class="flex gap-2" x-show="isLoading" style="display: none;">
                     <div class="h-10 w-10 rounded-full bg-brand-cyan/20 flex-shrink-0 overflow-hidden flex items-center justify-center">
-                        <img src="{{ asset('img/bot-avatar.png') }}" alt="Bot Avatar" class="h-full w-full object-contain scale-[2.2] translate-y-1.5 grayscale opacity-70">
+                        <img src="{{ asset('img/new-bot-avatar.png') }}" alt="Bot Avatar" class="h-full w-full object-contain scale-[2.2] translate-y-1.5 grayscale opacity-70">
                     </div>
                     <div class="bg-white dark:bg-brand-navy rounded-2xl rounded-tl-sm p-3 shadow-sm border border-zinc-100 dark:border-brand-navy/50 flex items-center gap-1.5">
                         <span class="w-2 h-2 bg-brand-cyan rounded-full animate-pulse"></span>
@@ -412,8 +425,22 @@
 
             </div>
             
+            <!-- Acciones Rápidas Dinámicas -->
+            <div x-show="currentOptions.length > 0 && !isLoading" 
+                 x-transition:enter="transition ease-out duration-300"
+                 x-transition:enter-start="opacity-0 translate-y-2"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 class="px-3 pb-2 bg-white dark:bg-brand-navy-dark border-t border-zinc-100 dark:border-brand-navy/60 pt-2 flex flex-wrap gap-2 flex-shrink-0 overflow-y-auto max-h-32">
+                <template x-for="(opt, index) in currentOptions" :key="index">
+                    <button @click="userInput = opt; sendMessage();" 
+                            class="text-xs bg-brand-cyan/10 hover:bg-brand-cyan/20 text-brand-cyan-dark dark:text-brand-cyan border border-brand-cyan/20 rounded-full px-3 py-1.5 transition-colors">
+                        <span x-text="opt"></span>
+                    </button>
+                </template>
+            </div>
+
             <!-- Input del Chat -->
-            <div class="p-3 bg-white dark:bg-brand-navy-dark border-t border-zinc-100 dark:border-brand-navy/60">
+            <div class="p-3 bg-white dark:bg-brand-navy-dark pt-1 flex-shrink-0">
                 <div class="flex items-center gap-2 relative">
                     <input type="text" 
                            x-model="userInput" 
@@ -440,7 +467,7 @@
             <div class="absolute inset-0 rounded-full bg-brand-cyan/10 blur-xl dark:bg-brand-cyan/30" x-show="!chatOpen"></div>
             
             <!-- Avatar -->
-            <img src="{{ asset('img/bot-avatar.png') }}" 
+            <img src="{{ asset('img/new-bot-avatar.png') }}" 
                  alt="Abrir Chat" 
                  class="relative z-10 h-full w-full object-contain translate-y-2 filter drop-shadow-[0_4px_6px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.1)] transition-transform duration-300"
                  :class="chatOpen ? 'scale-0 opacity-0' : 'scale-[2.2] opacity-100'">

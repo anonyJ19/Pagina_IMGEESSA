@@ -192,39 +192,39 @@
         <div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center">
             
             <!-- Left side: Interactive letters menu -->
-            <div class="lg:col-span-2 flex flex-row lg:flex-col justify-center gap-4 lg:gap-6 flex-wrap">
+            <div class="lg:col-span-2 flex flex-row lg:flex-col justify-center gap-2 sm:gap-4 lg:gap-6 flex-wrap">
                 <!-- C - Calidad -->
                 <button @mouseenter="activeValue = 1" @click="activeValue = 1" type="button"
                         id="val-btn-1"
-                        class="h-16 w-16 lg:h-20 lg:w-20 rounded-full border-2 text-2xl lg:text-3xl font-black transition-all duration-300 flex items-center justify-center cursor-pointer shadow-md focus:outline-none focus:ring-2 focus:ring-brand-cyan"
+                        class="h-12 w-12 sm:h-16 sm:w-16 lg:h-20 lg:w-20 rounded-full border-2 text-xl sm:text-2xl lg:text-3xl font-black transition-all duration-300 flex items-center justify-center cursor-pointer shadow-md focus:outline-none focus:ring-2 focus:ring-brand-cyan"
                         :class="activeValue === 1 ? 'bg-brand-cyan border-brand-cyan text-brand-navy scale-110 shadow-cyan-400/20' : 'bg-transparent border-zinc-200 dark:border-brand-navy/60 text-brand-navy dark:text-zinc-300 hover:border-brand-cyan hover:text-brand-cyan hover:scale-105'">
                     C
                 </button>
                 <!-- R - Responsabilidad -->
                 <button @mouseenter="activeValue = 2" @click="activeValue = 2" type="button"
                         id="val-btn-2"
-                        class="h-16 w-16 lg:h-20 lg:w-20 rounded-full border-2 text-2xl lg:text-3xl font-black transition-all duration-300 flex items-center justify-center cursor-pointer shadow-md focus:outline-none focus:ring-2 focus:ring-brand-cyan"
+                        class="h-12 w-12 sm:h-16 sm:w-16 lg:h-20 lg:w-20 rounded-full border-2 text-xl sm:text-2xl lg:text-3xl font-black transition-all duration-300 flex items-center justify-center cursor-pointer shadow-md focus:outline-none focus:ring-2 focus:ring-brand-cyan"
                         :class="activeValue === 2 ? 'bg-brand-cyan border-brand-cyan text-brand-navy scale-110 shadow-cyan-400/20' : 'bg-transparent border-zinc-200 dark:border-brand-navy/60 text-brand-navy dark:text-zinc-300 hover:border-brand-cyan hover:text-brand-cyan hover:scale-105'">
                     R
                 </button>
                 <!-- E - Enfoque al Cliente -->
                 <button @mouseenter="activeValue = 3" @click="activeValue = 3" type="button"
                         id="val-btn-3"
-                        class="h-16 w-16 lg:h-20 lg:w-20 rounded-full border-2 text-2xl lg:text-3xl font-black transition-all duration-300 flex items-center justify-center cursor-pointer shadow-md focus:outline-none focus:ring-2 focus:ring-brand-cyan"
+                        class="h-12 w-12 sm:h-16 sm:w-16 lg:h-20 lg:w-20 rounded-full border-2 text-xl sm:text-2xl lg:text-3xl font-black transition-all duration-300 flex items-center justify-center cursor-pointer shadow-md focus:outline-none focus:ring-2 focus:ring-brand-cyan"
                         :class="activeValue === 3 ? 'bg-brand-cyan border-brand-cyan text-brand-navy scale-110 shadow-cyan-400/20' : 'bg-transparent border-zinc-200 dark:border-brand-navy/60 text-brand-navy dark:text-zinc-300 hover:border-brand-cyan hover:text-brand-cyan hover:scale-105'">
                     E
                 </button>
                 <!-- C - Compromiso -->
                 <button @mouseenter="activeValue = 4" @click="activeValue = 4" type="button"
                         id="val-btn-4"
-                        class="h-16 w-16 lg:h-20 lg:w-20 rounded-full border-2 text-2xl lg:text-3xl font-black transition-all duration-300 flex items-center justify-center cursor-pointer shadow-md focus:outline-none focus:ring-2 focus:ring-brand-cyan"
+                        class="h-12 w-12 sm:h-16 sm:w-16 lg:h-20 lg:w-20 rounded-full border-2 text-xl sm:text-2xl lg:text-3xl font-black transition-all duration-300 flex items-center justify-center cursor-pointer shadow-md focus:outline-none focus:ring-2 focus:ring-brand-cyan"
                         :class="activeValue === 4 ? 'bg-brand-cyan border-brand-cyan text-brand-navy scale-110 shadow-cyan-400/20' : 'bg-transparent border-zinc-200 dark:border-brand-navy/60 text-brand-navy dark:text-zinc-300 hover:border-brand-cyan hover:text-brand-cyan hover:scale-105'">
                     C
                 </button>
                 <!-- E - Excelencia -->
                 <button @mouseenter="activeValue = 5" @click="activeValue = 5" type="button"
                         id="val-btn-5"
-                        class="h-16 w-16 lg:h-20 lg:w-20 rounded-full border-2 text-2xl lg:text-3xl font-black transition-all duration-300 flex items-center justify-center cursor-pointer shadow-md focus:outline-none focus:ring-2 focus:ring-brand-cyan"
+                        class="h-12 w-12 sm:h-16 sm:w-16 lg:h-20 lg:w-20 rounded-full border-2 text-xl sm:text-2xl lg:text-3xl font-black transition-all duration-300 flex items-center justify-center cursor-pointer shadow-md focus:outline-none focus:ring-2 focus:ring-brand-cyan"
                         :class="activeValue === 5 ? 'bg-brand-cyan border-brand-cyan text-brand-navy scale-110 shadow-cyan-400/20' : 'bg-transparent border-zinc-200 dark:border-brand-navy/60 text-brand-navy dark:text-zinc-300 hover:border-brand-cyan hover:text-brand-cyan hover:scale-105'">
                     E
                 </button>

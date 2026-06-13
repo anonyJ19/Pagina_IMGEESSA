@@ -36,7 +36,7 @@
                                 <img src="{{ $articulo['imagen'] }}" alt="{{ $articulo['titulo'] }}" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500">
                             @endif
                         </a>
-                        <span class="absolute top-4 left-4 rounded-full bg-brand-cyan px-3 py-1 text-xs font-bold text-brand-navy shadow-sm">
+                        <span class="absolute top-4 left-4 rounded-full bg-brand-cyan px-3 py-1 text-xs font-bold text-brand-navy shadow-sm dark:text-white">
                             {{ $articulo['categoria'] }}
                         </span>
                     </div>

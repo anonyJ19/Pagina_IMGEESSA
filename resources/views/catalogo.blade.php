@@ -23,6 +23,7 @@
              search: '',
              selectedCategory: '',
              activeProduct: null,
+             displayLimit: 12,
              productos: {{ json_encode($productos) }},
              init() {
                  const urlParams = new URLSearchParams(window.location.search);
@@ -33,6 +34,10 @@
                          this.activeProduct = found;
                      }
                  }
+                 this.$watch('search', () => { this.displayLimit = 12; });
+                 this.$watch('activeProduct', (value) => {
+                     document.body.style.overflow = value ? 'hidden' : '';
+                 });
              },
              get filteredProductos() {
                  if (!this.selectedCategory) return [];
@@ -43,8 +48,12 @@
                      return matchesSearch && matchesCategory;
                  });
              },
+             get paginatedProductos() {
+                 return this.filteredProductos.slice(0, this.displayLimit);
+             },
              selectCategory(cat) {
                  this.selectedCategory = cat;
+                 this.displayLimit = 12;
                  if (window.innerWidth < 1024) {
                      this.$nextTick(() => {
                          const mainEl = document.querySelector('main');
@@ -58,10 +67,10 @@
          }">
     
     <div class="mx-auto max-w-7xl px-4 md:px-8">
-        <div class="flex flex-col lg:flex-row gap-8">
+        <div class="flex flex-col lg:flex-row gap-8 relative items-start">
             
             <!-- Left Sidebar (Categories) -->
-            <aside class="lg:w-1/4 w-full shrink-0 order-2 lg:order-1">
+            <aside class="lg:w-1/4 w-full shrink-0 hidden lg:block sticky top-24">
                 <div class="bg-white dark:bg-brand-navy/40 rounded-2xl border border-zinc-200/60 dark:border-brand-navy/50 p-6 shadow-sm">
                     <h3 class="text-lg font-extrabold text-brand-navy dark:text-white mb-4 flex items-center gap-2">
                         <svg class="h-5 w-5 text-brand-cyan" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7"></path></svg>
@@ -81,11 +90,22 @@
             </aside>
 
             <!-- Right Content (Search & Grid) -->
-            <main class="lg:w-3/4 w-full space-y-6 order-1 lg:order-2">
+            <main class="lg:w-3/4 w-full space-y-6">
                 
+                <!-- Mobile Horizontal Category Nav -->
+                <nav class="lg:hidden flex overflow-x-auto whitespace-nowrap gap-3 pb-3 pt-2 sticky top-16 z-30 bg-white dark:bg-brand-navy-dark scrollbar-hide border-b border-zinc-100 dark:border-brand-navy/35">
+                    @foreach($categorias as $cat)
+                        <button @click="selectCategory('{{ $cat }}')" 
+                                class="inline-flex shrink-0 items-center rounded-full px-5 py-2.5 text-sm font-bold tracking-wide transition-all duration-200 border"
+                                :class="selectedCategory === '{{ $cat }}' ? 'bg-brand-cyan text-brand-navy border-brand-cyan shadow-md' : 'bg-slate-50 text-brand-slate border-zinc-200 hover:bg-zinc-100 dark:bg-brand-navy/80 dark:text-zinc-300 dark:border-brand-navy/60 dark:hover:bg-brand-navy'">
+                            {{ $cat }}
+                        </button>
+                    @endforeach
+                </nav>
+
                 <!-- Search and Filters (Top of main area) -->
-                <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b border-zinc-100 dark:border-brand-navy/35 pb-6 gap-4" x-show="selectedCategory" style="display: none;">
-                    <h2 class="text-2xl font-bold text-brand-navy dark:text-white hidden md:block" x-text="selectedCategory === 'Todos' ? 'Todos los Productos' : selectedCategory"></h2>
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between flex-wrap border-b border-zinc-100 dark:border-brand-navy/35 pb-6 gap-4" x-show="selectedCategory" style="display: none;">
+                    <h2 class="text-xl lg:text-2xl font-bold text-brand-navy dark:text-white hidden md:block flex-1" x-text="selectedCategory === 'Todos' ? 'Todos los Productos' : selectedCategory"></h2>
                     
                     <!-- Search input -->
                     <div class="relative w-full md:max-w-md">
@@ -98,7 +118,7 @@
                                type="text" 
                                id="catalog-search"
                                placeholder="Buscar por nombre, descripción..." 
-                               class="w-full rounded-xl border border-zinc-300 bg-slate-50 py-3 pl-12 pr-4 text-sm text-brand-navy placeholder-zinc-400 focus:border-brand-cyan focus:bg-white focus:ring-1 focus:ring-brand-cyan dark:border-brand-navy dark:bg-brand-navy/60 dark:text-white dark:placeholder-zinc-500 dark:focus:border-brand-cyan">
+                               class="w-full rounded-xl border border-zinc-300 bg-slate-50 py-3 pl-12 pr-4 text-sm text-brand-navy placeholder-zinc-400 focus:border-brand-cyan focus:bg-white focus:ring-1 focus:ring-brand-cyan dark:border-brand-navy dark:bg-brand-navy/60 dark:focus:bg-brand-navy-dark dark:text-white dark:placeholder-zinc-500 dark:focus:border-brand-cyan">
                     </div>
                 </div>
 
@@ -121,7 +141,7 @@
 
                     <!-- Grid content -->
                     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" x-show="selectedCategory && filteredProductos.length > 0" style="display: none;">
-                        <template x-for="p in filteredProductos" :key="p.id">
+                        <template x-for="p in paginatedProductos" :key="p.id">
                             <div class="flex flex-col overflow-hidden rounded-2xl border border-zinc-200/40 bg-white dark:border-brand-navy/40 dark:bg-brand-navy/40 group shadow-sm hover:shadow-lg transition-all duration-300">
                                 <!-- Image -->
                                 <div class="relative aspect-square w-full overflow-hidden bg-white p-4">
@@ -146,6 +166,16 @@
                                 </div>
                             </div>
                         </template>
+                    </div>
+
+                    <!-- Load More Button -->
+                    <div class="flex justify-center pt-10" x-show="filteredProductos.length > displayLimit" style="display: none;">
+                        <button @click="displayLimit += 12" 
+                                type="button"
+                                class="inline-flex items-center justify-center rounded-xl bg-slate-100 text-brand-navy hover:bg-slate-200 dark:bg-brand-navy/60 dark:text-white dark:hover:bg-brand-navy px-6 py-3 text-sm font-bold shadow-sm transition-all duration-200 gap-2 hover:-translate-y-0.5">
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            Cargar más productos
+                        </button>
                     </div>
 
                     <!-- Empty State -->
@@ -177,7 +207,7 @@
          style="display: none;">
         
         <!-- Modal Content Container -->
-        <div class="relative w-full max-w-3xl rounded-3xl bg-white dark:bg-brand-navy shadow-2xl border border-zinc-200/40 dark:border-brand-navy/60 overflow-hidden flex flex-col md:flex-row max-h-[90vh]"
+        <div class="relative w-full max-w-3xl rounded-2xl md:rounded-3xl bg-white dark:bg-brand-navy shadow-2xl border border-zinc-200/40 dark:border-brand-navy/60 overflow-hidden flex flex-col md:flex-row max-h-[95vh] md:max-h-[90vh]"
              @click.away="activeProduct = null"
              x-show="activeProduct"
              x-transition:enter="ease-out duration-300"
@@ -197,7 +227,7 @@
             </button>
 
             <!-- Left column: Image -->
-            <div class="md:w-1/2 bg-white relative p-6 aspect-square md:aspect-auto flex items-center justify-center">
+            <div class="md:w-1/2 bg-white relative p-4 md:p-6 h-48 sm:h-64 md:h-auto md:min-h-[400px] flex items-center justify-center shrink-0">
                 <img :src="activeProduct ? activeProduct.imagen : ''" 
                      :alt="activeProduct ? activeProduct.nombre : ''" 
                      class="max-h-full max-w-full object-contain drop-shadow-sm">
@@ -229,7 +259,7 @@
                 <div class="pt-6 mt-6 border-t border-zinc-100 dark:border-brand-navy-dark">
                     <a :href="'{{ route('contacto') }}?equipo=' + encodeURIComponent(activeProduct ? activeProduct.nombre : '')" 
                        id="modal-quote-btn"
-                       class="w-full inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-brand-cyan to-indigo-600 px-5 py-3 text-sm font-bold text-brand-navy shadow-md hover:shadow-lg transition-colors">
+                       class="w-full inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-brand-cyan to-indigo-600 px-5 py-3 text-sm font-bold text-brand-navy shadow-md hover:shadow-lg transition-colors dark:text-white">
                         Cotizar este Equipo
                     </a>
                 </div>
@@ -259,6 +289,13 @@
 }
 .pause-animation:hover .animate-slide-left {
   animation-play-state: paused;
+}
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 </style>
 <section class="py-10 bg-slate-50 dark:bg-brand-navy-dark transition-colors duration-300 overflow-hidden border-b border-zinc-200/40 dark:border-brand-navy/30">

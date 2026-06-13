@@ -19,9 +19,9 @@
                     Somos una empresa especializada en consultoría, asesoría e implementación de soluciones integrales en Seguridad y Salud en el Trabajo, Gestión Ambiental, Calidad y Sistemas Integrados de Gestión. Acompañamos a organizaciones de diferentes sectores en el cumplimiento de sus requisitos legales, la optimización de sus procesos y la construcción de entornos laborales seguros y sostenibles. Nuestro portafolio de servicios, respaldado por profesionales altamente calificados y una amplia experiencia técnica, nos permite generar valor agregado, promover la mejora continua y contribuir al crecimiento sostenible de nuestros clientes.
                 </p>
                 <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
-                    <a href="{{ route('catalogo') }}" class="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-brand-cyan to-indigo-600 px-6 py-3 text-sm font-bold text-brand-navy shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
+                    <a href="{{ route('catalogo') }}" class="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-brand-cyan to-indigo-600 px-6 py-3 text-sm font-bold text-brand-navy shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 dark:text-white">
                         Explorar Catálogo
-                        <svg class="ml-2 h-4 w-4 text-brand-navy" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="ml-2 h-4 w-4 text-brand-navy dark:text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                         </svg>
                     </a>
@@ -118,7 +118,7 @@
         <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
             <!-- Card 1 -->
             <div class="rounded-2xl border border-zinc-200/40 bg-white p-8 dark:border-brand-navy/40 dark:bg-brand-navy/40 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
-                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-cyan/10 text-brand-cyan group-hover:bg-brand-cyan group-hover:text-brand-navy transition-all duration-300">
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-cyan/10 text-brand-cyan group-hover:bg-brand-cyan group-hover:text-brand-navy transition-all duration-300 dark:text-white">
                     <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                     </svg>
@@ -131,7 +131,7 @@
 
             <!-- Card 2 -->
             <div class="rounded-2xl border border-zinc-200/40 bg-white p-8 dark:border-brand-navy/40 dark:bg-brand-navy/40 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
-                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-cyan/10 text-brand-cyan group-hover:bg-brand-cyan group-hover:text-brand-navy transition-all duration-300">
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-cyan/10 text-brand-cyan group-hover:bg-brand-cyan group-hover:text-brand-navy transition-all duration-300 dark:text-white">
                     <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
@@ -144,7 +144,7 @@
 
             <!-- Card 3 -->
             <div class="rounded-2xl border border-zinc-200/40 bg-white p-8 dark:border-brand-navy/40 dark:bg-brand-navy/40 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
-                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-cyan/10 text-brand-cyan group-hover:bg-brand-cyan group-hover:text-brand-navy transition-all duration-300">
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-cyan/10 text-brand-cyan group-hover:bg-brand-cyan group-hover:text-brand-navy transition-all duration-300 dark:text-white">
                     <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                     </svg>
@@ -163,6 +163,11 @@
          x-data="{
              modalOpen: false,
              activeService: null,
+             init() {
+                 this.$watch('modalOpen', val => {
+                     document.body.style.overflow = val ? 'hidden' : '';
+                 });
+             },
              services: [
                  { 
                     id: 6, 
@@ -322,12 +327,12 @@
         <!-- Catalog Grid -->
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <template x-for="service in services" :key="service.id">
-                <div class="flex flex-col overflow-hidden rounded-2xl border border-zinc-200/40 bg-white dark:border-brand-navy/40 dark:bg-brand-navy/50 group shadow-md hover:shadow-xl hover:shadow-brand-cyan/40 dark:hover:shadow-brand-cyan/20 hover:-translate-y-1.5 transition-all duration-300 ease-out">
+                <div class="flex flex-col h-full overflow-hidden rounded-2xl border border-zinc-200/40 bg-white dark:border-brand-navy/40 dark:bg-brand-navy/50 group shadow-md hover:shadow-xl hover:shadow-brand-cyan/40 dark:hover:shadow-brand-cyan/20 hover:-translate-y-1.5 transition-all duration-300 ease-out">
                     <div class="relative aspect-video w-full overflow-hidden bg-zinc-100 dark:bg-brand-navy-dark">
                         <img :src="service.image" 
                              :alt="service.title" 
                              class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-4 left-4 rounded-full bg-brand-cyan px-3 py-1 text-xs font-bold text-brand-navy shadow-sm" x-text="service.category">
+                        <span class="absolute top-4 left-4 rounded-full bg-brand-cyan px-3 py-1 text-xs font-bold text-brand-navy shadow-sm dark:text-white" x-text="service.category">
                         </span>
                     </div>
                     <div class="flex flex-1 flex-col p-6 space-y-4">
@@ -392,14 +397,14 @@
                     
                     <!-- Description -->
                     <div>
-                        <h4 class="text-xs font-bold text-brand-slate uppercase tracking-wider mb-2">Descripción</h4>
+                        <h4 class="text-xs font-bold text-brand-slate uppercase tracking-wider mb-2 dark:text-zinc-300">Descripción</h4>
                         <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed" x-text="activeService?.desc"></p>
                     </div>
 
                     <!-- Specs -->
                     <template x-if="activeService?.specs && activeService.specs.length > 0">
                         <div>
-                            <h4 class="text-xs font-bold text-brand-slate uppercase tracking-wider mb-2">Especificaciones Técnicas</h4>
+                            <h4 class="text-xs font-bold text-brand-slate uppercase tracking-wider mb-2 dark:text-zinc-300">Especificaciones Técnicas</h4>
                             <ul class="text-sm text-zinc-600 dark:text-zinc-300 space-y-1 list-disc pl-4">
                                 <template x-for="spec in activeService.specs" :key="spec">
                                     <li x-text="spec"></li>
@@ -438,7 +443,7 @@
                 <img src="{{ asset('img/catalogo/equipo-de-proteccion-industrial.webp') }}" alt="EPP y Ferretería" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105">
                 <div class="absolute inset-0 bg-gradient-to-t from-brand-navy-dark/90 via-brand-navy-dark/30 to-transparent transition-opacity"></div>
                 <div class="absolute bottom-6 left-6 right-6 flex flex-col justify-end items-start h-full pb-2">
-                    <span class="inline-flex items-center gap-1.5 rounded-full bg-brand-cyan/90 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-navy shadow-sm mb-3">Suministros Industriales</span>
+                    <span class="inline-flex items-center gap-1.5 rounded-full bg-brand-cyan/90 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-navy shadow-sm mb-3 dark:text-white">Suministros Industriales</span>
                     <h3 class="text-2xl md:text-3xl font-extrabold text-white">EPP y Ferretería</h3>
                     <p class="mt-2 text-zinc-300 text-sm max-w-sm hidden sm:block opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Equipos de protección personal, herramientas y materiales de alta calidad.</p>
                 </div>
@@ -558,7 +563,7 @@
                     </p>
                 </div>
                 <div class="md:col-span-4 flex justify-center md:justify-end">
-                    <a href="{{ route('contacto') }}" class="inline-flex items-center justify-center rounded-xl bg-brand-cyan hover:bg-brand-cyan-dark px-6 py-3 text-sm font-bold text-brand-navy shadow hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <a href="{{ route('contacto') }}" class="inline-flex items-center justify-center rounded-xl bg-brand-cyan hover:bg-brand-cyan-dark px-6 py-3 text-sm font-bold text-brand-navy shadow hover:shadow-lg transition-all duration-300 hover:scale-105 dark:text-white">
                         Agendar Consultoría Gratuita
                     </a>
                 </div>

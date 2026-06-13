@@ -108,10 +108,6 @@ INSTRUCCIONES FINALES DE RESPUESTA:
             Log::warning('Error de conexión con Gemini (Cambiando a Cerebro Local): ' . $e->getMessage());
         }
 
-        // -------------------------------------------------------------
-        // INTENTO 2: CEREBRO LOCAL GRATUITO (FALLBACK / RESPALDO)
-        // Se ejecuta si la IA falla (por falta de saldo, error, etc.)
-        // -------------------------------------------------------------
         $userMessageLower = strtolower(trim($userMessage));
         $reply = "";
 

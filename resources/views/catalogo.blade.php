@@ -100,6 +100,7 @@
                             src="{{ asset('img/catalogo/video_catalogo.mp4') }}" 
                             autoplay 
                             loop 
+                            muted
                             playsinline
                             class="w-full h-full object-cover pointer-events-none">
                             Tu navegador no soporta el elemento de video.
@@ -269,7 +270,7 @@
             <div class="flex animate-slide-left whitespace-nowrap items-center shrink-0 space-x-6 px-3">
                 @foreach($distribuidorasImages as $img)
                 <div class="flex h-32 w-48 md:h-40 md:w-64 shrink-0 items-center justify-center rounded-2xl border border-zinc-200/60 bg-white p-4 md:p-6 dark:border-brand-navy/50 dark:bg-white grayscale-0 md:grayscale group-hover:grayscale-0 transition-all duration-500 shadow-sm">
-                    <img src="{{ asset('img/catalogo/logos/' . $img) }}" alt="Distribuidor Autorizado" class="max-h-full max-w-full object-contain">
+                    <img src="{{ asset('img/catalogo/Logos/' . rawurlencode($img)) }}" alt="Distribuidor Autorizado" class="max-h-full max-w-full object-contain">
                 </div>
                 @endforeach
             </div>
@@ -278,7 +279,7 @@
             <div class="flex animate-slide-left whitespace-nowrap items-center shrink-0 space-x-6 px-3">
                 @foreach($distribuidorasImages as $img)
                 <div class="flex h-32 w-48 md:h-40 md:w-64 shrink-0 items-center justify-center rounded-2xl border border-zinc-200/60 bg-white p-4 md:p-6 dark:border-brand-navy/50 dark:bg-white grayscale-0 md:grayscale group-hover:grayscale-0 transition-all duration-500 shadow-sm">
-                    <img src="{{ asset('img/catalogo/logos/' . $img) }}" alt="Distribuidor Autorizado" class="max-h-full max-w-full object-contain">
+                    <img src="{{ asset('img/catalogo/Logos/' . rawurlencode($img)) }}" alt="Distribuidor Autorizado" class="max-h-full max-w-full object-contain">
                 </div>
                 @endforeach
             </div>

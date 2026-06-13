@@ -37,7 +37,7 @@
                      x-data="{ 
                         activeSlide: 0, 
                         slides: [
-                            'ISO-22000.jpg',
+                            'mediciones-higienicas.jpg',
                             'SISTEMA-DE-GESTIÓN-AMBIENTAL.jpg',
                             'epp.jpg',
                             'ingenieria-quimica.jpg',
@@ -165,31 +165,51 @@
              activeService: null,
              services: [
                  { 
-                     id: 1, 
-                     title: 'ISO 22000, HACCP, BPM', 
-                     category: 'Inocuidad Alimentaria',
+                    id: 6, 
+                     title: 'BATERIAS DE RIESGO PSICOSOCIAL Y MEDICIONES AMBIENTALES', 
+                     category: 'Diagnóstico Psicosocial y Ambiental',
                      price: 'Consultar',
-                     image: '{{ asset('img/inicio/lineas_de_negocio/ISO-22000-HACCP-BPM.webp') }}',
-                     desc: 'Diseño, implementación y mejora de Sistemas de Gestión de Inocuidad Alimentaria (SGIA), registros INVIMA y auditorías normativas.',
+                     image: '{{ asset('img/inicio/lineas_de_negocio/MEDICIONES-AMBIENTALES.jpg') }}',
+                     desc: 'Implementación de baterías de riesgo psicosocial, intervenciones y mediciones precisas de higiene industrial y entorno de trabajo.',
                      specs: [
-                         'Asesoría e implementación de registro sanitario ante el INVIMA (Alimentos, cosméticos, medicamentos, etc.).', 
-                         'Diseño, implementación y mejora de SGIA (Para empresas de alimentos y envases para contacto).', 
-                         'Auditorías bajo lineamientos de BPM, BPF, HACCP, LEY FSM, ISO 22000, FSSC22000, entre otros.'
+                         'Implementación baterías de riesgo psicosocial e intervenciones psicosociales.',
+                         'Diseño, implementación y mejora del sistema de vigilancia epidemiológico psicosocial.',
+                         'Análisis de puesto de trabajo.',
+                         'Mediciones físicas: Sonometría, Luxometría, Radiometría, Dosimetría, Vibrometría, Confort térmico.',
+                         'Medición de Material particulado, Polvo fracción respirable e inhalable, Sílice cristalina.',
+                         'Medición de Vapores inorgánicos, Compuestos orgánicos volátiles (COV) y Humos metálicos/soldadura.',
+                         'Medición de Metano CH4, Ácido sulfhídrico, Gases de combustión, Nieblas y rocíos.'
                      ]
                  },
                  { 
-                     id: 2, 
-                     title: 'SISTEMA DE GESTIÓN DE CALIDAD', 
-                     category: 'Gestión de Calidad',
+                     id: 1, 
+                     title: 'MEDICIONES HIGIÉNICAS', 
+                     category: 'Mediciones Higiénicas',
                      price: 'Consultar',
-                     image: '{{ asset('img/inicio/lineas_de_negocio/SISTEMA-DE-GESTION-DE-CALIDAD.webp') }}',
-                     desc: 'Diseño, implementación y mejora de Sistemas de Gestión de Calidad SGC.',
+                     image: '{{ asset('img/inicio/lineas_de_negocio/mediciones-higienicas.jpg') }}',
+                     desc: 'Brindamos soluciones integrales en higiene industrial, realizando mediciones precisas y asesoría especializada para garantizar entornos laborales seguros y cumpliendo con la normatividad vigente.',
                      specs: [
-                         'Auditoría bajo lineamientos ISO 9001:2015.',
-                         'Evaluación de desempeño.',
-                         'Evaluación de proveedores.',
-                         'Control y seguimiento de productos o servicios no conformes.'
+                         'Mediciones de ruido.',
+                         'Iluminación.',
+                         'Material particulado.',
+                         'Vapores orgánicos e inorgánicos.',
+                         'Gases de combustión.',
+                         'Vibración.',
+                         'Confort térmico.',
+                         'Radiación.',
+                         'Polvo respirable e inhalable.',
+                         'Sílice cristalina.',
+                         'Metano CH4, Ácido sulfhídrico H2S.',
+                         'Humo de soldadura.',
+                         'Compuestos orgánicos volátiles (COV).',
+                         'Nieblas y rocíos.',
+                         'Monóxido de carbono (CO).',
+                         'Dióxido de carbono (CO2).',
+                         'Ácido sulfhídrico (H2S).',
+                         'Oxidos de nitrógeno (NOx).',
+                         'Metales pesados.'
                      ]
+                     
                  },
                  { 
                      id: 3, 
@@ -243,20 +263,17 @@
                      ]
                  },
                  { 
-                     id: 6, 
-                     title: 'BATERIAS DE RIESGO PSICOSOCIAL Y MEDICIONES AMBIENTALES', 
-                     category: 'Diagnóstico Psicosocial y Ambiental',
+                     id: 2, 
+                     title: 'SISTEMA DE GESTIÓN DE CALIDAD', 
+                     category: 'Gestión de Calidad',
                      price: 'Consultar',
-                     image: '{{ asset('img/inicio/lineas_de_negocio/MEDICIONES-AMBIENTALES.jpg') }}',
-                     desc: 'Implementación de baterías de riesgo psicosocial, intervenciones y mediciones precisas de higiene industrial y entorno de trabajo.',
+                     image: '{{ asset('img/inicio/lineas_de_negocio/SISTEMA-DE-GESTION-DE-CALIDAD.webp') }}',
+                     desc: 'Diseño, implementación y mejora de Sistemas de Gestión de Calidad SGC.',
                      specs: [
-                         'Implementación baterías de riesgo psicosocial e intervenciones psicosociales.',
-                         'Diseño, implementación y mejora del sistema de vigilancia epidemiológico psicosocial.',
-                         'Análisis de puesto de trabajo.',
-                         'Mediciones físicas: Sonometría, Luxometría, Radiometría, Dosimetría, Vibrometría, Confort térmico.',
-                         'Medición de Material particulado, Polvo fracción respirable e inhalable, Sílice cristalina.',
-                         'Medición de Vapores inorgánicos, Compuestos orgánicos volátiles (COV) y Humos metálicos/soldadura.',
-                         'Medición de Metano CH4, Ácido sulfhídrico, Gases de combustión, Nieblas y rocíos.'
+                         'Auditoría bajo lineamientos ISO 9001:2015.',
+                         'Evaluación de desempeño.',
+                         'Evaluación de proveedores.',
+                         'Control y seguimiento de productos o servicios no conformes.'
                      ]
                  },
                  { 
@@ -318,8 +335,7 @@
                             <h3 class="text-lg font-bold text-brand-navy dark:text-white leading-tight" x-text="service.title"></h3>
                             <p class="text-sm text-brand-slate dark:text-zinc-400 line-clamp-2" x-text="service.desc"></p>
                         </div>
-                        <div class="flex items-center justify-between border-t border-zinc-100 dark:border-brand-navy/40 pt-4">
-                            <span class="text-lg font-extrabold text-brand-navy dark:text-white" x-text="service.price"></span>
+                        <div class="flex items-center justify-end border-t border-zinc-100 dark:border-brand-navy/40 pt-4">
                             <button @click="activeService = service; modalOpen = true" 
                                class="inline-flex items-center justify-center rounded-lg bg-blue-900 hover:bg-blue-700 text-white px-4 py-2 text-sm font-bold transition-colors duration-300">
                                 Detalles
@@ -372,7 +388,6 @@
                     <div class="pr-8">
                         <span class="inline-block px-3 py-1 bg-brand-cyan/20 text-brand-cyan-dark dark:text-brand-cyan rounded-full text-xs font-bold mb-2" x-text="activeService?.category"></span>
                         <h2 class="text-2xl font-extrabold text-brand-navy dark:text-white leading-tight" x-text="activeService?.title"></h2>
-                        <p class="text-xl font-bold text-brand-cyan mt-1" x-text="activeService?.price"></p>
                     </div>
                     
                     <!-- Description -->

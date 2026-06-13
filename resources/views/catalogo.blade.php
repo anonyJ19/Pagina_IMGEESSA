@@ -49,7 +49,7 @@
         <div class="flex flex-col lg:flex-row gap-8">
             
             <!-- Left Sidebar (Categories) -->
-            <aside class="lg:w-1/4 w-full shrink-0">
+            <aside class="lg:w-1/4 w-full shrink-0 order-2 lg:order-1">
                 <div class="bg-white dark:bg-brand-navy/40 rounded-2xl border border-zinc-200/60 dark:border-brand-navy/50 p-6 shadow-sm">
                     <h3 class="text-lg font-extrabold text-brand-navy dark:text-white mb-4 flex items-center gap-2">
                         <svg class="h-5 w-5 text-brand-cyan" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7"></path></svg>
@@ -69,7 +69,7 @@
             </aside>
 
             <!-- Right Content (Search & Grid) -->
-            <main class="lg:w-3/4 w-full space-y-6">
+            <main class="lg:w-3/4 w-full space-y-6 order-1 lg:order-2">
                 
                 <!-- Search and Filters (Top of main area) -->
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b border-zinc-100 dark:border-brand-navy/35 pb-6 gap-4" x-show="selectedCategory" style="display: none;">

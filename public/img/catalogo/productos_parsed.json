@@ -220,26 +220,6 @@
     "destacado": false
   },
   {
-    "id": 23,
-    "nombre": "RESISTENTE A LA OXIDACIÓN",
-    "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
-    "precio": "Consultar",
-    "descripcion": "RESISTENTE A LA OXIDACIÓN. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
-    "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_5_img_11.png",
-    "especificaciones": [],
-    "destacado": false
-  },
-  {
-    "id": 24,
-    "nombre": "CON HIDROCARBUROS.",
-    "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
-    "precio": "Consultar",
-    "descripcion": "CON HIDROCARBUROS.. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
-    "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_5_img_12.png",
-    "especificaciones": [],
-    "destacado": false
-  },
-  {
     "id": 25,
     "nombre": "CONFINADOS. ARNES 6 ARGOLLAS PARA ESPACIOS",
     "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
@@ -290,16 +270,6 @@
     "destacado": false
   },
   {
-    "id": 30,
-    "nombre": "DIELÉCTRICAS LIGHT",
-    "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
-    "precio": "Consultar",
-    "descripcion": "DIELÉCTRICAS LIGHT. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
-    "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_6_img_9.png",
-    "especificaciones": [],
-    "destacado": false
-  },
-  {
     "id": 31,
     "nombre": "HERRAJERÍA DIELÉCTRICA LIGHT. ARNES 6 ARGOLLA",
     "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
@@ -340,16 +310,6 @@
     "destacado": false
   },
   {
-    "id": 35,
-    "nombre": "NOMEX/KEVLAR",
-    "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
-    "precio": "Consultar",
-    "descripcion": "NOMEX/KEVLAR. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
-    "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_6_img_14.png",
-    "especificaciones": [],
-    "destacado": false
-  },
-  {
     "id": 36,
     "nombre": "ARNES 6 ARGOLLA EN POLIURETANO PARA ESPACIOS CONFINADOS",
     "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
@@ -376,16 +336,6 @@
     "precio": "Consultar",
     "descripcion": "ARNES DE ENCUELLADOR EN POLIURETANO. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
     "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_7_img_8.png",
-    "especificaciones": [],
-    "destacado": false
-  },
-  {
-    "id": 39,
-    "nombre": "POLIURETANO",
-    "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
-    "precio": "Consultar",
-    "descripcion": "POLIURETANO. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
-    "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_7_img_9.png",
     "especificaciones": [],
     "destacado": false
   },
@@ -436,16 +386,6 @@
     "precio": "Consultar",
     "descripcion": "ESLINGA SENCILLA CON ABSORBEDOR DE 90 CM. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
     "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_8_img_7.png",
-    "especificaciones": [],
-    "destacado": false
-  },
-  {
-    "id": 45,
-    "nombre": "ACERO",
-    "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
-    "precio": "Consultar",
-    "descripcion": "ACERO. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
-    "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_8_img_8.png",
     "especificaciones": [],
     "destacado": false
   },
@@ -530,16 +470,6 @@
     "destacado": false
   },
   {
-    "id": 54,
-    "nombre": "ACERO",
-    "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
-    "precio": "Consultar",
-    "descripcion": "ACERO. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
-    "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_9_img_8.png",
-    "especificaciones": [],
-    "destacado": false
-  },
-  {
     "id": 55,
     "nombre": "ESLINGA SENCILLA CON ABSORBEDOR Y GANCHOS EN ALUMINIO",
     "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
@@ -560,32 +490,12 @@
     "destacado": false
   },
   {
-    "id": 57,
-    "nombre": "POLIURETANO",
-    "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
-    "precio": "Consultar",
-    "descripcion": "POLIURETANO. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
-    "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_9_img_11.png",
-    "especificaciones": [],
-    "destacado": false
-  },
-  {
     "id": 58,
     "nombre": "PARA TRABAJO CON HIDROCARBUROS. ESLINGA SENCILLA",
     "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
     "precio": "Consultar",
     "descripcion": "PARA TRABAJO CON HIDROCARBUROS. ESLINGA SENCILLA. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
     "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_9_img_12.png",
-    "especificaciones": [],
-    "destacado": false
-  },
-  {
-    "id": 59,
-    "nombre": "DIELÉCTRICOS",
-    "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
-    "precio": "Consultar",
-    "descripcion": "DIELÉCTRICOS. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
-    "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_9_img_13.png",
     "especificaciones": [],
     "destacado": false
   },
@@ -680,16 +590,6 @@
     "destacado": false
   },
   {
-    "id": 69,
-    "nombre": "POLIURETANO",
-    "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
-    "precio": "Consultar",
-    "descripcion": "POLIURETANO. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
-    "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_10_img_14.png",
-    "especificaciones": [],
-    "destacado": false
-  },
-  {
     "id": 70,
     "nombre": "PARA TRABAJO CON HIDROCARBUROS. ESLINGA DE",
     "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
@@ -710,32 +610,12 @@
     "destacado": false
   },
   {
-    "id": 72,
-    "nombre": "DIELÉCTRICOS",
-    "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
-    "precio": "Consultar",
-    "descripcion": "DIELÉCTRICOS. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
-    "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_11_img_8.png",
-    "especificaciones": [],
-    "destacado": false
-  },
-  {
     "id": 73,
     "nombre": "ESLINGA DE POSICIONAMIENTO DIELECTRICO CON GANCHO",
     "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
     "precio": "Consultar",
     "descripcion": "ESLINGA DE POSICIONAMIENTO DIELECTRICO CON GANCHO. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
     "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_11_img_9.png",
-    "especificaciones": [],
-    "destacado": false
-  },
-  {
-    "id": 74,
-    "nombre": "DIELÉCTRICOS",
-    "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
-    "precio": "Consultar",
-    "descripcion": "DIELÉCTRICOS. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
-    "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_11_img_10.png",
     "especificaciones": [],
     "destacado": false
   },
@@ -766,16 +646,6 @@
     "precio": "Consultar",
     "descripcion": "ESLINGA DE POSICIONAMIENTO EN Y DIELECTRICA. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
     "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_11_img_13.png",
-    "especificaciones": [],
-    "destacado": false
-  },
-  {
-    "id": 78,
-    "nombre": "POLIURETANO",
-    "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
-    "precio": "Consultar",
-    "descripcion": "POLIURETANO. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
-    "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_11_img_14.png",
     "especificaciones": [],
     "destacado": false
   },
@@ -940,16 +810,6 @@
     "destacado": false
   },
   {
-    "id": 95,
-    "nombre": "ANCLAJE EN GUAYA",
-    "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
-    "precio": "Consultar",
-    "descripcion": "ANCLAJE EN GUAYA. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
-    "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_13_img_14.png",
-    "especificaciones": [],
-    "destacado": false
-  },
-  {
     "id": 96,
     "nombre": "LINEA DE VIDA VERTICAL EN CUERDA TORCIDA 16MM",
     "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
@@ -1016,16 +876,6 @@
     "precio": "Consultar",
     "descripcion": "DIELÉCTRICO. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
     "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_14_img_13.png",
-    "especificaciones": [],
-    "destacado": false
-  },
-  {
-    "id": 103,
-    "nombre": "LINEA DE VIDA VERTICAL EN CUERDA 13MM",
-    "categoria": "Proteccion Contra Caidas Y Espacios Confinados",
-    "precio": "Consultar",
-    "descripcion": "LINEA DE VIDA VERTICAL EN CUERDA 13MM. Equipo de seguridad certificado para trabajos en alturas y espacios confinados. Garantiza máxima resistencia, soporte y prevención de accidentes.",
-    "imagen": "img/catalogo/proteccion_contra_caidas_y_espacios_confinados/page_14_img_14.png",
     "especificaciones": [],
     "destacado": false
   },
